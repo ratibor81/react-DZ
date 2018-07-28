@@ -1,0 +1,10 @@
+.search_bar {
+  margin-bottom: 15px;
+  border: 1px solid gray;
+  padding: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+input {
+  width: 100%;
+  background-color: ghostwhite;
+}

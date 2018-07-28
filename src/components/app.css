@@ -1,0 +1,10 @@
+.books_app {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.add_filter_panel {
+  width: 25%;
+}

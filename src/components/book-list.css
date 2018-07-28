@@ -1,0 +1,12 @@
+.list {
+  width: 60%;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 15px;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
