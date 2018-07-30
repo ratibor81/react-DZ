@@ -1,0 +1,14 @@
+img {
+  width: 180px;
+  height: 250px;
+}
+p {
+  height: 55px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.card {
+  padding: 10px;
+  border: 1px solid gray;
+}
