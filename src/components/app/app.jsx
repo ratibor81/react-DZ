@@ -69,16 +69,31 @@ class App extends Component {
     });
   };
 
+  setToStorage = () =>
+    localStorage.setItem('list', JSON.stringify(this.state.watchlist));
+
   addCard = id => {
     const { movies, watchlist } = this.state;
+
+    const duplicateMovie = watchlist.find(movie => movie.id === id);
+    if (duplicateMovie) return;
+
     const selectedMovie = movies.find(movie => movie.id === id);
 
     this.setState(
       prevState => ({
         watchlist: [selectedMovie, ...prevState.watchlist],
       }),
-      //console.log(selectedMovie, watchlist)
-      localStorage.setItem('list', JSON.stringify(watchlist)),
+      () => this.setToStorage(),
+    );
+  };
+
+  removeCard = id => {
+    this.setState(
+      prevState => ({
+        watchlist: prevState.watchlist.filter(movie => movie.id !== id),
+      }),
+      () => this.setToStorage(),
     );
   };
 
@@ -88,16 +103,16 @@ class App extends Component {
     this.setState({ watchlist: list });
   };
 
-  // getCardInfo = () => {
+  // getMovieInfo = () => {
   //   console.log('INFo !');
   // }
 
   render() {
-    const { category, movies } = this.state;
+    const { category, movies, watchlist } = this.state;
 
     return (
       <div className={styles.container}>
-        <WatchList />
+        <WatchList watchlist={watchlist} removeCard={this.removeCard} />
         <MainSection>
           <SearchPanel>
             <CategorySelector

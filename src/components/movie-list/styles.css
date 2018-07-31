@@ -5,10 +5,10 @@
   justify-content: space-between;
   width: 100%;
 }
-li {
-  width: 23%;
+.list {
+  width: 24%;
   margin-bottom: 10px;
 }
-li:nth-last-child(-n+4) {
+.list:nth-last-child(-n + 4) {
   margin-bottom: 0;
 }

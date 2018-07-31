@@ -5,7 +5,7 @@ import styles from './styles.css';
 const MovieList = ({ movies, addCard }) => (
   <ul className={styles.movie_list}>
     {movies.map(movie => (
-      <li key={movie.id}>
+      <li className={styles.list} key={movie.id}>
         <MovieCard
          {...movie}
           addCard={addCard}
