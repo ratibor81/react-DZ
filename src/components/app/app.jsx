@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-//import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader';
 import CategorySelector from '../category-selector';
 import { fetchMovies } from '../../services/api';
 import { searchMovie } from '../../services/search';
 import selectorOptions from '../../selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
+import styles from './styles.css';
+import SearchPanel from '../search-panel';
+import MainSection from '../main-section';
+import WatchList from '../watch-list';
 
 class App extends Component {
   state = {
     movies: [],
+    watchlist: [],
     category: null,
     //loading: false,
     //error: null,
@@ -17,18 +22,11 @@ class App extends Component {
   changeCategory = category => {
     this.setState({ category });
   };
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (!this.state.category) return true;
-
-  //   const prevCategory = this.state.category.value;
-  //   const nextCategory = nextState.category.value;
-
-  //   const shouldUpdate = prevCategory !== nextCategory;
-
-  //   return shouldUpdate;
-  // }
-
+  componentDidMount() {
+    this.getFromStorage();
+  }
   componentDidUpdate(prevProps, prevState) {
+    if (this.state.category === null) return;
     if (!prevState.category) {
       fetchMovies({
         category: this.state.category.value,
@@ -71,22 +69,52 @@ class App extends Component {
     });
   };
 
+  addCard = id => {
+    const { movies, watchlist } = this.state;
+    const selectedMovie = movies.find(movie => movie.id === id);
+
+    this.setState(
+      prevState => ({
+        watchlist: [selectedMovie, ...prevState.watchlist],
+      }),
+      //console.log(selectedMovie, watchlist)
+      localStorage.setItem('list', JSON.stringify(watchlist)),
+    );
+  };
+
+  getFromStorage = () => {
+    const list = JSON.parse(localStorage.getItem('list'));
+    if (!list) return;
+    this.setState({ watchlist: list });
+  };
+
+  // getCardInfo = () => {
+  //   console.log('INFo !');
+  // }
+
   render() {
     const { category, movies } = this.state;
 
     return (
-      <div>
-        <CategorySelector
-          options={selectorOptions}
-          value={category}
-          onChange={this.changeCategory}
-        />
-        <SearchBar onSubmit={this.searchMovies} />
-        {movies.length > 0 && <MovieList movies={movies} />}
+      <div className={styles.container}>
+        <WatchList />
+        <MainSection>
+          <SearchPanel>
+            <CategorySelector
+              options={selectorOptions}
+              value={category}
+              onChange={this.changeCategory}
+            />
+            <SearchBar onSubmit={this.searchMovies} />
+          </SearchPanel>
+          {movies.length > 0 && (
+            <MovieList movies={movies} addCard={this.addCard} />
+          )}
+        </MainSection>
       </div>
     );
   }
 }
 
-//export default hot(module)(App);
-export default App;
+export default hot(module)(App);
+//export default App;

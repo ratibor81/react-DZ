@@ -1,0 +1,35 @@
+.search_form {
+  width: 240px;
+  border: 1px solid hsl(0, 0%, 80%);
+  padding: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
+}
+
+.search_button {
+  cursor: pointer;
+  border: none;
+  background: url('./search.svg') center no-repeat;
+  background-size: 50% 50%;
+  width: 35px;
+  height: 35px;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 50%;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
+
+  /* display: block; */
+}
+.panel {
+  display: flex;
+  height: 38px;
+}
+input {
+  margin-right: 10px;
+  border: 1px solid hsl(0, 0%, 80%);
+  padding: 5px;
+}
+h5 {
+  margin-bottom: 5px;
+}
+.search_button:hover {
+  background-color: rgb(238, 229, 229);
+}

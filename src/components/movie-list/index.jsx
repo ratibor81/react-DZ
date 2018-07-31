@@ -2,15 +2,13 @@ import React from 'react';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
 
-const MovieList = ({ movies }) => (
+const MovieList = ({ movies, addCard }) => (
   <ul className={styles.movie_list}>
-    {movies.map(({ id, poster_path, release_date, overview, vote_average }) => (
-      <li key={id}>
+    {movies.map(movie => (
+      <li key={movie.id}>
         <MovieCard
-          poster_path={poster_path}
-          release_date={release_date}
-          overview={overview}
-          vote_average={vote_average}
+         {...movie}
+          addCard={addCard}
         />
       </li>
     ))}

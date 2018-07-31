@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import styles from './search-bar.css';
+import styles from './styles.css';
 
 export default class SearchBar extends Component {
   state = {
@@ -21,18 +21,18 @@ export default class SearchBar extends Component {
     const { title } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Search movie by title
+      <form className={styles.search_form} onSubmit={this.handleSubmit}>
+        <h5>Search movie by title</h5>
+        <div className={styles.panel}>
           <input
             type="text"
-            placeholder="Enter movie title"
+            placeholder="Enter movie title..."
             value={title}
             onChange={this.handleChange}
             required
           />
-          <button>SEARCH</button>
-        </label>
+          <button className={styles.search_button} />
+        </div>
       </form>
     );
   }
