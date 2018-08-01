@@ -4,14 +4,14 @@ import WatchListCard from '../watch-list-card';
 
 export default class WatchList extends Component {
   render() {
-    const { watchlist, removeCard } = this.props;
+    const { watchlist, removeCard, toggleModal } = this.props;
     return (
       <div className={styles.list}>
         <h2 className={styles.header}>Watchlist</h2>
         <ul className={styles.movie_list}>
           {watchlist.map(movie => (
             <li className={styles.card} key={movie.id}>
-              <WatchListCard {...movie} removeCard={removeCard} />
+              <WatchListCard {...movie} removeCard={removeCard} toggleModal={toggleModal}/>
             </li>
           ))}
         </ul>

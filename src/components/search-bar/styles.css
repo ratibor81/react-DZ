@@ -11,8 +11,6 @@
   border: none;
   padding: 5px;
   background-color: #fff;
-  /* background: url('./search.svg') center no-repeat;
-  background-size: 50% 50%; */
   width: 35px;
   height: 35px;
   border: 1px solid hsl(0, 0%, 80%);
@@ -42,4 +40,5 @@ h5 {
 }
 .search_button:hover .icon {
   fill: black;
+  transition: .5s linear;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
+import Icon from './icon';
+import { ICONS } from '../icons/constants';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
@@ -9,7 +11,8 @@ const WatchListCard = ({
   release_date,
   vote_average,
   title,
-  removeCard
+  removeCard,
+  toggleModal
 }) => (
   <div className={styles.card}>
     <img className={styles.poster} src={`${IMG_BASE}${poster_path}`} alt="" />
@@ -19,10 +22,16 @@ const WatchListCard = ({
       <div className={styles.rate}>Rating: {vote_average}</div>
     </div>
     <div className={styles.panel}>
-      <button className={styles.del_button} onClick={() => removeCard(id)}/>
-      <button className={styles.info_button} />
+      <button className={styles.del_button} onClick={() => removeCard(id)}>
+        <Icon icon={ICONS.DELETE} />
+      </button>
+      <button className={styles.info_button} onClick={() => toggleModal(id)}> 
+      <Icon icon={ICONS.INFO} />
+      </button>
     </div>
   </div>
 );
+
+
 
 export default WatchListCard;

@@ -6,25 +6,35 @@ import { searchMovie } from '../../services/search';
 import selectorOptions from '../../selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
-import styles from './styles.css';
 import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
 import WatchList from '../watch-list';
+import ModalInfo from '../modal-info';
 
 class App extends Component {
   state = {
     movies: [],
     watchlist: [],
     category: null,
-    //loading: false,
-    //error: null,
+    isModalOpen: false,
+    movieId: '',
   };
+
   changeCategory = category => {
     this.setState({ category });
   };
+
   componentDidMount() {
     this.getFromStorage();
   }
+
+  toggleModal = id => {
+    this.setState(prevState => ({
+      isModalOpen: !prevState.isModalOpen,
+      movieId: prevState.isModalOpen ? null : id,
+    }));
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.category === null) return;
     if (!prevState.category) {
@@ -50,15 +60,11 @@ class App extends Component {
   }
 
   handleFetchSuccess = movies => {
-    this.setState({ movies, loading: false });
+    this.setState({ movies });
   };
 
   handleFetchFailure = error => {
-    this.setState({ loading: false, error: error.message });
-  };
-
-  handleFetch = () => {
-    this.setState({ loading: true, error: null });
+    this.setState({ error: error.message });
   };
 
   searchMovies = ({ title }) => {
@@ -103,16 +109,16 @@ class App extends Component {
     this.setState({ watchlist: list });
   };
 
-  // getMovieInfo = () => {
-  //   console.log('INFo !');
-  // }
-
   render() {
-    const { category, movies, watchlist } = this.state;
+    const { category, movies, watchlist, isModalOpen, movieId } = this.state;
 
     return (
-      <div className={styles.container}>
-        <WatchList watchlist={watchlist} removeCard={this.removeCard} />
+      <div>
+        <WatchList
+          watchlist={watchlist}
+          removeCard={this.removeCard}
+          toggleModal={this.toggleModal}
+        />
         <MainSection>
           <SearchPanel>
             <CategorySelector
@@ -123,9 +129,20 @@ class App extends Component {
             <SearchBar onSubmit={this.searchMovies} />
           </SearchPanel>
           {movies.length > 0 && (
-            <MovieList movies={movies} addCard={this.addCard} />
+            <MovieList
+              movies={movies}
+              addCard={this.addCard}
+              toggleModal={this.toggleModal}
+            />
           )}
         </MainSection>
+        {isModalOpen && (
+          <ModalInfo
+            toggleModal={this.toggleModal}
+            open={isModalOpen}
+            id={movieId}
+          />
+        )}
       </div>
     );
   }

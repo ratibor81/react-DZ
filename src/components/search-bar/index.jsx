@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './styles.css';
-//import InlineSVG from 'svg-inline-react';
-import SearchIcon from './search-icon';
+import Icon from '../icons/icon';
+import { ICONS } from '../icons/constants';
 
 export default class SearchBar extends Component {
   state = {
@@ -34,7 +34,7 @@ export default class SearchBar extends Component {
             required
           />
           <button className={styles.search_button}>
-            <SearchIcon />
+            <Icon icon={ICONS.SEARCH} />
           </button>
         </div>
       </form>

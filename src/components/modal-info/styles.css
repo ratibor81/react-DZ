@@ -1,0 +1,29 @@
+.modal {
+  height: 470px;
+  width: 800px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.poster {
+  width: 300px;
+  height: auto;
+  margin-right: 15px;
+}
+.content {
+  display: flex;
+}
+.head_title {
+  font-size: 26px;
+}
+.list {
+  /* width: 70%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
