@@ -38,7 +38,14 @@ export default class ModalInfo extends Component {
     const { open, toggleModal } = this.props;
     const { loading, movie } = this.state;
     return (
-      <Modal open={open} onClose={toggleModal} center classNames={styles}>
+      <Modal
+        open={open}
+        onClose={toggleModal}
+        center
+        classNames={styles}
+        closeIconSvgPath={false}
+        closeIconSize={15}
+      >
         {loading && <Loader />}
 
         {!loading && (
@@ -46,13 +53,13 @@ export default class ModalInfo extends Component {
             <img
               className={styles.poster}
               src={`${IMG_BASE}${movie.poster_path}`}
-              alt=""
+              alt="poster"
             />
             <div>
               <h2 className={styles.head_title}>{movie.original_title}</h2>
-              <h4>Tagline: {`"${movie.tagline}"`}</h4>
-              <p>{movie.overview}</p>
-              <h4>Genres</h4>
+              <h4 className={styles.tagline}>{`"${movie.tagline}"`}</h4>
+              <p className={styles.overview}>{movie.overview}</p>
+              <h4 className={styles.headers}>Genres</h4>
               <ul className={styles.list}>
                 {movie.genres.map(movie => (
                   <li className={styles.genre} key={movie.id}>
@@ -60,7 +67,7 @@ export default class ModalInfo extends Component {
                   </li>
                 ))}
               </ul>
-              <h4>Companies</h4>
+              <h4 className={styles.headers}>Companies</h4>
               <ul className={styles.list}>
                 {movie.production_companies.map(movie => (
                   <li className={styles.companie} key={movie.id}>

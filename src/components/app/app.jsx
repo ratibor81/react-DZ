@@ -17,7 +17,7 @@ class App extends Component {
     watchlist: [],
     category: null,
     isModalOpen: false,
-    movieId: '',
+    movieId: null,
   };
 
   changeCategory = category => {

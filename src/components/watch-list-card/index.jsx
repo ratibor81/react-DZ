@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
+import PropTypes from 'prop-types';
 import Icon from './icon';
 import { ICONS } from '../icons/constants';
 
@@ -12,7 +13,7 @@ const WatchListCard = ({
   vote_average,
   title,
   removeCard,
-  toggleModal
+  toggleModal,
 }) => (
   <div className={styles.card}>
     <img className={styles.poster} src={`${IMG_BASE}${poster_path}`} alt="" />
@@ -25,13 +26,22 @@ const WatchListCard = ({
       <button className={styles.del_button} onClick={() => removeCard(id)}>
         <Icon icon={ICONS.DELETE} />
       </button>
-      <button className={styles.info_button} onClick={() => toggleModal(id)}> 
-      <Icon icon={ICONS.INFO} />
+      <button className={styles.info_button} onClick={() => toggleModal(id)}>
+        <Icon icon={ICONS.INFO} />
       </button>
     </div>
   </div>
 );
 
-
+WatchListCard.propTypes = {
+  id: PropTypes.number,
+  poster_path: PropTypes.string,
+  release_date: PropTypes.string,
+  overview: PropTypes.string,
+  title: PropTypes.string,
+  vote_average: PropTypes.number,
+  removeCard: PropTypes.func,
+  toggleModal: PropTypes.func,
+};
 
 export default WatchListCard;

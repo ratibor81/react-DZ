@@ -24,11 +24,13 @@ const MovieCard = ({
 );
 
 MovieCard.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   poster_path: PropTypes.string,
   release_date: PropTypes.string,
   overview: PropTypes.string,
-  vote_average: PropTypes.string,
+  vote_average: PropTypes.number,
+  addCard: PropTypes.func,
+  toggleModal: PropTypes.func,
 };
 
 
