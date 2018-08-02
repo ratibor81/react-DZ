@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import CategorySelector from '../category-selector';
-import { fetchMovies } from '../../services/api';
-import { searchMovie } from '../../services/search';
+import fetchMovies from '../../services/get-movies';
+import searchMovie from '../../services/search';
 import selectorOptions from '../../selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
@@ -20,26 +20,16 @@ class App extends Component {
     movieId: null,
   };
 
-  changeCategory = category => {
-    this.setState({ category });
-  };
-
   componentDidMount() {
     this.getFromStorage();
   }
 
-  toggleModal = id => {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen,
-      movieId: prevState.isModalOpen ? null : id,
-    }));
-  };
-
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.category === null) return;
+    const { category } = this.state;
+    if (category === null) return;
     if (!prevState.category) {
       fetchMovies({
-        category: this.state.category.value,
+        category: category.value,
         onSuccess: this.handleFetchSuccess,
         onError: this.handleFetchFailure,
       });
@@ -48,7 +38,7 @@ class App extends Component {
     }
 
     const prevCategory = prevState.category.value;
-    const nextCategory = this.state.category.value;
+    const nextCategory = category.value;
 
     if (prevCategory !== nextCategory) {
       fetchMovies({
@@ -59,12 +49,19 @@ class App extends Component {
     }
   }
 
-  handleFetchSuccess = movies => {
-    this.setState({ movies });
+  getFromStorage = () => {
+    const list = JSON.parse(localStorage.getItem('list'));
+    if (!list) return;
+    this.setState({ watchlist: list });
   };
 
-  handleFetchFailure = error => {
-    this.setState({ error: error.message });
+  // handleFetchFailure = error => {
+  //   this.setState({ error: error.message });
+  // };
+
+  setToStorage = () => {
+    const { watchlist } = this.state;
+    localStorage.setItem('list', JSON.stringify(watchlist));
   };
 
   searchMovies = ({ title }) => {
@@ -75,8 +72,16 @@ class App extends Component {
     });
   };
 
-  setToStorage = () =>
-    localStorage.setItem('list', JSON.stringify(this.state.watchlist));
+  handleFetchSuccess = movies => {
+    this.setState({ movies });
+  };
+
+  toggleModal = id => {
+    this.setState(prevState => ({
+      isModalOpen: !prevState.isModalOpen,
+      movieId: prevState.isModalOpen ? null : id,
+    }));
+  };
 
   addCard = id => {
     const { movies, watchlist } = this.state;
@@ -103,10 +108,8 @@ class App extends Component {
     );
   };
 
-  getFromStorage = () => {
-    const list = JSON.parse(localStorage.getItem('list'));
-    if (!list) return;
-    this.setState({ watchlist: list });
+  changeCategory = category => {
+    this.setState({ category });
   };
 
   render() {
@@ -149,4 +152,4 @@ class App extends Component {
 }
 
 export default hot(module)(App);
-//export default App;
+// export default App;

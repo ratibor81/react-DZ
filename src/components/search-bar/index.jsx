@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.css';
 import Icon from '../icons/icon';
-import { ICONS } from '../icons/constants';
+import ICONS from '../icons/constants';
 
 export default class SearchBar extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     title: '',
   };
+
   handleChange = e => {
     this.setState({ title: e.target.value });
   };
+
   handleSubmit = e => {
+    const { onSubmit } = this.props;
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
+    onSubmit(this.state);
     this.setState({
       title: '',
     });
@@ -33,7 +41,7 @@ export default class SearchBar extends Component {
             onChange={this.handleChange}
             required
           />
-          <button className={styles.search_button}>
+          <button type="button" className={styles.search_button}>
             <Icon icon={ICONS.SEARCH} />
           </button>
         </div>

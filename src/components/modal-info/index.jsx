@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
+import PropTypes from 'prop-types';
 import styles from './styles.css';
-import { searchById } from '../../services/search-by-id';
+import searchById from '../../services/search-by-id';
 import Loader from '../shared-ui/loader';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
 
 export default class ModalInfo extends Component {
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    toggleModal: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+  };
+
   state = {
     movie: '',
     loading: true,
     error: null,
   };
 
-  handleFetchSuccess = movie => {
-    this.setState({ movie: movie, loading: false });
-  };
-
-  handleFetchFailure = error => {
-    this.setState({ loading: false, error: error.message });
-  };
-
   componentDidMount() {
     const { id } = this.props;
     this.searchMovie({ id });
   }
+
+  handleFetchSuccess = movie => {
+    this.setState({ movie, loading: false });
+  };
+
+  handleFetchFailure = error => {
+    this.setState({ loading: false, error });
+  };
 
   searchMovie = ({ id }) => {
     searchById({
@@ -36,7 +43,7 @@ export default class ModalInfo extends Component {
 
   render() {
     const { open, toggleModal } = this.props;
-    const { loading, movie } = this.state;
+    const { loading, movie, error } = this.state;
     return (
       <Modal
         open={open}
@@ -46,6 +53,7 @@ export default class ModalInfo extends Component {
         closeIconSvgPath={false}
         closeIconSize={15}
       >
+        {error && <div>{error}</div>}
         {loading && <Loader />}
 
         {!loading && (
@@ -61,17 +69,17 @@ export default class ModalInfo extends Component {
               <p className={styles.overview}>{movie.overview}</p>
               <h4 className={styles.headers}>Genres</h4>
               <ul className={styles.list}>
-                {movie.genres.map(movie => (
-                  <li className={styles.genre} key={movie.id}>
-                    {movie.name}
+                {movie.genres.map((genre, idx) => (
+                  <li className={styles.genre} key={idx.toString()}>
+                    {genre.name}
                   </li>
                 ))}
               </ul>
               <h4 className={styles.headers}>Companies</h4>
               <ul className={styles.list}>
-                {movie.production_companies.map(movie => (
-                  <li className={styles.companie} key={movie.id}>
-                    {movie.name}
+                {movie.production_companies.map((companie, idx) => (
+                  <li className={styles.companie} key={idx.toString()}>
+                    {companie.name}
                   </li>
                 ))}
               </ul>

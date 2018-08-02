@@ -1,37 +1,41 @@
 import React from 'react';
-import styles from './styles.css';
 import PropTypes from 'prop-types';
-import CardPanel from '../movie-card-panel'
+import styles from './styles.css';
+import CardPanel from '../movie-card-panel';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
 const MovieCard = ({
   id,
-  poster_path,
-  release_date,
+  poster_path: posterPath,
+  release_date: releaseDate,
   overview,
-  vote_average,
+  vote_average: voteAverage,
   addCard,
-  toggleModal
+  toggleModal,
 }) => (
   <div className={styles.card}>
-    <img src={`${IMG_BASE}${poster_path}`} alt="" />
-    <h5>Release date: {release_date.slice(0, -6)}</h5>
+    <img src={`${IMG_BASE}${posterPath}`} alt="" />
+    <h5>Release date: {releaseDate.slice(0, -6)}</h5>
     <p>{overview}</p>
-    <div className={styles.rate}>{vote_average}</div>
-    <CardPanel styles={styles.add_panel} addCard={addCard} id={id} toggleModal={toggleModal}/>
+    <div className={styles.rate}>{voteAverage}</div>
+    <CardPanel
+      styles={styles.add_panel}
+      addCard={addCard}
+      id={id}
+      toggleModal={toggleModal}
+    />
   </div>
 );
 
 MovieCard.propTypes = {
-  id: PropTypes.number,
-  poster_path: PropTypes.string,
-  release_date: PropTypes.string,
-  overview: PropTypes.string,
-  vote_average: PropTypes.number,
-  addCard: PropTypes.func,
-  toggleModal: PropTypes.func,
+  id: PropTypes.number.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  addCard: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
-
 
 export default MovieCard;
