@@ -3,7 +3,9 @@ import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import searchById from '../../services/search-by-id';
+import getVideos from '../../services/get-videos';
 import Loader from '../shared-ui/loader';
+import Trailer from './trailer';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
 
@@ -15,7 +17,8 @@ export default class ModalInfo extends Component {
   };
 
   state = {
-    movie: '',
+    movie: null,
+    videos: '',
     loading: true,
     error: null,
   };
@@ -33,17 +36,27 @@ export default class ModalInfo extends Component {
     this.setState({ loading: false, error });
   };
 
+  fetchVideos = videos => {
+    this.setState({ videos });
+  };
+
   searchMovie = ({ id }) => {
     searchById({
       id,
       onSuccess: this.handleFetchSuccess,
       onError: this.handleFetchFailure,
     });
+    getVideos({
+      id,
+      onSuccess: this.fetchVideos,
+      onError: this.handleFetchFailure,
+    });
   };
 
   render() {
     const { open, toggleModal } = this.props;
-    const { loading, movie, error } = this.state;
+    const { loading, movie, error, videos } = this.state;
+
     return (
       <Modal
         open={open}
@@ -83,6 +96,10 @@ export default class ModalInfo extends Component {
                   </li>
                 ))}
               </ul>
+              <h4 className={styles.headers}>Trailer</h4>
+              <div className={styles.trailer}>
+                <Trailer url={videos.key} />
+              </div>
             </div>
           </div>
         )}

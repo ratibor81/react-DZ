@@ -18,6 +18,7 @@ class App extends Component {
     category: null,
     isModalOpen: false,
     movieId: null,
+    error: null,
   };
 
   componentDidMount() {
@@ -55,13 +56,13 @@ class App extends Component {
     this.setState({ watchlist: list });
   };
 
-  // handleFetchFailure = error => {
-  //   this.setState({ error: error.message });
-  // };
-
   setToStorage = () => {
     const { watchlist } = this.state;
     localStorage.setItem('list', JSON.stringify(watchlist));
+  };
+
+  handleFetchFailure = error => {
+    this.setState({ error });
   };
 
   searchMovies = ({ title }) => {
@@ -113,10 +114,18 @@ class App extends Component {
   };
 
   render() {
-    const { category, movies, watchlist, isModalOpen, movieId } = this.state;
+    const {
+      category,
+      movies,
+      watchlist,
+      isModalOpen,
+      movieId,
+      error,
+    } = this.state;
 
     return (
-      <div>
+      <div className="App">
+        {error && <div>{error}</div>}
         <WatchList
           watchlist={watchlist}
           removeCard={this.removeCard}

@@ -17,7 +17,7 @@ const MovieCard = ({
   <div className={styles.card}>
     <img src={`${IMG_BASE}${posterPath}`} alt="" />
     <h5>Release date: {releaseDate.slice(0, -6)}</h5>
-    <p>{overview}</p>
+    <p className={styles.overview}>{overview}</p>
     <div className={styles.rate}>{voteAverage}</div>
     <CardPanel
       styles={styles.add_panel}

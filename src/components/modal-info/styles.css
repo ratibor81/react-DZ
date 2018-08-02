@@ -1,5 +1,5 @@
 .modal {
-  height: 470px;
+  min-height: 470px;
   width: 800px;
   padding: 10px;
   display: flex;
@@ -20,23 +20,23 @@
 }
 .head_title {
   font-size: 26px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 .tagline {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-style: italic;
   font-size: 16px;
 }
 .overview {
-  font-size: 15px;
-  height: 150px;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 .headers {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #37474f;
 }
 .list {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   padding-left: 15px;
   line-height: 1.5;
 }
@@ -48,7 +48,7 @@
   display: inline-block;
   margin-right: 15px;
   color: #01579b;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
 }
 .closeButton {
@@ -66,4 +66,7 @@
 .closeIcon {
   background: url('./img/close.svg') center no-repeat;
   background-size: cover;
+}
+.trailer {
+  padding: 0 120px;
 }
