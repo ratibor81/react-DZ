@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+
 import CategorySelector from '../category-selector';
 import fetchMovies from '../../services/get-movies';
 import searchMovie from '../../services/search';
@@ -50,6 +51,16 @@ class App extends Component {
     }
   }
 
+  getMoreMovies = pageNum => {
+    const { category } = this.state;
+    fetchMovies({
+      pageNum: pageNum + 1,
+      category: category.value,
+      onSuccess: this.handleFetchMore,
+      onError: this.handleFetchFailure,
+    });
+  };
+
   getFromStorage = () => {
     const list = JSON.parse(localStorage.getItem('list'));
     if (!list) return;
@@ -59,6 +70,12 @@ class App extends Component {
   setToStorage = () => {
     const { watchlist } = this.state;
     localStorage.setItem('list', JSON.stringify(watchlist));
+  };
+
+  handleFetchMore = movies => {
+    this.setState(prevState => ({
+      movies: prevState.movies.concat(movies),
+    }));
   };
 
   handleFetchFailure = error => {
@@ -140,11 +157,13 @@ class App extends Component {
             />
             <SearchBar onSubmit={this.searchMovies} />
           </SearchPanel>
+
           {movies.length > 0 && (
             <MovieList
               movies={movies}
               addCard={this.addCard}
               toggleModal={this.toggleModal}
+              getMoreMovies={this.getMoreMovies}
             />
           )}
         </MainSection>

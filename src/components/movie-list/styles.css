@@ -12,3 +12,8 @@
 .list:nth-last-child(-n + 4) {
   margin-bottom: 0;
 }
+.loader {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
