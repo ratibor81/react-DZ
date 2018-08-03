@@ -21,7 +21,7 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
 );
 
 WatchList.propTypes = {
-  watchlist: PropTypes.instanceOf(Array).isRequired,
+  watchlist: PropTypes.arrayOf(Array).isRequired,
   removeCard: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };

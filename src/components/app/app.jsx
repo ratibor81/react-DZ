@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-
 import CategorySelector from '../category-selector';
 import fetchMovies from '../../services/get-movies';
 import searchMovie from '../../services/search';

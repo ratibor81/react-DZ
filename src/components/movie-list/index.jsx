@@ -28,7 +28,7 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
 );
 
 MovieList.propTypes = {
-  movies: PropTypes.instanceOf(Array).isRequired,
+  movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   getMoreMovies: PropTypes.func.isRequired,
