@@ -19,6 +19,7 @@ class App extends Component {
     isModalOpen: false,
     movieId: null,
     error: null,
+    // isSearch: false,
   };
 
   componentDidMount() {
