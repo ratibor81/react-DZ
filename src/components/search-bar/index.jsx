@@ -6,7 +6,7 @@ import ICONS from '../icons/constants';
 
 export default class SearchBar extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
   };
 
   state = {
@@ -18,10 +18,11 @@ export default class SearchBar extends Component {
   };
 
   handleSubmit = e => {
-    const { onSubmit } = this.props;
+    const { onSearch } = this.props;
+    const { title } = this.state;
     e.preventDefault();
 
-    onSubmit(this.state);
+    onSearch({ title });
     this.setState({
       title: '',
     });
@@ -41,7 +42,7 @@ export default class SearchBar extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="button" className={styles.search_button}>
+          <button type="submit" className={styles.search_button}>
             <Icon icon={ICONS.SEARCH} />
           </button>
         </div>

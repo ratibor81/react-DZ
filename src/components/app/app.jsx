@@ -27,23 +27,14 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
-    if (category === null) return;
-    if (!prevState.category) {
-      fetchMovies({
-        category: category.value,
-        onSuccess: this.handleFetchSuccess,
-        onError: this.handleFetchFailure,
-      });
+    if (!category) return;
 
-      return;
-    }
-
-    const prevCategory = prevState.category.value;
-    const nextCategory = category.value;
+    const prevCategory = prevState.category;
+    const nextCategory = category;
 
     if (prevCategory !== nextCategory) {
       fetchMovies({
-        category: nextCategory,
+        category: nextCategory.value,
         onSuccess: this.handleFetchSuccess,
         onError: this.handleFetchFailure,
       });
@@ -52,6 +43,7 @@ class App extends Component {
 
   getMoreMovies = pageNum => {
     const { category } = this.state;
+    if (!category) return;
     fetchMovies({
       pageNum: pageNum + 1,
       category: category.value,
@@ -154,7 +146,7 @@ class App extends Component {
               value={category}
               onChange={this.changeCategory}
             />
-            <SearchBar onSubmit={this.searchMovies} />
+            <SearchBar onSearch={this.searchMovies} />
           </SearchPanel>
 
           {movies.length > 0 && (

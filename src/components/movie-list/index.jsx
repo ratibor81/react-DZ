@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
-// import Loader from '../shared-ui/loader';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
 

@@ -36,9 +36,9 @@ h5 {
 .icon {
   width: 17px;
   height: 17px;
-  fill: #BDBDBD;
+  fill: #bdbdbd;
 }
 .search_button:hover .icon {
   fill: black;
-  transition: .5s linear;
+  transition: 0.5s linear;
 }
