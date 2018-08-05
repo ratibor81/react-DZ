@@ -5,9 +5,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
 }
 .overlay {
-  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .poster {
@@ -71,12 +81,12 @@
   padding: 0 120px;
 }
 
-.Modal-exiting {
-  animation: close-modal 200ms linear forwards !important;
+.modalExiting {
+  animation: close-modal 200ms linear forwards;
 }
 
-.Modal-entering {
-  animation: open-modal 400ms linear forwards !important;
+.modalEntering {
+  animation: open-modal 400ms linear forwards;
 }
 
 @keyframes open-modal {

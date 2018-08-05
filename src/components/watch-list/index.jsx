@@ -11,7 +11,7 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
       {watchlist.map(movie => (
         <CSSTransition
           key={movie.id}
-          timeout={200}
+          timeout={300}
           classNames={{
             enter: styles.slideEnter,
             enterActive: styles.slideEnterActive,

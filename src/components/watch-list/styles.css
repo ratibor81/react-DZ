@@ -29,7 +29,7 @@
 .slideEnterActive {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 200ms ease-out, transform 200ms linear;
+  transition: opacity 300ms ease-out, transform 300ms linear;
 }
 
 .slideExit {
