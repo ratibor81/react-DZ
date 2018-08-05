@@ -70,3 +70,45 @@
 .trailer {
   padding: 0 120px;
 }
+
+.Modal-exiting {
+  animation: close-modal 200ms linear forwards !important;
+}
+
+.Modal-entering {
+  animation: open-modal 400ms linear forwards !important;
+}
+
+@keyframes open-modal {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes close-modal {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
