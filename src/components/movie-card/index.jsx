@@ -30,12 +30,16 @@ const MovieCard = ({
 
 MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
-  poster_path: PropTypes.string.isRequired,
+  poster_path: PropTypes.string,
   release_date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
   addCard: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
+};
+
+MovieCard.defaultProps = {
+  poster_path: null,
 };
 
 export default MovieCard;

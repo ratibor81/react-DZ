@@ -18,7 +18,8 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
             exit: styles.slideExit,
             exitActive: styles.slideExitActive,
           }}
-          mountOnEnter
+          // mountOnEnter
+          unmountOnExit
         >
           <li className={styles.card} key={movie.id}>
             <WatchListCard

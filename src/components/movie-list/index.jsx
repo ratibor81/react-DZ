@@ -17,11 +17,7 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
       </div>
     }
   >
-    <TransitionGroup
-      component="ul"
-      className={styles.movie_list}
-      // unmountonxit="true"
-    >
+    <TransitionGroup component="ul" className={styles.movie_list}>
       {movies.map((movie, idx) => (
         <CSSTransition
           key={idx.toString()}
@@ -30,7 +26,6 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
             enter: styles.popEnter,
             enterActive: styles.popEnterActive,
           }}
-          // mountOnEnter
           unmountOnExit
         >
           <li className={styles.list} key={movie.id}>

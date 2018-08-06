@@ -37,7 +37,7 @@ class App extends Component {
     if (prevCategory !== nextCategory) {
       fetchMovies({
         category: nextCategory.value,
-        onSuccess: this.handleFetchSuccess,
+        onSuccess: this.handleFetchMore,
         onError: this.handleFetchFailure,
       });
     }
@@ -79,14 +79,14 @@ class App extends Component {
     this.setState({ movies: [] });
     searchMovie({
       title,
-      onSuccess: this.handleFetchSuccess,
+      onSuccess: this.handleFetchMore,
       onError: this.handleFetchFailure,
     });
   };
 
-  handleFetchSuccess = movies => {
-    this.setState({ movies });
-  };
+  // handleFetchSuccess = movies => {
+  //   this.setState({ movies });
+  // };
 
   toggleModal = id => {
     this.setState(prevState => ({
