@@ -70,7 +70,7 @@ export default class ModalInfo extends Component {
           closeButton: styles.closeButton,
           closeIcon: styles.closeIcon,
           transitionEnterActive: styles.modalEntering,
-          transitionExitActive: styles.modalExiting,
+          // transitionExit: styles.modalExiting,
         }}
         closeIconSvgPath={false}
         closeIconSize={15}
