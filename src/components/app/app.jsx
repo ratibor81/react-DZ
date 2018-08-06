@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader';
 import CategorySelector from '../category-selector';
 import fetchMovies from '../../services/get-movies';
 import searchMovie from '../../services/search';
-import selectorOptions from '../../selector-options';
+import selectorOptions from '../../selectors/selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
