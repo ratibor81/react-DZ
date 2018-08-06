@@ -11,6 +11,7 @@ img {
   padding: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
   position: relative;
+  overflow: hidden;
 }
 
 .rate {
@@ -42,10 +43,13 @@ h5 {
   display: flex;
   justify-content: space-between;
   opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms ease-out, transform 300ms linear;
 }
 .card:hover .add_panel {
   opacity: 1;
-  transition: 0.3s linear;
+  transform: translateX(0);
+  transition: opacity 300ms ease-out, transform 300ms linear;
 }
 
 .add_button,

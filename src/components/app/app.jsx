@@ -28,6 +28,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
+
     if (!category) return;
 
     const prevCategory = prevState.category;
@@ -75,6 +76,7 @@ class App extends Component {
   };
 
   searchMovies = ({ title }) => {
+    this.setState({ movies: [] });
     searchMovie({
       title,
       onSuccess: this.handleFetchSuccess,
@@ -119,7 +121,7 @@ class App extends Component {
   };
 
   changeCategory = category => {
-    this.setState({ category });
+    this.setState({ category, movies: [] });
   };
 
   render() {

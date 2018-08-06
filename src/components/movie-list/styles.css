@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  overflow: hidden;
 }
 .list {
   width: 24%;
@@ -16,4 +17,23 @@
   padding: 20px 0;
   display: flex;
   justify-content: center;
+}
+
+/* Pop transition effect */
+.popEnter {
+  transform: scale(0);
+}
+
+.popEnterActive {
+  transform: scale(1);
+  transition: transform 300ms linear;
+}
+
+.popExit {
+  transform: scale(1);
+}
+
+.popExitActive {
+  transform: scale(0);
+  transition: transform 300ms ease-out;
 }

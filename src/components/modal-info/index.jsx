@@ -66,6 +66,7 @@ export default class ModalInfo extends Component {
         center
         classNames={{
           overlay: styles.overlay,
+          modal: styles.modal,
           closeButton: styles.closeButton,
           closeIcon: styles.closeIcon,
           transitionEnterActive: styles.modalEntering,
