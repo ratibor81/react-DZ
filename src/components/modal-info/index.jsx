@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
 // import { Transition } from 'react-transition-group';
-// import './modal.css';
 import styles from './styles.css';
 import searchById from '../../services/search-by-id';
 import getVideos from '../../services/get-videos';
