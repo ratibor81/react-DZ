@@ -28,7 +28,7 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
           }}
           unmountOnExit
         >
-          <li className={styles.list} key={movie.id}>
+          <li className={styles.list_item} key={movie.id}>
             <MovieCard {...movie} addCard={addCard} toggleModal={toggleModal} />
           </li>
         </CSSTransition>
