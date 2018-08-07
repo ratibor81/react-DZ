@@ -20,7 +20,7 @@ export default class ModalInfo extends Component {
 
   state = {
     movie: null,
-    videos: '',
+    videos: null,
     loading: true,
     error: null,
   };
@@ -70,7 +70,7 @@ export default class ModalInfo extends Component {
           closeButton: styles.closeButton,
           closeIcon: styles.closeIcon,
           transitionEnterActive: styles.modalEntering,
-          // transitionExit: styles.modalExiting,
+          transitionExitActive: styles.modalExiting,
         }}
         closeIconSvgPath={false}
         closeIconSize={15}
@@ -106,9 +106,11 @@ export default class ModalInfo extends Component {
                 ))}
               </ul>
               <h4 className={styles.headers}>Trailer</h4>
-              <div className={styles.trailer}>
-                <Trailer url={videos.key} />
-              </div>
+              {videos && (
+                <div className={styles.trailer}>
+                  <Trailer url={videos.key} />
+                </div>
+              )}
             </div>
           </div>
         )}
