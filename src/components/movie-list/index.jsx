@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
-// import { CSSTransition } from 'react-transition-group';
 import Loader from 'react-loader-spinner';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
