@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 .list_item {
-  width: 24%;
+  width: 19%;
   margin-bottom: 10px;
   animation: open-card 0.3s;
 }
