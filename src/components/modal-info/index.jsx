@@ -63,14 +63,7 @@ export default class ModalInfo extends Component {
         open={open}
         onClose={toggleModal}
         center
-        classNames={{
-          overlay: styles.overlay,
-          modal: styles.modal,
-          closeButton: styles.closeButton,
-          closeIcon: styles.closeIcon,
-          // transitionEnterActive: styles.modalEntering,
-          // transitionExitActive: styles.modalExiting,
-        }}
+        classNames={styles}
         closeIconSvgPath={false}
         closeIconSize={15}
       >

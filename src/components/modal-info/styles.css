@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  animation: open-modal 300ms ease-in;
 }
 .overlay {
   background-color: rgba(0, 0, 0, 0.5);
@@ -87,7 +88,7 @@
   }
 
   50% {
-    opacity: 1;
+    opacity: 0.5;
     transform: translateY(10%);
   }
 
