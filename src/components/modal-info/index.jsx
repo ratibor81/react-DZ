@@ -83,16 +83,16 @@ export default class ModalInfo extends Component {
               <p className={styles.overview}>{movie.overview}</p>
               <h4 className={styles.headers}>Genres</h4>
               <ul className={styles.list}>
-                {movie.genres.map((genre, idx) => (
-                  <li className={styles.genre} key={idx.toString()}>
+                {movie.genres.map(genre => (
+                  <li className={styles.genre} key={genre.id}>
                     {genre.name}
                   </li>
                 ))}
               </ul>
               <h4 className={styles.headers}>Companies</h4>
               <ul className={styles.list}>
-                {movie.production_companies.map((companie, idx) => (
-                  <li className={styles.companie} key={idx.toString()}>
+                {movie.production_companies.map(companie => (
+                  <li className={styles.companie} key={companie.id}>
                     {companie.name}
                   </li>
                 ))}
