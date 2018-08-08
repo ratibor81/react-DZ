@@ -26,22 +26,10 @@ export default class ModalInfo extends Component {
 
   componentDidMount() {
     const { id } = this.props;
-    this.searchMovie({ id });
+    this.getMovieInfo({ id });
   }
 
-  handleFetchSuccess = movie => {
-    this.setState({ movie, loading: false });
-  };
-
-  handleFetchFailure = error => {
-    this.setState({ loading: false, error });
-  };
-
-  fetchVideos = videos => {
-    this.setState({ videos });
-  };
-
-  searchMovie = ({ id }) => {
+  getMovieInfo = ({ id }) => {
     searchById({
       id,
       onSuccess: this.handleFetchSuccess,
@@ -52,6 +40,18 @@ export default class ModalInfo extends Component {
       onSuccess: this.fetchVideos,
       onError: this.handleFetchFailure,
     });
+  };
+
+  fetchVideos = videos => {
+    this.setState({ videos });
+  };
+
+  handleFetchSuccess = movie => {
+    this.setState({ movie, loading: false });
+  };
+
+  handleFetchFailure = error => {
+    this.setState({ loading: false, error });
   };
 
   render() {

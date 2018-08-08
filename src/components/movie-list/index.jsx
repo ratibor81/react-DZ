@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 import Loader from 'react-loader-spinner';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
@@ -17,23 +17,13 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
       </div>
     }
   >
-    <TransitionGroup component="ul" className={styles.movie_list}>
-      {movies.map((movie, idx) => (
-        <CSSTransition
-          key={idx.toString()}
-          timeout={300}
-          classNames={{
-            enter: styles.popEnter,
-            enterActive: styles.popEnterActive,
-          }}
-          unmountOnExit
-        >
-          <li className={styles.list_item} key={movie.id}>
-            <MovieCard {...movie} addCard={addCard} toggleModal={toggleModal} />
-          </li>
-        </CSSTransition>
+    <ul className={styles.movie_list}>
+      {movies.map(movie => (
+        <li className={styles.list_item} key={movie.id}>
+          <MovieCard {...movie} addCard={addCard} toggleModal={toggleModal} />
+        </li>
       ))}
-    </TransitionGroup>
+    </ul>
   </InfiniteScroll>
 );
 
