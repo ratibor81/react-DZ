@@ -1,0 +1,31 @@
+.movie_list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.list_item {
+  width: 19%;
+  margin-bottom: 10px;
+  animation: open-card 0.3s;
+}
+.list:nth-last-child(-n + 4) {
+  margin-bottom: 0;
+}
+.loader {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes open-card {
+  0% {
+    transform: scale(0);
+    transition: transform 300ms ease-in;
+  }
+
+  100% {
+    transform: scale(1);
+    transition: transform 300ms ease-in;
+  }
+}
