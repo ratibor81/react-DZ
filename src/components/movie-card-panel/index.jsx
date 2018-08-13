@@ -6,19 +6,19 @@ import Icon from './icon';
 import ICONS from '../icons/constants';
 import { addToWatchlist } from '../../redux/actions';
 
-const CardPanel = ({ id, toggleModal }) => (
+const CardPanel = ({ id, addToWatchlist: addToList }) => (
   <div className={styles.add_panel}>
     <button
       type="button"
       className={styles.add_button}
-      onClick={() => addToWatchlist(id)}
+      onClick={() => addToList(id)}
     >
       <Icon icon={ICONS.ADDUSER} />
     </button>
     <button
       type="button"
       className={styles.info_button}
-      onClick={() => toggleModal(id)}
+      // onClick={() => toggleModal(id)}
     >
       <Icon icon={ICONS.INFO} />
     </button>
@@ -27,8 +27,8 @@ const CardPanel = ({ id, toggleModal }) => (
 
 CardPanel.propTypes = {
   id: PropTypes.number.isRequired,
-  // addCard: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  addToWatchlist: PropTypes.func.isRequired,
+  // toggleModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

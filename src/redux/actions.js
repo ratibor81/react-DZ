@@ -4,7 +4,6 @@ import {
   FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
-  CHANGE_QUERY,
 } from './types';
 import fetchMovies from '../services/get-movies';
 import searchMovie from '../services/search';
@@ -48,8 +47,3 @@ export const getMovieByTitle = title => dispatch => {
     .then(movies => dispatch(fetchMoviesSuccess(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
-
-export const changeQuery = query => ({
-  type: CHANGE_QUERY,
-  payload: query,
-});

@@ -82,7 +82,7 @@ class App extends Component {
             <SearchBar />
           </SearchPanel>
 
-          <MovieList movies={movies} />
+          {movies.length > 0 && <MovieList movies={movies} />}
         </MainSection>
       </div>
     );
