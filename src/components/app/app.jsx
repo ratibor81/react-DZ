@@ -14,6 +14,7 @@ import WatchList from '../watch-list';
 class App extends Component {
   static propTypes = {
     movies: PropTypes.arrayOf(Array).isRequired,
+    getMovies: PropTypes.func.isRequired,
   };
 
   state = {
@@ -22,6 +23,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
+    const { getMovies: fetchMovies } = this.props;
 
     if (!category) return;
 
@@ -29,7 +31,7 @@ class App extends Component {
     const nextCategory = category;
 
     if (prevCategory !== nextCategory) {
-      getMovies({
+      fetchMovies({
         category: nextCategory.value,
       });
     }
@@ -77,7 +79,7 @@ class App extends Component {
               value={category}
               onChange={this.changeCategory}
             />
-            <SearchBar onSearch={this.searchMovies} />
+            <SearchBar />
           </SearchPanel>
 
           <MovieList movies={movies} />

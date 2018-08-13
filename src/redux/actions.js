@@ -7,6 +7,7 @@ import {
   CHANGE_QUERY,
 } from './types';
 import fetchMovies from '../services/get-movies';
+import searchMovie from '../services/search';
 
 export const addToWatchlist = movie => ({
   type: ADD_TO_WATCHLIST,
@@ -36,6 +37,14 @@ export const getMovies = category => dispatch => {
   dispatch(fetchMoviesRequest());
 
   fetchMovies(category)
+    .then(movies => dispatch(fetchMoviesSuccess(movies)))
+    .catch(err => dispatch(fetchMoviesFailure(err)));
+};
+
+export const getMovieByTitle = title => dispatch => {
+  dispatch(fetchMoviesRequest());
+
+  searchMovie(title)
     .then(movies => dispatch(fetchMoviesSuccess(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };

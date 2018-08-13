@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
-import searchMovie from '../../services/search';
+import { getMovieByTitle } from '../../redux/actions';
 
-export default class SearchBar extends Component {
-  // static propTypes = {
-  //   onSearch: PropTypes.func.isRequired,
-  // };
+class SearchBar extends Component {
+  static propTypes = {
+    getMovieByTitle: PropTypes.func.isRequired,
+  };
 
   state = {
     title: '',
@@ -20,9 +21,10 @@ export default class SearchBar extends Component {
 
   handleSubmit = e => {
     const { title } = this.state;
+    const { getMovieByTitle: fetchMovies } = this.props;
     e.preventDefault();
 
-    searchMovie({ title });
+    fetchMovies({ title });
     this.setState({
       title: '',
     });
@@ -50,3 +52,14 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  movies: state.movies,
+});
+
+const mapDispatchToProps = { getMovieByTitle };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchBar);
