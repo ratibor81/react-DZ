@@ -69,6 +69,7 @@ class App extends Component {
   render() {
     const { category } = this.state;
     const { movies } = this.props;
+
     return (
       <div className="App">
         <WatchList />
@@ -89,7 +90,7 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => ({
-  movies: state.movies,
+  movies: state.movies.items,
 });
 
 const mapDispatchToProps = { getMovies };

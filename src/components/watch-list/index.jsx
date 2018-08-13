@@ -41,7 +41,7 @@ WatchList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  watchlist: state.watchlist,
+  watchlist: state.movies.watchlist,
 });
 
 // const mapDispatchToProps = {
