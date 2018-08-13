@@ -6,7 +6,7 @@ import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
 // import { removeFromWatchlist } from '../../redux/actions';
 
-const WatchList = ({ watchlist, removeCard, toggleModal }) => (
+const WatchList = ({ watchlist }) => (
   <div className={styles.list}>
     <h2 className={styles.header}>Watchlist</h2>
     <TransitionGroup component="ul">
@@ -26,8 +26,8 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
           <li className={styles.card} key={movie.id}>
             <WatchListCard
               {...movie}
-              removeCard={removeCard}
-              toggleModal={toggleModal}
+              // removeCard={removeCard}
+              // toggleModal={toggleModal}
             />
           </li>
         </CSSTransition>
@@ -38,8 +38,6 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
 
 WatchList.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
-  removeCard: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -8,12 +8,12 @@ import {
 } from './types';
 import fetchMovies from '../services/get-movies';
 
-const addToWatchlist = movie => ({
+export const addToWatchlist = movie => ({
   type: ADD_TO_WATCHLIST,
   payload: movie,
 });
 
-const removeFromWatchlist = id => ({
+export const removeFromWatchlist = id => ({
   type: REMOVE_FROM_WATCHLIST,
   payload: id,
 });
@@ -32,10 +32,10 @@ const fetchMoviesFailure = error => ({
   payload: error,
 });
 
-export const getMovies = query => dispatch => {
+export const getMovies = category => dispatch => {
   dispatch(fetchMoviesRequest());
 
-  fetchMovies(query)
+  fetchMovies(category)
     .then(movies => dispatch(fetchMoviesSuccess(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
@@ -44,5 +44,3 @@ export const changeQuery = query => ({
   type: CHANGE_QUERY,
   payload: query,
 });
-
-export { addToWatchlist, removeFromWatchlist };

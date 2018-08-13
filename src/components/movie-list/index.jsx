@@ -5,10 +5,10 @@ import Loader from 'react-loader-spinner';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
 
-const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
+const MovieList = ({ movies }) => (
   <InfiniteScroll
     pageStart={0}
-    loadMore={getMoreMovies}
+    // loadMore={}
     hasMore
     loader={
       <div className={styles.loader} key={0}>
@@ -19,7 +19,7 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
     <ul className={styles.movie_list}>
       {movies.map(movie => (
         <li className={styles.list_item} key={movie.id}>
-          <MovieCard {...movie} addCard={addCard} toggleModal={toggleModal} />
+          <MovieCard {...movie} />
         </li>
       ))}
     </ul>
@@ -28,9 +28,6 @@ const MovieList = ({ movies, addCard, toggleModal, getMoreMovies }) => (
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
-  addCard: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
-  getMoreMovies: PropTypes.func.isRequired,
 };
 
 export default MovieList;
