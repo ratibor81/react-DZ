@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
+import { addToWatchlist } from '../../redux/actions';
 
-const CardPanel = ({ id, addCard, toggleModal }) => (
+const CardPanel = ({ id, toggleModal }) => (
   <div className={styles.add_panel}>
     <button
       type="button"
       className={styles.add_button}
-      onClick={() => addCard(id)}
+      onClick={() => addToWatchlist(id)}
     >
       <Icon icon={ICONS.ADDUSER} />
     </button>
@@ -25,8 +27,19 @@ const CardPanel = ({ id, addCard, toggleModal }) => (
 
 CardPanel.propTypes = {
   id: PropTypes.number.isRequired,
-  addCard: PropTypes.func.isRequired,
+  // addCard: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };
 
-export default CardPanel;
+const mapStateToProps = state => ({
+  watchlist: state.watchlist,
+});
+
+const mapDispatchToProps = {
+  addToWatchlist,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CardPanel);

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
+import { getMovies } from '../../redux/actions';
 import fetchMovies from '../../services/get-movies';
 import searchMovie from '../../services/search';
 import selectorOptions from '../../selectors/selector-options';
@@ -12,9 +15,13 @@ import WatchList from '../watch-list';
 import ModalInfo from '../modal-info';
 
 class App extends Component {
+  static propTypes = {
+    movies: PropTypes.arrayOf(Array).isRequired,
+  };
+
   state = {
-    movies: [],
-    watchlist: [],
+    // movies: [],
+    // watchlist: [],
     category: null,
     isModalOpen: false,
     movieId: null,
@@ -35,10 +42,8 @@ class App extends Component {
     const nextCategory = category;
 
     if (prevCategory !== nextCategory) {
-      fetchMovies({
+      getMovies({
         category: nextCategory.value,
-        onSuccess: this.handleFetchSuccess,
-        onError: this.handleFetchFailure,
       });
     }
   }
@@ -127,19 +132,19 @@ class App extends Component {
   render() {
     const {
       category,
-      movies,
-      watchlist,
+      // movies,
+      // watchlist,
       isModalOpen,
       movieId,
       error,
     } = this.state;
-
+    const { movies } = this.props;
     return (
       <div className="App">
         {error && <div>{error}</div>}
         <WatchList
-          watchlist={watchlist}
-          removeCard={this.removeCard}
+          // watchlist={watchlist}
+          // removeCard={this.removeCard}
           toggleModal={this.toggleModal}
         />
         <MainSection>
@@ -172,6 +177,14 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  movies: state.movies,
+});
 
-export default hot(module)(App);
+const mapDispatchToProps = { getMovies };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(hot(module)(App));
 // export default App;

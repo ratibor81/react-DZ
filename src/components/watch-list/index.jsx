@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
+// import { removeFromWatchlist } from '../../redux/actions';
 
 const WatchList = ({ watchlist, removeCard, toggleModal }) => (
   <div className={styles.list}>
@@ -40,4 +42,14 @@ WatchList.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 };
 
-export default WatchList;
+const mapStateToProps = state => ({
+  watchlist: state.watchlist,
+});
+
+// const mapDispatchToProps = {
+//   removeFromWatchlist,
+// };
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps,
+)(WatchList);
