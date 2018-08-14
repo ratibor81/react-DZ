@@ -4,6 +4,7 @@ import {
   FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
+  // FETCH_MORE_MOVIES,
 } from './types';
 import fetchMovies from '../services/get-movies';
 import searchMovie from '../services/search';
@@ -26,6 +27,10 @@ const fetchMoviesSuccess = movies => ({
   type: FETCH_MOVIES_SUCCESS,
   payload: movies,
 });
+// const fetchMoreMovies = movies => ({
+//   type: FETCH_MORE_MOVIES,
+//   payload: movies,
+// });
 
 const fetchMoviesFailure = error => ({
   type: FETCH_MOVIES_FAILURE,

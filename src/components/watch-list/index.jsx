@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
-// import { removeFromWatchlist } from '../../redux/actions';
 
 const WatchList = ({ watchlist }) => (
   <div className={styles.list}>
@@ -20,15 +19,10 @@ const WatchList = ({ watchlist }) => (
             exit: styles.slideExit,
             exitActive: styles.slideExitActive,
           }}
-          // mountOnEnter
           unmountOnExit
         >
           <li className={styles.card} key={movie.id}>
-            <WatchListCard
-              {...movie}
-              // removeCard={removeCard}
-              // toggleModal={toggleModal}
-            />
+            <WatchListCard {...movie} />
           </li>
         </CSSTransition>
       ))}
@@ -44,10 +38,7 @@ const mapStateToProps = state => ({
   watchlist: state.movies.watchlist,
 });
 
-// const mapDispatchToProps = {
-//   removeFromWatchlist,
-// };
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps,
+  null,
 )(WatchList);

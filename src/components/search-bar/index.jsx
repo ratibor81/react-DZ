@@ -53,13 +53,9 @@ class SearchBar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  movies: state.movies,
-});
-
 const mapDispatchToProps = { getMovieByTitle };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(SearchBar);

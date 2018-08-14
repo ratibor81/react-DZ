@@ -21,8 +21,8 @@ const itemsReducer = (state = initialStore, { type, payload }) => {
       return {
         ...state,
         watchlist: [
-          ...state.watchlist,
           state.items.find(movie => movie.id === payload),
+          ...state.watchlist,
         ],
       };
     }
