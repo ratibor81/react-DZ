@@ -47,9 +47,9 @@ MovieList.defaultProps = {
   category: null,
 };
 
-const mapDispatchToProps = { getMovies };
+// const mapDispatchToProps = { getMovies };
 
 export default connect(
   null,
-  mapDispatchToProps,
+  { getMovies },
 )(MovieList);

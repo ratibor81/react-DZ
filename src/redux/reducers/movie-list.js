@@ -12,7 +12,10 @@ const initialStore = {
 const itemsReducer = (state = initialStore, { type, payload }) => {
   switch (type) {
     case FETCH_MOVIES_SUCCESS:
-      return { ...state, items: payload };
+      return {
+        ...state,
+        items: payload,
+      };
     case ADD_TO_WATCHLIST: {
       const duplicateMovie = state.watchlist.find(
         movie => movie.id === payload,
