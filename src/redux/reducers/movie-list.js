@@ -17,16 +17,9 @@ const itemsReducer = (state = initialStore, { type, payload }) => {
         items: payload,
       };
     case ADD_TO_WATCHLIST: {
-      const duplicateMovie = state.watchlist.find(
-        movie => movie.id === payload,
-      );
-      if (duplicateMovie) return state;
       return {
         ...state,
-        watchlist: [
-          state.items.find(movie => movie.id === payload),
-          ...state.watchlist,
-        ],
+        watchlist: [payload, ...state.watchlist],
       };
     }
     case REMOVE_FROM_WATCHLIST:
