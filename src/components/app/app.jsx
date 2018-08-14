@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
@@ -37,31 +36,6 @@ class App extends Component {
     }
   }
 
-  // addCard = id => {
-  //   const { movies, watchlist } = this.state;
-
-  //   const duplicateMovie = watchlist.find(movie => movie.id === id);
-  //   if (duplicateMovie) return;
-
-  //   const selectedMovie = movies.find(movie => movie.id === id);
-
-  //   this.setState(
-  //     prevState => ({
-  //       watchlist: [selectedMovie, ...prevState.watchlist],
-  //     }),
-  //     () => this.setToStorage(),
-  //   );
-  // };
-
-  // removeCard = id => {
-  //   this.setState(
-  //     prevState => ({
-  //       watchlist: prevState.watchlist.filter(movie => movie.id !== id),
-  //     }),
-  //     () => this.setToStorage(),
-  //   );
-  // };
-
   changeCategory = category => {
     this.setState({ category });
   };
@@ -83,7 +57,7 @@ class App extends Component {
             <SearchBar />
           </SearchPanel>
 
-          {movies.length > 0 && <MovieList movies={movies} />}
+          <MovieList movies={movies} />
         </MainSection>
       </div>
     );
