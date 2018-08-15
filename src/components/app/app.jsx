@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
-import { getMovies } from '../../redux/actions';
+import { getMovies, setFromLocalStorage } from '../../redux/actions';
 import selectorOptions from '../../selectors/selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
@@ -14,11 +14,16 @@ class App extends Component {
   static propTypes = {
     movies: PropTypes.arrayOf(Array).isRequired,
     getMovies: PropTypes.func.isRequired,
+    setState: PropTypes.func.isRequired,
   };
 
   state = {
     category: null,
   };
+
+  componentDidMount() {
+    this.getFromStorage();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
@@ -35,6 +40,13 @@ class App extends Component {
       });
     }
   }
+
+  getFromStorage = () => {
+    const { setState } = this.props;
+    const list = JSON.parse(localStorage.getItem('watchlist'));
+    if (!list) return;
+    setState(list);
+  };
 
   changeCategory = category => {
     this.setState({ category });
@@ -69,7 +81,7 @@ const mapStateToProps = state => ({
   movies: state.movies.items,
 });
 
-const mapDispatchToProps = { getMovies };
+const mapDispatchToProps = { getMovies, setState: setFromLocalStorage };
 
 export default connect(
   mapStateToProps,

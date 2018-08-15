@@ -9,8 +9,7 @@ import { addToWatchlist } from '../../redux/actions';
 class CardPanel extends Component {
   addCardToList = id => {
     const { watchlist, movies, addCard } = this.props;
-    const duplicateMovie = watchlist.find(movie => movie.id === id);
-    if (duplicateMovie) return;
+    if (watchlist.find(movie => movie.id === id)) return;
     const selectedMovie = movies.find(movie => movie.id === id);
 
     addCard(selectedMovie);
@@ -44,7 +43,6 @@ CardPanel.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
-  // toggleModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

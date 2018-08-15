@@ -4,10 +4,16 @@ import {
   FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
+  SET_FROM_LOCALSTORAGE,
   // FETCH_MORE_MOVIES,
 } from './types';
 import fetchMovies from '../services/get-movies';
 import searchMovie from '../services/search';
+
+export const setFromLocalStorage = watchlist => ({
+  type: SET_FROM_LOCALSTORAGE,
+  payload: watchlist,
+});
 
 export const addToWatchlist = movie => ({
   type: ADD_TO_WATCHLIST,
