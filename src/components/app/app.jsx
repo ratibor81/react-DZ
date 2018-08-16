@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+// import { compose } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
-import fetchMovies from '../../services/get-movies';
-import searchMovie from '../../services/search';
+import { getMovies, setFromLocalStorage } from '../../redux/actions';
 import selectorOptions from '../../selectors/selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
 import WatchList from '../watch-list';
-import ModalInfo from '../modal-info';
+import { getAllMovies } from '../../redux/selectors';
+// import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
+  static propTypes = {
+    movies: PropTypes.arrayOf(Array).isRequired,
+    getMovies: PropTypes.func.isRequired,
+    setState: PropTypes.func.isRequired,
+  };
+
   state = {
-    movies: [],
-    watchlist: [],
     category: null,
-    isModalOpen: false,
-    movieId: null,
-    error: null,
-    // isSearch: false,
   };
 
   componentDidMount() {
@@ -28,6 +30,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
+    const { getMovies: fetchMovies } = this.props;
 
     if (!category) return;
 
@@ -37,87 +40,15 @@ class App extends Component {
     if (prevCategory !== nextCategory) {
       fetchMovies({
         category: nextCategory.value,
-        onSuccess: this.handleFetchSuccess,
-        onError: this.handleFetchFailure,
       });
     }
   }
 
-  getMoreMovies = pageNum => {
-    const { category } = this.state;
-    if (!category) return;
-    fetchMovies({
-      pageNum: pageNum + 1,
-      category: category.value,
-      onSuccess: this.handleFetchMore,
-      onError: this.handleFetchFailure,
-    });
-  };
-
   getFromStorage = () => {
-    const list = JSON.parse(localStorage.getItem('list'));
+    const { setState } = this.props;
+    const list = JSON.parse(localStorage.getItem('watchlist'));
     if (!list) return;
-    this.setState({ watchlist: list });
-  };
-
-  setToStorage = () => {
-    const { watchlist } = this.state;
-    localStorage.setItem('list', JSON.stringify(watchlist));
-  };
-
-  handleFetchMore = movies => {
-    this.setState(prevState => ({
-      movies: prevState.movies.concat(movies),
-    }));
-  };
-
-  handleFetchFailure = error => {
-    this.setState({ error });
-  };
-
-  searchMovies = ({ title }) => {
-    this.setState({ movies: [] });
-    searchMovie({
-      title,
-      onSuccess: this.handleFetchMore,
-      onError: this.handleFetchFailure,
-    });
-  };
-
-  handleFetchSuccess = movies => {
-    this.setState({ movies });
-  };
-
-  toggleModal = id => {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen,
-      movieId: prevState.isModalOpen ? null : id,
-    }));
-  };
-
-  addCard = id => {
-    const { movies, watchlist } = this.state;
-
-    const duplicateMovie = watchlist.find(movie => movie.id === id);
-    if (duplicateMovie) return;
-
-    const selectedMovie = movies.find(movie => movie.id === id);
-
-    this.setState(
-      prevState => ({
-        watchlist: [selectedMovie, ...prevState.watchlist],
-      }),
-      () => this.setToStorage(),
-    );
-  };
-
-  removeCard = id => {
-    this.setState(
-      prevState => ({
-        watchlist: prevState.watchlist.filter(movie => movie.id !== id),
-      }),
-      () => this.setToStorage(),
-    );
+    setState(list);
   };
 
   changeCategory = category => {
@@ -125,23 +56,12 @@ class App extends Component {
   };
 
   render() {
-    const {
-      category,
-      movies,
-      watchlist,
-      isModalOpen,
-      movieId,
-      error,
-    } = this.state;
+    const { category } = this.state;
+    const { movies } = this.props;
 
     return (
       <div className="App">
-        {error && <div>{error}</div>}
-        <WatchList
-          watchlist={watchlist}
-          removeCard={this.removeCard}
-          toggleModal={this.toggleModal}
-        />
+        <WatchList />
         <MainSection>
           <SearchPanel>
             <CategorySelector
@@ -149,29 +69,24 @@ class App extends Component {
               value={category}
               onChange={this.changeCategory}
             />
-            <SearchBar onSearch={this.searchMovies} />
+            <SearchBar />
           </SearchPanel>
 
           {movies.length > 0 && (
-            <MovieList
-              movies={movies}
-              addCard={this.addCard}
-              toggleModal={this.toggleModal}
-              getMoreMovies={this.getMoreMovies}
-            />
+            <MovieList movies={movies} category={category} />
           )}
         </MainSection>
-        {isModalOpen && (
-          <ModalInfo
-            toggleModal={this.toggleModal}
-            open={isModalOpen}
-            id={movieId}
-          />
-        )}
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  movies: getAllMovies(state),
+});
 
-export default hot(module)(App);
-// export default App;
+const mapDispatchToProps = { getMovies, setState: setFromLocalStorage };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

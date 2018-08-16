@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
+import { removeFromWatchlist } from '../../redux/actions';
+import { getWatchlist } from '../../redux/selectors';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
@@ -12,8 +15,7 @@ const WatchListCard = ({
   release_date: releaseDate,
   vote_average: voteAverage,
   title,
-  removeCard,
-  toggleModal,
+  removeFromWatchlist: removeCard,
 }) => (
   <div className={styles.card}>
     <img className={styles.poster} src={`${IMG_BASE}${posterPath}`} alt="" />
@@ -33,7 +35,7 @@ const WatchListCard = ({
       <button
         type="button"
         className={styles.info_button}
-        onClick={() => toggleModal(id)}
+        // onClick={() => toggleModal(id)}
       >
         <Icon icon={ICONS.INFO} />
       </button>
@@ -47,8 +49,18 @@ WatchListCard.propTypes = {
   release_date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
-  removeCard: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  removeFromWatchlist: PropTypes.func.isRequired,
 };
 
-export default WatchListCard;
+const mapStateToProps = state => ({
+  watchlist: getWatchlist(state),
+});
+
+const mapDispatchToProps = {
+  removeFromWatchlist,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WatchListCard);

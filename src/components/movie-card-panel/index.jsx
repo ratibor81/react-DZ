@@ -1,32 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
+import { addToWatchlist } from '../../redux/actions';
+import { getAllMovies, getWatchlist } from '../../redux/selectors';
 
-const CardPanel = ({ id, addCard, toggleModal }) => (
-  <div className={styles.add_panel}>
-    <button
-      type="button"
-      className={styles.add_button}
-      onClick={() => addCard(id)}
-    >
-      <Icon icon={ICONS.ADDUSER} />
-    </button>
-    <button
-      type="button"
-      className={styles.info_button}
-      onClick={() => toggleModal(id)}
-    >
-      <Icon icon={ICONS.INFO} />
-    </button>
-  </div>
-);
+class CardPanel extends Component {
+  addCardToList = id => {
+    const { watchlist, movies, addCard } = this.props;
+    if (watchlist.find(movie => movie.id === id)) return;
+    const selectedMovie = movies.find(movie => movie.id === id);
+
+    addCard(selectedMovie);
+  };
+
+  render() {
+    const { id } = this.props;
+    return (
+      <div className={styles.add_panel}>
+        <button
+          type="button"
+          className={styles.add_button}
+          onClick={() => this.addCardToList(id)}
+        >
+          <Icon icon={ICONS.ADDUSER} />
+        </button>
+        <button
+          type="button"
+          className={styles.info_button}
+          // onClick={() => toggleModal(id)}
+        >
+          <Icon icon={ICONS.INFO} />
+        </button>
+      </div>
+    );
+  }
+}
 
 CardPanel.propTypes = {
   id: PropTypes.number.isRequired,
+  watchlist: PropTypes.arrayOf(Array).isRequired,
+  movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
 };
 
-export default CardPanel;
+const mapStateToProps = state => ({
+  watchlist: getWatchlist(state),
+  movies: getAllMovies(state),
+});
+
+const mapDispatchToProps = {
+  addCard: addToWatchlist,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CardPanel);

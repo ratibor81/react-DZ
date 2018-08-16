@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
+import { getWatchlist } from '../../redux/selectors';
+// import withRenderLog from '../../hoc/withRenderLog';
 
-const WatchList = ({ watchlist, removeCard, toggleModal }) => (
+const WatchList = ({ watchlist }) => (
   <div className={styles.list}>
     <h2 className={styles.header}>Watchlist</h2>
     <TransitionGroup component="ul">
@@ -18,15 +22,10 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
             exit: styles.slideExit,
             exitActive: styles.slideExitActive,
           }}
-          // mountOnEnter
           unmountOnExit
         >
           <li className={styles.card} key={movie.id}>
-            <WatchListCard
-              {...movie}
-              removeCard={removeCard}
-              toggleModal={toggleModal}
-            />
+            <WatchListCard {...movie} />
           </li>
         </CSSTransition>
       ))}
@@ -36,8 +35,13 @@ const WatchList = ({ watchlist, removeCard, toggleModal }) => (
 
 WatchList.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
-  removeCard: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
 };
 
-export default WatchList;
+const mapStateToProps = state => ({
+  watchlist: getWatchlist(state),
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(WatchList);
