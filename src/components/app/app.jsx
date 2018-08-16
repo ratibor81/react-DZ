@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
@@ -9,6 +10,8 @@ import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
 import WatchList from '../watch-list';
+import { getAllMovies } from '../../redux/selectors';
+// import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
   static propTypes = {
@@ -78,7 +81,7 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => ({
-  movies: state.movies.items,
+  movies: getAllMovies(state),
 });
 
 const mapDispatchToProps = { getMovies, setState: setFromLocalStorage };

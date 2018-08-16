@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
 import { addToWatchlist } from '../../redux/actions';
+import { getAllMovies, getWatchlist } from '../../redux/selectors';
 
 class CardPanel extends Component {
   addCardToList = id => {
@@ -46,8 +48,8 @@ CardPanel.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  watchlist: state.movies.watchlist,
-  movies: state.movies.items,
+  watchlist: getWatchlist(state),
+  movies: getAllMovies(state),
 });
 
 const mapDispatchToProps = {

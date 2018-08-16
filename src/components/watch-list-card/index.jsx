@@ -5,6 +5,7 @@ import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
 import { removeFromWatchlist } from '../../redux/actions';
+import { getWatchlist } from '../../redux/selectors';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
@@ -52,7 +53,7 @@ WatchListCard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  watchlist: state.movies.watchlist,
+  watchlist: getWatchlist(state),
 });
 
 const mapDispatchToProps = {

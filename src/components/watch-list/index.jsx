@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
+import { getWatchlist } from '../../redux/selectors';
+// import withRenderLog from '../../hoc/withRenderLog';
 
 const WatchList = ({ watchlist }) => (
   <div className={styles.list}>
@@ -35,7 +38,7 @@ WatchList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  watchlist: state.movies.watchlist,
+  watchlist: getWatchlist(state),
 });
 
 export default connect(

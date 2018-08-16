@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { compose } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
 import { getMovies } from '../../redux/actions';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
+// import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {
   getMoreMovies = pageNum => {
