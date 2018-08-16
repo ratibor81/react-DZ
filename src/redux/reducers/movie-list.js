@@ -3,6 +3,7 @@ import {
   REMOVE_FROM_WATCHLIST,
   ADD_TO_WATCHLIST,
   SET_FROM_LOCALSTORAGE,
+  FETCH_MORE_MOVIES,
 } from '../types';
 
 const initialStore = {
@@ -12,6 +13,11 @@ const initialStore = {
 
 const itemsReducer = (state = initialStore, { type, payload }) => {
   switch (type) {
+    case FETCH_MORE_MOVIES:
+      return {
+        ...state,
+        items: state.items.concat(payload),
+      };
     case FETCH_MOVIES_SUCCESS:
       return {
         ...state,

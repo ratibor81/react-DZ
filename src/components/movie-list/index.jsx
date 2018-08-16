@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
-import { getMovies } from '../../redux/actions';
+import { getMovies, getMoreMovies } from '../../redux/actions';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {
   getMoreMovies = pageNum => {
-    const { category, getMovies: fetchMore } = this.props;
-    fetchMore({ category: category.value, pageNum: pageNum + 1 });
+    const { category, fetchMoreMovies } = this.props;
+    fetchMoreMovies({ category: category.value, pageNum: pageNum + 1 });
   };
 
   render() {
@@ -44,14 +44,15 @@ MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
   getMovies: PropTypes.func.isRequired,
   category: PropTypes.objectOf(Object),
+  fetchMoreMovies: PropTypes.func.isRequired,
 };
 MovieList.defaultProps = {
   category: null,
 };
 
-// const mapDispatchToProps = { getMovies };
+const mapDispatchToProps = { getMovies, fetchMoreMovies: getMoreMovies };
 
 export default connect(
   null,
-  { getMovies },
+  mapDispatchToProps,
 )(MovieList);

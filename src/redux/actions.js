@@ -5,7 +5,7 @@ import {
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
   SET_FROM_LOCALSTORAGE,
-  // FETCH_MORE_MOVIES,
+  FETCH_MORE_MOVIES,
 } from './types';
 import fetchMovies from '../services/get-movies';
 import searchMovie from '../services/search';
@@ -33,10 +33,11 @@ const fetchMoviesSuccess = movies => ({
   type: FETCH_MOVIES_SUCCESS,
   payload: movies,
 });
-// const fetchMoreMovies = movies => ({
-//   type: FETCH_MORE_MOVIES,
-//   payload: movies,
-// });
+
+const fetchMoreMovies = movies => ({
+  type: FETCH_MORE_MOVIES,
+  payload: movies,
+});
 
 const fetchMoviesFailure = error => ({
   type: FETCH_MOVIES_FAILURE,
@@ -56,5 +57,13 @@ export const getMovieByTitle = title => dispatch => {
 
   searchMovie(title)
     .then(movies => dispatch(fetchMoviesSuccess(movies)))
+    .catch(err => dispatch(fetchMoviesFailure(err)));
+};
+
+export const getMoreMovies = category => dispatch => {
+  dispatch(fetchMoviesRequest());
+
+  fetchMovies(category)
+    .then(movies => dispatch(fetchMoreMovies(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
