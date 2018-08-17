@@ -11,6 +11,7 @@ import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
 import WatchList from '../watch-list';
 import { getAllMovies } from '../../redux/selectors';
+import MovieFilter from '../movie-filer';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
@@ -70,6 +71,7 @@ class App extends Component {
               onChange={this.changeCategory}
             />
             <SearchBar />
+            <MovieFilter />
           </SearchPanel>
 
           {movies.length > 0 && (

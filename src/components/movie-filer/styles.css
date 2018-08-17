@@ -1,0 +1,7 @@
+.MovieFilter {
+  display: block;
+  margin: 16px auto;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
