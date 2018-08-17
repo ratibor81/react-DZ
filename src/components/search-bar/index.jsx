@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import Icon from './icon';
-import ICONS from '../icons/constants';
+import ICONS from '../icons';
 import { getMovieByTitle } from '../../redux/actions';
 
 class SearchBar extends Component {

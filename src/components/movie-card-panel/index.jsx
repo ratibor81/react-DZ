@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
-import ICONS from '../icons/constants';
+import ICONS from '../icons';
 import { addToWatchlist } from '../../redux/actions';
 import { getAllMovies, getWatchlist } from '../../redux/selectors';
 import getItemById from '../../helpers';

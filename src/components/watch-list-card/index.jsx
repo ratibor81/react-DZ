@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './styles.css';
 import Icon from './icon';
-import ICONS from '../icons/constants';
+import ICONS from '../icons';
 import { removeFromWatchlist } from '../../redux/actions';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;

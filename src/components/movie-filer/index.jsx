@@ -6,7 +6,7 @@ import { changeFilterAction } from '../../redux/actions';
 import { getCurrentFilter } from '../../redux/selectors';
 // import withRenderLog from '../../hoc/withRenderLog';
 import styles from './styles.css';
-import GENRES from '../../constants/genres';
+import GENRES from '../../selectors/movie-filter-options';
 
 const MovieFilter = ({ currentFilter, changeFilter }) => (
   <div className={styles.filter_panel}>
