@@ -5,7 +5,6 @@ import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../icons/constants';
 import { removeFromWatchlist } from '../../redux/actions';
-import { getWatchlist } from '../../redux/selectors';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
@@ -15,7 +14,7 @@ const WatchListCard = ({
   release_date: releaseDate,
   vote_average: voteAverage,
   title,
-  removeFromWatchlist: removeCard,
+  removeCard,
 }) => (
   <div className={styles.card}>
     <img className={styles.poster} src={`${IMG_BASE}${posterPath}`} alt="" />
@@ -49,18 +48,14 @@ WatchListCard.propTypes = {
   release_date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
-  removeFromWatchlist: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  watchlist: getWatchlist(state),
-});
-
-const mapDispatchToProps = {
-  removeFromWatchlist,
+const mapDispatch = {
+  removeCard: removeFromWatchlist,
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  null,
+  mapDispatch,
 )(WatchListCard);

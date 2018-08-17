@@ -32,9 +32,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
     const { getMovies: fetchMovies } = this.props;
-
     if (!category) return;
-
     const prevCategory = prevState.category;
     const nextCategory = category;
 
@@ -82,13 +80,13 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
+const mapState = state => ({
   movies: getMoviesWithCurrentGenre(state),
 });
 
-const mapDispatchToProps = { getMovies, setState: setFromLocalStorage };
+const mapDispatch = { getMovies, setState: setFromLocalStorage };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  mapState,
+  mapDispatch,
 )(App);

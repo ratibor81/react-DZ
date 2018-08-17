@@ -7,6 +7,7 @@ import Loader from 'react-loader-spinner';
 import { getMovies, getMoreMovies } from '../../redux/actions';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
+// import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {

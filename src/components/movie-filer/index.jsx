@@ -30,13 +30,13 @@ MovieFilter.propTypes = {
   changeFilter: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   currentFilter: getCurrentFilter(state),
 });
 
-const mapDispatchToProps = { changeFilter: changeFilterAction };
+const mapDispatch = { changeFilter: changeFilterAction };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  mapState,
+  mapDispatch,
 )(MovieFilter);
