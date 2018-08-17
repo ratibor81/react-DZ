@@ -10,7 +10,7 @@ import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
 import WatchList from '../watch-list';
-import { getAllMovies } from '../../redux/selectors';
+import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 import MovieFilter from '../movie-filer';
 // import withRenderLog from '../../hoc/withRenderLog';
 
@@ -83,7 +83,7 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => ({
-  movies: getAllMovies(state),
+  movies: getMoviesWithCurrentGenre(state),
 });
 
 const mapDispatchToProps = { getMovies, setState: setFromLocalStorage };

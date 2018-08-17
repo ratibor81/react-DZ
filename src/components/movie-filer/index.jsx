@@ -9,21 +9,24 @@ import styles from './styles.css';
 import GENRES from '../../constants/genres';
 
 const MovieFilter = ({ currentFilter, changeFilter }) => (
-  <select
-    className={styles.MovieFilter}
-    value={currentFilter}
-    onChange={e => changeFilter(e.target.value)}
-  >
-    {GENRES.map(genre => (
-      <option key={genre.id} value={genre.id}>
-        {genre.name}
-      </option>
-    ))}
-  </select>
+  <div className={styles.filter_panel}>
+    <h5>Filter movies by genre</h5>
+    <select
+      className={styles.MovieFilter}
+      value={currentFilter}
+      onChange={e => changeFilter(e.target.value)}
+    >
+      {GENRES.map(genre => (
+        <option key={genre.id} value={genre.id}>
+          {genre.name}
+        </option>
+      ))}
+    </select>
+  </div>
 );
 
 MovieFilter.propTypes = {
-  currentFilter: PropTypes.string.isRequired,
+  currentFilter: PropTypes.number.isRequired,
   changeFilter: PropTypes.func.isRequired,
 };
 
