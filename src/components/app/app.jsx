@@ -68,8 +68,8 @@ class App extends Component {
               value={category}
               onChange={this.changeCategory}
             />
-            <SearchBar />
             <MovieFilter />
+            <SearchBar />
           </SearchPanel>
 
           {movies.length > 0 && (
