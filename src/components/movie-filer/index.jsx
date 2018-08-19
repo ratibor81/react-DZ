@@ -17,7 +17,7 @@ const MovieFilter = ({ currentFilter, changeFilter }) => (
       onChange={e => changeFilter(e.target.value)}
     >
       {GENRES.map(genre => (
-        <option key={genre.id} value={genre.id}>
+        <option key={genre.id} value={String(genre.id)}>
           {genre.name}
         </option>
       ))}
