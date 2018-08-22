@@ -9,7 +9,7 @@ export const getCurrentFilter = state => state.filter;
 export const getMoviesWithCurrentGenre = createSelector(
   [getAllMovies, getCurrentFilter],
   (movies, filter) =>
-    filter === 10101010
+    filter === 100000
       ? movies
       : movies.filter(movie => movie.genre_ids.includes(filter)),
 );
