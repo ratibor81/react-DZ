@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
-import { getMovies, getMoreMovies } from '../../redux/actions';
+import { getMoreMovies } from '../../redux/actions';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
-// import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {
@@ -43,7 +42,6 @@ class MovieList extends Component {
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
-  getMovies: PropTypes.func.isRequired,
   category: PropTypes.objectOf(Object),
   fetchMoreMovies: PropTypes.func.isRequired,
 };
@@ -51,7 +49,7 @@ MovieList.defaultProps = {
   category: null,
 };
 
-const mapDispatchToProps = { getMovies, fetchMoreMovies: getMoreMovies };
+const mapDispatchToProps = { fetchMoreMovies: getMoreMovies };
 
 export default connect(
   null,
