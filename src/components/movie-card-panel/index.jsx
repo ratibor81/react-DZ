@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
-import ICONS from '../icons/constants';
+import ICONS from '../icons';
 import { addToWatchlist } from '../../redux/actions';
 import { getAllMovies, getWatchlist } from '../../redux/selectors';
+import getItemById from '../../helpers';
 
 class CardPanel extends Component {
   addCardToList = id => {
     const { watchlist, movies, addCard } = this.props;
-    if (watchlist.find(movie => movie.id === id)) return;
-    const selectedMovie = movies.find(movie => movie.id === id);
-
-    addCard(selectedMovie);
+    if (getItemById(watchlist, id)) return;
+    addCard(getItemById(movies, id));
   };
 
   render() {
@@ -47,16 +45,16 @@ CardPanel.propTypes = {
   addCard: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   watchlist: getWatchlist(state),
   movies: getAllMovies(state),
 });
 
-const mapDispatchToProps = {
+const mapDispatch = {
   addCard: addToWatchlist,
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  mapState,
+  mapDispatch,
 )(CardPanel);

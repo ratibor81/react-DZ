@@ -22,7 +22,6 @@ const WatchList = ({ watchlist }) => (
             exit: styles.slideExit,
             exitActive: styles.slideExitActive,
           }}
-          unmountOnExit
         >
           <li className={styles.card} key={movie.id}>
             <WatchListCard {...movie} />
@@ -37,11 +36,11 @@ WatchList.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   watchlist: getWatchlist(state),
 });
 
 export default connect(
-  mapStateToProps,
+  mapState,
   null,
 )(WatchList);

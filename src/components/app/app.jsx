@@ -10,7 +10,8 @@ import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
 import WatchList from '../watch-list';
-import { getAllMovies } from '../../redux/selectors';
+import { getMoviesWithCurrentGenre } from '../../redux/selectors';
+import MovieFilter from '../movie-filer';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
@@ -31,9 +32,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { category } = this.state;
     const { getMovies: fetchMovies } = this.props;
-
     if (!category) return;
-
     const prevCategory = prevState.category;
     const nextCategory = category;
 
@@ -69,6 +68,7 @@ class App extends Component {
               value={category}
               onChange={this.changeCategory}
             />
+            <MovieFilter />
             <SearchBar />
           </SearchPanel>
 
@@ -80,13 +80,13 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  movies: getAllMovies(state),
+const mapState = state => ({
+  movies: getMoviesWithCurrentGenre(state),
 });
 
-const mapDispatchToProps = { getMovies, setState: setFromLocalStorage };
+const mapDispatch = { getMovies, setState: setFromLocalStorage };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  mapState,
+  mapDispatch,
 )(App);

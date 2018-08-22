@@ -1,5 +1,15 @@
-const getAllMovies = state => state.movies.items;
+import { createSelector } from 'reselect';
 
-const getWatchlist = state => state.movies.watchlist;
+export const getAllMovies = state => state.movies.items;
 
-export { getAllMovies, getWatchlist };
+export const getWatchlist = state => state.movies.watchlist;
+
+export const getCurrentFilter = state => state.filter;
+
+export const getMoviesWithCurrentGenre = createSelector(
+  [getAllMovies, getCurrentFilter],
+  (movies, filter) =>
+    filter === 10101010
+      ? movies
+      : movies.filter(movie => movie.genre_ids.includes(filter)),
+);
