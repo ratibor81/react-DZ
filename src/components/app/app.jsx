@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
 import { getMovies, setFromLocalStorage } from '../../redux/actions';
-import selectorOptions from '../../selectors/selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
@@ -63,11 +62,7 @@ class App extends Component {
         <WatchList />
         <MainSection>
           <SearchPanel>
-            <CategorySelector
-              options={selectorOptions}
-              value={category}
-              onChange={this.changeCategory}
-            />
+            <CategorySelector value={category} onChange={this.changeCategory} />
             <MovieFilter />
             <SearchBar />
           </SearchPanel>
