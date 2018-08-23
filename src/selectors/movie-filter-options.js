@@ -1,6 +1,6 @@
 const GENRES = [
   {
-    id: 10101010,
+    id: 100000,
     name: 'All',
   },
   {
