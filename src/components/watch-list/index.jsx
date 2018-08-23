@@ -9,8 +9,8 @@ import { getWatchlist } from '../../redux/selectors';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 const WatchList = ({ watchlist }) => (
-  <div className={styles.list}>
-    <h2 className={styles.header}>Watchlist</h2>
+  <div className={styles.List}>
+    <h2 className={styles.Header}>Watchlist</h2>
     <TransitionGroup component="ul">
       {watchlist.map(movie => (
         <CSSTransition
@@ -23,7 +23,7 @@ const WatchList = ({ watchlist }) => (
             exitActive: styles.slideExitActive,
           }}
         >
-          <li className={styles.card} key={movie.id}>
+          <li className={styles.Card} key={movie.id}>
             <WatchListCard {...movie} />
           </li>
         </CSSTransition>

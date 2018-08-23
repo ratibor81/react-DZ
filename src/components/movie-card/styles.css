@@ -1,20 +1,20 @@
 img {
   width: 100%;
 }
-.overview {
+.Overview {
   height: 50px;
   overflow: hidden;
   font-size: 11px;
 }
 
-.card {
+.Card {
   padding: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
 }
 
-.rate {
+.Rate {
   position: absolute;
   left: 0;
   top: 0;
@@ -30,7 +30,7 @@ img {
 h5 {
   font-size: 11px;
 }
-.add_panel {
+.Add_panel {
   width: 60px;
   height: 32px;
   background-color: #fff;
@@ -46,14 +46,14 @@ h5 {
   transform: translateX(100%);
   transition: opacity 300ms ease-out, transform 300ms linear;
 }
-.card:hover .add_panel {
+.Card:hover .Add_panel {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 300ms ease-out, transform 300ms linear;
 }
 
-.add_button,
-.info_button {
+.Add_button,
+.Info_button {
   outline: none;
   cursor: pointer;
   border: none;
@@ -65,10 +65,10 @@ h5 {
   padding: 7px;
 }
 
-.add_button:hover {
+.Add_button:hover {
   background-color: #f5f5f5;
 }
-.info_button:hover {
+.Info_button:hover {
   background-color: #f5f5f5;
 }
 
@@ -77,11 +77,11 @@ h5 {
   height: 12px;
   fill: #bdbdbd;
 }
-.add_button:hover .icon {
+.Add_button:hover .icon {
   fill: black;
   transition: 0.5s linear;
 }
-.info_button:hover .icon {
+.Info_button:hover .icon {
   fill: black;
   transition: 0.5s linear;
 }

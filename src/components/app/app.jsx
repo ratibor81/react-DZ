@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { compose } from 'redux';
+import { compose } from 'redux';
+import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
@@ -81,7 +82,10 @@ const mapState = state => ({
 
 const mapDispatch = { getMovies, setState: setFromLocalStorage };
 
-export default connect(
-  mapState,
-  mapDispatch,
+export default compose(
+  hot(module),
+  connect(
+    mapState,
+    mapDispatch,
+  ),
 )(App);

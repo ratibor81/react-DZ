@@ -9,7 +9,7 @@ import styles from './styles.css';
 import GENRES from '../../selectors/movie-filter-options';
 
 const MovieFilter = ({ currentFilter, changeFilter }) => (
-  <div className={styles.filter_panel}>
+  <div className={styles.Filter_panel}>
     <h5>Filter movies by genre</h5>
     <select
       className={styles.MovieFilter}

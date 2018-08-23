@@ -23,14 +23,14 @@ class MovieList extends Component {
         loadMore={this.getMoreMovies}
         hasMore
         loader={
-          <div className={styles.loader} key={0}>
+          <div className={styles.Loader} key={0}>
             <Loader type="ThreeDots" color="#00BFFF" height={120} width={120} />
           </div>
         }
       >
-        <ul className={styles.movie_list}>
+        <ul className={styles.Movie_list}>
           {movies.map(movie => (
-            <li className={styles.list_item} key={movie.id}>
+            <li className={styles.List_item} key={movie.id}>
               <MovieCard {...movie} />
             </li>
           ))}
