@@ -12,6 +12,7 @@ import styles from './styles.css';
 class MovieList extends Component {
   getMoreMovies = pageNum => {
     const { category, fetchMoreMovies } = this.props;
+    if (!category) return;
     fetchMoreMovies({ category: category.value, pageNum: pageNum + 1 });
   };
 
