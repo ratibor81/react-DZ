@@ -1,33 +1,33 @@
-.card {
+.Card {
   padding: 5px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
   position: relative;
   display: flex;
 }
-.rate,
-.date {
+.Rate,
+.Date {
   font-size: 11px;
   font-weight: bold;
 }
-.date {
+.Date {
   margin-bottom: 10px;
 }
-.poster {
+.Poster {
   width: 25%;
   height: 100%;
   margin-right: 8px;
 }
-.title {
+.Title {
   font-size: 12px;
   margin-bottom: 10px;
 }
-.panel {
+.Panel {
   position: absolute;
   bottom: 7%;
   right: 3%;
 }
-.del_button,
-.info_button {
+.Del_button,
+.Info_button {
   outline: none;
   cursor: pointer;
   border: none;
@@ -38,14 +38,14 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
   padding: 7px;
 }
-.del_button {
+.Del_button {
   margin-right: 5px;
 }
 
-.info_button:hover {
+.Info_button:hover {
   background-color: #f5f5f5;
 }
-.del_button:hover {
+.Del_button:hover {
   background-color: #f5f5f5;
 }
 
@@ -54,11 +54,11 @@
   height: 12px;
   fill: #bdbdbd;
 }
-.del_button:hover .icon {
+.Del_button:hover .icon {
   fill: black;
-  transition: .5s linear;
+  transition: 0.5s linear;
 }
-.info_button:hover .icon {
+.Info_button:hover .icon {
   fill: black;
-  transition: .5s linear;
+  transition: 0.5s linear;
 }

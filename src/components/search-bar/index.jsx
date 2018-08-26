@@ -34,9 +34,9 @@ class SearchBar extends Component {
     const { title } = this.state;
 
     return (
-      <form className={styles.search_form} onSubmit={this.handleSubmit}>
+      <form className={styles.Search_form} onSubmit={this.handleSubmit}>
         <h5>Search movie by title</h5>
-        <div className={styles.panel}>
+        <div className={styles.Panel}>
           <input
             type="text"
             placeholder="Enter movie title..."
@@ -44,7 +44,7 @@ class SearchBar extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit" className={styles.search_button}>
+          <button type="submit" className={styles.Search_button}>
             <Icon icon={ICONS.SEARCH} />
           </button>
         </div>

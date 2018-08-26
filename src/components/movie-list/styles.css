@@ -1,18 +1,18 @@
-.movie_list {
+.Movie_list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.list_item {
+.List_item {
   width: 19%;
   margin-bottom: 10px;
   animation: open-card 0.3s;
 }
-.list:nth-last-child(-n + 4) {
+.List:nth-last-child(-n + 4) {
   margin-bottom: 0;
 }
-.loader {
+.Loader {
   padding: 20px 0;
   display: flex;
   justify-content: center;

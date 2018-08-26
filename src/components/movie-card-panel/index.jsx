@@ -18,17 +18,17 @@ class CardPanel extends Component {
   render() {
     const { id } = this.props;
     return (
-      <div className={styles.add_panel}>
+      <div className={styles.Add_panel}>
         <button
           type="button"
-          className={styles.add_button}
+          className={styles.Add_button}
           onClick={() => this.addCardToList(id)}
         >
           <Icon icon={ICONS.ADDUSER} />
         </button>
         <button
           type="button"
-          className={styles.info_button}
+          className={styles.Info_button}
           // onClick={() => toggleModal(id)}
         >
           <Icon icon={ICONS.INFO} />

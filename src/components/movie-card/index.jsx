@@ -12,12 +12,12 @@ const MovieCard = ({
   overview,
   vote_average: voteAverage,
 }) => (
-  <div className={styles.card}>
+  <div className={styles.Card}>
     <img src={`${IMG_BASE}${posterPath}`} alt="" />
     <h5>Release date: {releaseDate.slice(0, -6)}</h5>
-    <p className={styles.overview}>{overview}</p>
-    <div className={styles.rate}>{voteAverage}</div>
-    <CardPanel styles={styles.add_panel} id={id} />
+    <p className={styles.Overview}>{overview}</p>
+    <div className={styles.Rate}>{voteAverage}</div>
+    <CardPanel id={id} />
   </div>
 );
 

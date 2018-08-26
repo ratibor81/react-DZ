@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.css';
 
 const MainSection = ({ children }) => (
-  <div className={styles.main}> {children} </div>
+  <div className={styles.Main}> {children} </div>
 );
 
 MainSection.propTypes = {

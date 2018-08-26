@@ -16,24 +16,24 @@ const WatchListCard = ({
   title,
   removeCard,
 }) => (
-  <div className={styles.card}>
-    <img className={styles.poster} src={`${IMG_BASE}${posterPath}`} alt="" />
-    <div className={styles.info}>
-      <h5 className={styles.title}>{title}</h5>
-      <h4 className={styles.date}>Released: {releaseDate.slice(0, -6)}</h4>
-      <div className={styles.rate}>Rating: {voteAverage}</div>
+  <div className={styles.Card}>
+    <img className={styles.Poster} src={`${IMG_BASE}${posterPath}`} alt="" />
+    <div className={styles.Info}>
+      <h5 className={styles.Title}>{title}</h5>
+      <h4 className={styles.Date}>Released: {releaseDate.slice(0, -6)}</h4>
+      <div className={styles.Rate}>Rating: {voteAverage}</div>
     </div>
-    <div className={styles.panel}>
+    <div className={styles.Panel}>
       <button
         type="button"
-        className={styles.del_button}
+        className={styles.Del_button}
         onClick={() => removeCard(id)}
       >
         <Icon icon={ICONS.DELETE} />
       </button>
       <button
         type="button"
-        className={styles.info_button}
+        className={styles.Info_button}
         // onClick={() => toggleModal(id)}
       >
         <Icon icon={ICONS.INFO} />

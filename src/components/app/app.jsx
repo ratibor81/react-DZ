@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import { compose } from 'redux';
+import { compose } from 'redux';
+import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
 import { getMovies, setFromLocalStorage } from '../../redux/actions';
-import selectorOptions from '../../selectors/selector-options';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
@@ -63,11 +63,7 @@ class App extends Component {
         <WatchList />
         <MainSection>
           <SearchPanel>
-            <CategorySelector
-              options={selectorOptions}
-              value={category}
-              onChange={this.changeCategory}
-            />
+            <CategorySelector value={category} onChange={this.changeCategory} />
             <MovieFilter />
             <SearchBar />
           </SearchPanel>
@@ -86,7 +82,10 @@ const mapState = state => ({
 
 const mapDispatch = { getMovies, setState: setFromLocalStorage };
 
-export default connect(
-  mapState,
-  mapDispatch,
+export default compose(
+  hot(module),
+  connect(
+    mapState,
+    mapDispatch,
+  ),
 )(App);
