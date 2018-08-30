@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../icons';
@@ -26,13 +27,17 @@ class CardPanel extends Component {
         >
           <Icon icon={ICONS.ADDUSER} />
         </button>
-        <button
-          type="button"
-          className={styles.Info_button}
-          // onClick={() => toggleModal(id)}
+        <NavLink
+          exact
+          to={{
+            pathname: `/${id}`,
+            // state: { from: this.props.location },
+          }}
         >
-          <Icon icon={ICONS.INFO} />
-        </button>
+          <button type="button" className={styles.Info_button}>
+            <Icon icon={ICONS.INFO} />
+          </button>
+        </NavLink>
       </div>
     );
   }
@@ -43,6 +48,7 @@ CardPanel.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
+  // match: PropTypes.func.isRequired,
 };
 
 const mapState = state => ({

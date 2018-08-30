@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Modal from 'react-responsive-modal';
+// import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
-// import { Transition } from 'react-transition-group';
 import styles from './styles.css';
 import searchById from '../../services/search-by-id';
 import getVideos from '../../services/get-videos';
@@ -12,9 +11,9 @@ const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
 
 export default class ModalInfo extends Component {
   static propTypes = {
-    id: PropTypes.number.isRequired,
-    toggleModal: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
+    // id: PropTypes.number.isRequired,
+    match: PropTypes.objectOf(Object).isRequired,
+    // open: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -25,9 +24,16 @@ export default class ModalInfo extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props;
+    // const { id } = this.props;
+    // console.log(this.props);
+    const id = this.getIdFromProps();
     this.getMovieInfo({ id });
   }
+
+  getIdFromProps = () => {
+    const { match } = this.props;
+    return match.params.movieId;
+  };
 
   getMovieInfo = ({ id }) => {
     searchById({
@@ -55,18 +61,19 @@ export default class ModalInfo extends Component {
   };
 
   render() {
-    const { open, toggleModal } = this.props;
+    // const { open, toggleModal } = this.props;
     const { loading, movie, error, videos } = this.state;
 
     return (
-      <Modal
-        open={open}
-        onClose={toggleModal}
-        center
-        classNames={styles}
-        closeIconSvgPath={false}
-        closeIconSize={15}
-      >
+      // <Modal
+      //   open={open}
+      //   onClose={toggleModal}
+      //   center
+      //   classNames={styles}
+      //   closeIconSvgPath={false}
+      //   closeIconSize={15}
+      // >
+      <div>
         {error && <div>{error}</div>}
         {loading && <Loader />}
 
@@ -106,7 +113,8 @@ export default class ModalInfo extends Component {
             </div>
           </div>
         )}
-      </Modal>
+      </div>
+      // </Modal>
     );
   }
 }

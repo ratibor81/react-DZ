@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CategorySelector from '../category-selector';
 import { getMovies, setFromLocalStorage } from '../../redux/actions';
@@ -12,6 +13,7 @@ import MainSection from '../main-section';
 import WatchList from '../watch-list';
 import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 import MovieFilter from '../movie-filer';
+import ModalInfo from '../modal-info';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
@@ -67,10 +69,18 @@ class App extends Component {
             <MovieFilter />
             <SearchBar />
           </SearchPanel>
-
-          {movies.length > 0 && (
-            <MovieList movies={movies} category={category} />
-          )}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props =>
+                movies.length > 0 && (
+                  <MovieList movies={movies} category={category} {...props} />
+                )
+              }
+            />
+            <Route exact path="/:movieId" component={ModalInfo} />
+          </Switch>
         </MainSection>
       </div>
     );
