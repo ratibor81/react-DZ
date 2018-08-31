@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { compose } from 'redux';
 import { connect } from 'react-redux';
+// import { DragDropContext } from 'react-beautiful-dnd';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 import WatchListCard from '../watch-list-card';

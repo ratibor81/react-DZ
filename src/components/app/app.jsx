@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getCategoryFromProps } from '../../helpers';
 import CategorySelector from '../category-selector';
 import { getMovies, setFromLocalStorage } from '../../redux/actions';
 import MovieList from '../movie-list';
@@ -21,28 +22,34 @@ class App extends Component {
     movies: PropTypes.arrayOf(Array).isRequired,
     getMovies: PropTypes.func.isRequired,
     setState: PropTypes.func.isRequired,
+    history: PropTypes.objectOf(Object).isRequired,
+    location: PropTypes.objectOf(Object).isRequired,
   };
 
   state = {
-    category: null,
+    currentCategory: null,
   };
 
   componentDidMount() {
     this.getFromStorage();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { category } = this.state;
+    const category = getCategoryFromProps(this.props);
     const { getMovies: fetchMovies } = this.props;
     if (!category) return;
-    const prevCategory = prevState.category;
-    const nextCategory = category;
+    // if (!category) {
+    //   return history.replace({
+    //     pathname: location.pathname,
+    //     search: '',
+    //   });
+    // }
+    fetchMovies({ category });
+  }
 
-    if (prevCategory !== nextCategory) {
-      fetchMovies({
-        category: nextCategory.value,
-      });
-    }
+  componentDidUpdate(prevProps) {
+    const { getMovies: fetchMovies } = this.props;
+    const prevCategory = getCategoryFromProps(prevProps);
+    const nextCategory = getCategoryFromProps(this.props);
+    if (prevCategory === nextCategory) return;
+    fetchMovies({ category: nextCategory });
   }
 
   getFromStorage = () => {
@@ -53,19 +60,29 @@ class App extends Component {
   };
 
   changeCategory = category => {
-    this.setState({ category });
+    this.setState({ currentCategory: category });
+    const { history, location } = this.props;
+
+    history.push({
+      pathname: location.pathname,
+      search: `?category=${category.value}`,
+    });
   };
 
   render() {
-    const { category } = this.state;
     const { movies } = this.props;
+    const { currentCategory } = this.state;
+    const category = getCategoryFromProps(this.props);
 
     return (
       <div className="App">
         <WatchList />
         <MainSection>
           <SearchPanel>
-            <CategorySelector value={category} onChange={this.changeCategory} />
+            <CategorySelector
+              value={currentCategory}
+              onChange={this.changeCategory}
+            />
             <MovieFilter />
             <SearchBar />
           </SearchPanel>

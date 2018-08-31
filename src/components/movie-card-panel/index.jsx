@@ -7,7 +7,7 @@ import Icon from './icon';
 import ICONS from '../icons';
 import { addToWatchlist } from '../../redux/actions';
 import { getAllMovies, getWatchlist } from '../../redux/selectors';
-import getItemById from '../../helpers';
+import { getItemById } from '../../helpers';
 
 class CardPanel extends Component {
   addCardToList = id => {

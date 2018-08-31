@@ -13,7 +13,7 @@ class MovieList extends Component {
   getMoreMovies = pageNum => {
     const { category, fetchMoreMovies } = this.props;
     if (!category) return;
-    fetchMoreMovies({ category: category.value, pageNum: pageNum + 1 });
+    fetchMoreMovies({ category, pageNum: pageNum + 1 });
   };
 
   render() {
@@ -43,7 +43,7 @@ class MovieList extends Component {
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
-  category: PropTypes.objectOf(Object),
+  category: PropTypes.string,
   fetchMoreMovies: PropTypes.func.isRequired,
 };
 MovieList.defaultProps = {
