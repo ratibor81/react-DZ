@@ -73,7 +73,7 @@ export default class ModalInfo extends Component {
       //   closeIconSvgPath={false}
       //   closeIconSize={15}
       // >
-      <div>
+      <div className={styles.modal}>
         {error && <div>{error}</div>}
         {loading && <Loader />}
 

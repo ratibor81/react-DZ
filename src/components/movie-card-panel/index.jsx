@@ -28,9 +28,9 @@ class CardPanel extends Component {
           <Icon icon={ICONS.ADDUSER} />
         </button>
         <NavLink
-          exact
+          // exact
           to={{
-            pathname: `/${id}`,
+            pathname: `/movies/${id}`,
             // state: { from: this.props.location },
           }}
         >

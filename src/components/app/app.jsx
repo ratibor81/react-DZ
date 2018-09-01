@@ -48,6 +48,7 @@ class App extends Component {
     const { getMovies: fetchMovies } = this.props;
     const prevCategory = getCategoryFromProps(prevProps);
     const nextCategory = getCategoryFromProps(this.props);
+    if (!nextCategory) return;
     if (prevCategory === nextCategory) return;
     fetchMovies({ category: nextCategory });
   }
@@ -61,10 +62,10 @@ class App extends Component {
 
   changeCategory = category => {
     this.setState({ currentCategory: category });
-    const { history, location } = this.props;
+    const { history } = this.props;
 
     history.push({
-      pathname: location.pathname,
+      pathname: '/movies/',
       search: `?category=${category.value}`,
     });
   };
@@ -89,14 +90,14 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/"
+              path="/movies"
               render={props =>
                 movies.length > 0 && (
                   <MovieList movies={movies} category={category} {...props} />
                 )
               }
             />
-            <Route exact path="/:movieId" component={ModalInfo} />
+            <Route exact path="/movies/:movieId" component={ModalInfo} />
           </Switch>
         </MainSection>
       </div>
