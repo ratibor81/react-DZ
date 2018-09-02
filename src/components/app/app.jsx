@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCategoryFromProps } from '../../helpers';
 import CategorySelector from '../category-selector';
-import { getMovies, setFromLocalStorage } from '../../redux/actions';
+import { getMovies } from '../../redux/actions';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
@@ -21,7 +21,7 @@ class App extends Component {
   static propTypes = {
     movies: PropTypes.arrayOf(Array).isRequired,
     getMovies: PropTypes.func.isRequired,
-    setState: PropTypes.func.isRequired,
+
     history: PropTypes.objectOf(Object).isRequired,
     location: PropTypes.objectOf(Object).isRequired,
   };
@@ -31,7 +31,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.getFromStorage();
     const category = getCategoryFromProps(this.props);
     const { getMovies: fetchMovies } = this.props;
     if (!category) return;
@@ -52,13 +51,6 @@ class App extends Component {
     if (prevCategory === nextCategory) return;
     fetchMovies({ category: nextCategory });
   }
-
-  getFromStorage = () => {
-    const { setState } = this.props;
-    const list = JSON.parse(localStorage.getItem('watchlist'));
-    if (!list) return;
-    setState(list);
-  };
 
   changeCategory = category => {
     this.setState({ currentCategory: category });
@@ -108,7 +100,7 @@ const mapState = state => ({
   movies: getMoviesWithCurrentGenre(state),
 });
 
-const mapDispatch = { getMovies, setState: setFromLocalStorage };
+const mapDispatch = { getMovies };
 
 export default compose(
   hot(module),
