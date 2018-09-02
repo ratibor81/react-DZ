@@ -21,9 +21,9 @@ class App extends Component {
   static propTypes = {
     movies: PropTypes.arrayOf(Array).isRequired,
     getMovies: PropTypes.func.isRequired,
-
     history: PropTypes.objectOf(Object).isRequired,
     location: PropTypes.objectOf(Object).isRequired,
+    // match: PropTypes.objectOf(Object).isRequired,
   };
 
   state = {
@@ -82,14 +82,14 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/movies"
+              path="/movies/"
               render={props =>
                 movies.length > 0 && (
                   <MovieList movies={movies} category={category} {...props} />
                 )
               }
             />
-            <Route exact path="/movies/:movieId" component={ModalInfo} />
+            <Route path="/movies/:movieId" component={ModalInfo} />
           </Switch>
         </MainSection>
       </div>

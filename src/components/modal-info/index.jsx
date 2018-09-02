@@ -11,9 +11,7 @@ const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
 
 export default class ModalInfo extends Component {
   static propTypes = {
-    // id: PropTypes.number.isRequired,
     match: PropTypes.objectOf(Object).isRequired,
-    // open: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -24,8 +22,6 @@ export default class ModalInfo extends Component {
   };
 
   componentDidMount() {
-    // const { id } = this.props;
-    // console.log(this.props);
     const id = this.getIdFromProps();
     this.getMovieInfo({ id });
   }
@@ -61,18 +57,9 @@ export default class ModalInfo extends Component {
   };
 
   render() {
-    // const { open, toggleModal } = this.props;
     const { loading, movie, error, videos } = this.state;
 
     return (
-      // <Modal
-      //   open={open}
-      //   onClose={toggleModal}
-      //   center
-      //   classNames={styles}
-      //   closeIconSvgPath={false}
-      //   closeIconSize={15}
-      // >
       <div className={styles.modal}>
         {error && <div>{error}</div>}
         {loading && <Loader />}
@@ -114,7 +101,6 @@ export default class ModalInfo extends Component {
           </div>
         )}
       </div>
-      // </Modal>
     );
   }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styles from '../movie-card/styles.css';
@@ -18,6 +20,8 @@ class CardPanel extends Component {
 
   render() {
     const { id } = this.props;
+    const { match, location } = this.props;
+
     return (
       <div className={styles.Add_panel}>
         <button
@@ -30,8 +34,9 @@ class CardPanel extends Component {
         <NavLink
           // exact
           to={{
-            pathname: `/movies/${id}`,
-            // state: { from: this.props.location },
+            pathname: `${match.url}${id}`,
+            search: `${location.search}`,
+            state: { from: location },
           }}
         >
           <button type="button" className={styles.Info_button}>
@@ -48,7 +53,8 @@ CardPanel.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
-  // match: PropTypes.func.isRequired,
+  match: PropTypes.objectOf(Object).isRequired,
+  location: PropTypes.objectOf(Object).isRequired,
 };
 
 const mapState = state => ({
@@ -60,7 +66,10 @@ const mapDispatch = {
   addCard: addToWatchlist,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
+export default compose(
+  withRouter,
+  connect(
+    mapState,
+    mapDispatch,
+  ),
 )(CardPanel);
