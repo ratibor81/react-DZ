@@ -13,3 +13,5 @@ export const getMoviesWithCurrentGenre = createSelector(
       ? movies
       : movies.filter(movie => movie.genre_ids.includes(filter)),
 );
+
+export const isUserAuthenticated = state => state.userSession.authenticated;

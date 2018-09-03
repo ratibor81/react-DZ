@@ -15,6 +15,8 @@ import WatchList from '../watch-list';
 import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 import MovieFilter from '../movie-filer';
 import ModalInfo from '../modal-info';
+import * as routes from '../../constants/routes';
+import AuthManager from '../auth-manager';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
@@ -57,7 +59,7 @@ class App extends Component {
     const { history } = this.props;
 
     history.push({
-      pathname: '/movies/',
+      pathname: routes.MOVIES,
       search: `?category=${category.value}`,
     });
   };
@@ -78,18 +80,19 @@ class App extends Component {
             />
             <MovieFilter />
             <SearchBar />
+            <AuthManager />
           </SearchPanel>
           <Switch>
             <Route
               exact
-              path="/movies/"
+              path={routes.MOVIES}
               render={props =>
                 movies.length > 0 && (
                   <MovieList movies={movies} category={category} {...props} />
                 )
               }
             />
-            <Route path="/movies/:movieId" component={ModalInfo} />
+            <Route path={`${routes.MOVIES}:movieId`} component={ModalInfo} />
           </Switch>
         </MainSection>
       </div>
