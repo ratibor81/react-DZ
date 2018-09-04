@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCategoryFromProps } from '../../helpers';
@@ -21,6 +22,8 @@ import AccountPage from '../auth-manager/AccountPage';
 import SignUpPage from '../auth-manager/SignUpPage';
 import SignInPage from '../auth-manager/SignInPage';
 import PasswordForgetPage from '../auth-manager/PasswordForgetPage';
+import withAuthentication from '../../hoc/withAuthentication';
+import AuthUserContext from '../../hoc/AuthUserContext';
 // import AuthManager from '../auth-manager';
 // import withRenderLog from '../../hoc/withRenderLog';
 
@@ -30,7 +33,7 @@ class App extends Component {
     getMovies: PropTypes.func.isRequired,
     history: PropTypes.objectOf(Object).isRequired,
     location: PropTypes.objectOf(Object).isRequired,
-    // match: PropTypes.objectOf(Object).isRequired,
+    // authUser: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -73,7 +76,6 @@ class App extends Component {
     const { movies } = this.props;
     const { currentCategory } = this.state;
     const category = getCategoryFromProps(this.props);
-    // const { authUser } = this.state;
 
     return (
       <div className="App">
@@ -112,7 +114,18 @@ class App extends Component {
               path={routes.PASSWORD_FORGET}
               component={PasswordForgetPage}
             />
-            <Route exact path={routes.HOME} component={WatchList} />
+            <Route
+              exact
+              path={routes.HOME}
+              render={() => (
+                <AuthUserContext.Consumer>
+                  {authUser =>
+                    authUser ? <WatchList /> : <Redirect to={routes.LANDING} />
+                  }
+                </AuthUserContext.Consumer>
+              )}
+              // component={WatchList}
+            />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
           </Switch>
         </MainSection>
@@ -132,4 +145,5 @@ export default compose(
     mapState,
     mapDispatch,
   ),
+  withAuthentication,
 )(App);

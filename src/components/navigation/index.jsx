@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../auth-manager/SignOut';
 import AuthUserContext from '../../hoc/AuthUserContext';
 import styles from './styles.css';
-import withAuthentication from '../../hoc/withAuthentication';
+// import withAuthentication from '../../hoc/withAuthentication';
 
 import * as routes from '../../constants/routes';
 
@@ -46,4 +46,4 @@ const NavigationNonAuth = () => (
 //   authUser: PropTypes.objectOf(Object).isRequired,
 // };
 
-export default withAuthentication(Navigation);
+export default Navigation;
