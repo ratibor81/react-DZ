@@ -16,7 +16,12 @@ import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 import MovieFilter from '../movie-filer';
 import ModalInfo from '../modal-info';
 import * as routes from '../../constants/routes';
-import AuthManager from '../auth-manager';
+import Navigation from '../navigation';
+import AccountPage from '../auth-manager/AccountPage';
+import SignUpPage from '../auth-manager/SignUpPage';
+import SignInPage from '../auth-manager/SignInPage';
+import PasswordForgetPage from '../auth-manager/PasswordForgetPage';
+// import AuthManager from '../auth-manager';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
@@ -59,7 +64,7 @@ class App extends Component {
     const { history } = this.props;
 
     history.push({
-      pathname: routes.MOVIES,
+      pathname: routes.LANDING,
       search: `?category=${category.value}`,
     });
   };
@@ -68,10 +73,12 @@ class App extends Component {
     const { movies } = this.props;
     const { currentCategory } = this.state;
     const category = getCategoryFromProps(this.props);
+    // const { authUser } = this.state;
 
     return (
       <div className="App">
-        <WatchList />
+        <Navigation />
+        {/* <WatchList /> */}
         <MainSection>
           <SearchPanel>
             <CategorySelector
@@ -80,19 +87,33 @@ class App extends Component {
             />
             <MovieFilter />
             <SearchBar />
-            <AuthManager />
+
+            {/* <AuthManager /> */}
           </SearchPanel>
           <Switch>
             <Route
               exact
-              path={routes.MOVIES}
+              path={routes.LANDING}
               render={props =>
                 movies.length > 0 && (
                   <MovieList movies={movies} category={category} {...props} />
                 )
               }
             />
-            <Route path={`${routes.MOVIES}:movieId`} component={ModalInfo} />
+            <Route
+              exact
+              path={`${routes.MOVIES}:movieId`}
+              component={ModalInfo}
+            />
+            <Route exact path={routes.SIGN_UP} component={SignUpPage} />
+            <Route exact path={routes.SIGN_IN} component={SignInPage} />
+            <Route
+              exact
+              path={routes.PASSWORD_FORGET}
+              component={PasswordForgetPage}
+            />
+            <Route exact path={routes.HOME} component={WatchList} />
+            <Route exact path={routes.ACCOUNT} component={AccountPage} />
           </Switch>
         </MainSection>
       </div>
