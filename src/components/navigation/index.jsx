@@ -17,10 +17,10 @@ const Navigation = () => (
 const NavigationAuth = () => (
   <ul className={styles.Nav}>
     <li>
-      <Link to={routes.LANDING}>Landing</Link>
+      <Link to={routes.HOME}>Home</Link>
     </li>
     <li>
-      <Link to={routes.HOME}>Home</Link>
+      <Link to={routes.WATCHLIST}>Watchlist</Link>
     </li>
     <li>
       <Link to={routes.ACCOUNT}>Account</Link>
@@ -34,7 +34,7 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul className={styles.Nav}>
     <li>
-      <Link to={routes.LANDING}>Landing</Link>
+      <Link to={routes.HOME}>Home</Link>
     </li>
     <li>
       <Link to={routes.SIGN_IN}>Sign In</Link>

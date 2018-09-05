@@ -67,7 +67,7 @@ class App extends Component {
     const { history } = this.props;
 
     history.push({
-      pathname: routes.LANDING,
+      pathname: routes.HOME,
       search: `?category=${category.value}`,
     });
   };
@@ -98,7 +98,7 @@ class App extends Component {
           >
             <Route
               exact
-              path={routes.LANDING}
+              path={routes.HOME}
               render={props =>
                 movies.length > 0 && (
                   <MovieList movies={movies} category={category} {...props} />
@@ -119,14 +119,14 @@ class App extends Component {
             />
             <AnimatedRoute
               exact
-              path={routes.HOME}
+              path={routes.WATCHLIST}
               component={WatchList}
               runOnMount
               atEnter={{ offset: -100 }}
               atLeave={{ offset: -100 }}
               atActive={{ offset: 0 }}
-              mapStyles={styles1 => ({
-                transform: `translateX(${styles1.offset}%)`,
+              mapStyles={style => ({
+                transform: `translateX(${style.offset}%)`,
               })}
               // render={() => (
               //   <AuthUserContext.Consumer>
