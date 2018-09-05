@@ -3,7 +3,8 @@ import { compose } from 'redux';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
 import PropTypes from 'prop-types';
 import { getCategoryFromProps } from '../../helpers';
 import CategorySelector from '../category-selector';
@@ -23,8 +24,8 @@ import SignUpPage from '../auth-manager/SignUpPage';
 import SignInPage from '../auth-manager/SignInPage';
 import PasswordForgetPage from '../auth-manager/PasswordForgetPage';
 import withAuthentication from '../../hoc/withAuthentication';
+import styles from './styles.css';
 // import AuthUserContext from '../../hoc/AuthUserContext';
-// import AuthManager from '../auth-manager';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
@@ -33,7 +34,6 @@ class App extends Component {
     getMovies: PropTypes.func.isRequired,
     history: PropTypes.objectOf(Object).isRequired,
     location: PropTypes.objectOf(Object).isRequired,
-    // authUser: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -89,10 +89,13 @@ class App extends Component {
             />
             <MovieFilter />
             <SearchBar />
-
-            {/* <AuthManager /> */}
           </SearchPanel>
-          <Switch>
+          <AnimatedSwitch
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            className={styles.switch_wrapper}
+          >
             <Route
               exact
               path={routes.LANDING}
@@ -114,10 +117,17 @@ class App extends Component {
               path={routes.PASSWORD_FORGET}
               component={PasswordForgetPage}
             />
-            <Route
+            <AnimatedRoute
               exact
               path={routes.HOME}
               component={WatchList}
+              runOnMount
+              atEnter={{ offset: -100 }}
+              atLeave={{ offset: -100 }}
+              atActive={{ offset: 0 }}
+              mapStyles={styles1 => ({
+                transform: `translateX(${styles1.offset}%)`,
+              })}
               // render={() => (
               //   <AuthUserContext.Consumer>
               //     {authUser =>
@@ -127,7 +137,7 @@ class App extends Component {
               // )}
             />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
-          </Switch>
+          </AnimatedSwitch>
         </MainSection>
       </div>
     );
