@@ -5,12 +5,15 @@ import { SignUpLink } from './SignUpPage';
 import { PasswordForgetLink } from './PasswordForgetPage';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import styles from './styles.css';
 
 const SignInPage = ({ history }) => (
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm history={history} />
-    <PasswordForgetLink />
+  <div className={styles.LogInPage}>
+    <div className={styles.LogInForm}>
+      <h1>Log In</h1>
+      <SignInForm history={history} />
+      <PasswordForgetLink />
+    </div>
     <SignUpLink />
   </div>
 );
@@ -52,7 +55,7 @@ class SignInForm extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className={styles.SignInForm}>
         <input
           value={email}
           onChange={event =>
@@ -69,11 +72,15 @@ class SignInForm extends Component {
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
-          Sign In
+        <button
+          disabled={isInvalid}
+          type="submit"
+          className={styles.Form_Button}
+        >
+          Log In
         </button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
     );
   }

@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import styles from './styles.css';
 
 const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
-    <PasswordForgetForm />
+  <div className={styles.ResetPage}>
+    <div className={styles.PasswordForgetForm}>
+      <h1>Reset Password</h1>
+      <PasswordForgetForm />
+    </div>
   </div>
 );
 
@@ -48,7 +51,7 @@ class PasswordForgetForm extends Component {
     const isInvalid = email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className={styles.ResetForm}>
         <input
           value={email}
           onChange={event =>
@@ -57,11 +60,15 @@ class PasswordForgetForm extends Component {
           type="text"
           placeholder="Email Address"
         />
-        <button disabled={isInvalid} type="submit">
+        <button
+          disabled={isInvalid}
+          type="submit"
+          className={styles.ResetPass_Button}
+        >
           Reset My Password
         </button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
     );
   }
@@ -69,7 +76,9 @@ class PasswordForgetForm extends Component {
 
 const PasswordForgetLink = () => (
   <p>
-    <Link to={routes.PASSWORD_FORGET}>Forgot Password?</Link>
+    <Link to={routes.PASSWORD_FORGET} className={styles.PasswordForgetLink}>
+      Forgot Password?
+    </Link>
   </p>
 );
 

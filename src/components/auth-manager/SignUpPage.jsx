@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { auth, db } from '../../firebase';
 
 import * as routes from '../../constants/routes';
+import styles from './styles.css';
 
 const INITIAL_STATE = {
   username: '',
@@ -18,9 +19,11 @@ const byPropKey = (propertyName, value) => () => ({
 });
 
 const SignUpPage = ({ history }) => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm history={history} />
+  <div className={styles.SignUpPage}>
+    <div className={styles.SignUpForm}>
+      <h1>Sign Up</h1>
+      <SignUpForm history={history} />
+    </div>
   </div>
 );
 
@@ -92,19 +95,26 @@ class SignUpForm extends Component {
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <button
+          disabled={isInvalid}
+          type="submit"
+          className={styles.SignUp_Button}
+        >
           Sign Up
         </button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
     );
   }
 }
 
 const SignUpLink = () => (
-  <p>
-    Dont have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
+  <p className={styles.SignUpLink_text}>
+    Dont have an account?
+    <Link to={routes.SIGN_UP} className={styles.SignUpLink}>
+      Sign Up
+    </Link>
   </p>
 );
 

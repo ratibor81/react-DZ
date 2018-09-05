@@ -1,0 +1,127 @@
+.LogInPage,
+.ResetPage,
+.SignUpPage,
+.AccountPage {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.LogInForm,
+.PasswordForgetForm,
+.SignUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  height: auto;
+  border: 1px solid lightgrey;
+  padding: 40px 20px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
+}
+.AccountPassForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: auto;
+  border: 1px solid lightgrey;
+  padding: 40px 10px 5px 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
+}
+.AccountPassForm:first-child {
+  float: left;
+}
+.AccountPassForm:last-child {
+  float: right;
+}
+
+.SignInForm,
+.ResetForm,
+.ChangePassForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.SignInForm input,
+.ResetForm input,
+.SignUpForm input,
+.ChangePassForm input {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  height: 38px;
+  padding: 10px;
+  background-color: #fafafa;
+}
+.SignInForm input:focus,
+.ResetForm input:focus,
+.SignUpForm input:focus,
+.ChangePassForm input:focus {
+  background-color: #fff;
+}
+.LogInForm h1,
+.PasswordForgetForm h1,
+.SignUpForm h1,
+.AccountPassForm h1 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.Form_Button,
+.ResetPass_Button,
+.SignUp_Button,
+.ChangePass_Button {
+  text-transform: uppercase;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+  background-color: #cfd8dc;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.PasswordForgetLink,
+.SignUpLink {
+  text-decoration: none;
+  color: #03a9f4;
+}
+.PasswordForgetLink:hover {
+  text-decoration: underline;
+}
+.SignUpLink:hover {
+  text-decoration: underline;
+}
+
+.SignUpLink_text {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.Error_Message {
+  color: #f44336;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.AccountPageForms {
+  width: 630px;
+}
+
+.Account_Header {
+  margin-bottom: 15px;
+}
+.User_email {
+  color: #009688;
+  margin-left: 10px;
+}
