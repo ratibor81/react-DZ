@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCategoryFromProps } from '../../helpers';
@@ -23,7 +23,7 @@ import SignUpPage from '../auth-manager/SignUpPage';
 import SignInPage from '../auth-manager/SignInPage';
 import PasswordForgetPage from '../auth-manager/PasswordForgetPage';
 import withAuthentication from '../../hoc/withAuthentication';
-import AuthUserContext from '../../hoc/AuthUserContext';
+// import AuthUserContext from '../../hoc/AuthUserContext';
 // import AuthManager from '../auth-manager';
 // import withRenderLog from '../../hoc/withRenderLog';
 
@@ -117,14 +117,14 @@ class App extends Component {
             <Route
               exact
               path={routes.HOME}
-              render={() => (
-                <AuthUserContext.Consumer>
-                  {authUser =>
-                    authUser ? <WatchList /> : <Redirect to={routes.LANDING} />
-                  }
-                </AuthUserContext.Consumer>
-              )}
-              // component={WatchList}
+              component={WatchList}
+              // render={() => (
+              //   <AuthUserContext.Consumer>
+              //     {authUser =>
+              //       authUser ? <WatchList /> : <Redirect to={routes.LANDING} />
+              //     }
+              //   </AuthUserContext.Consumer>
+              // )}
             />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
           </Switch>

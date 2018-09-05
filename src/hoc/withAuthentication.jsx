@@ -4,13 +4,9 @@ import { firebase } from '../firebase';
 
 const withAuthentication = WrappedComponent =>
   class WithAuthentication extends Component {
-    constructor(props) {
-      super(props);
-
-      this.state = {
-        authUser: null,
-      };
-    }
+    state = {
+      authUser: null,
+    };
 
     componentDidMount() {
       firebase.auth.onAuthStateChanged(

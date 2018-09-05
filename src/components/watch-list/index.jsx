@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { compose } from 'redux';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -8,6 +8,7 @@ import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
 import { getWatchlist } from '../../redux/selectors';
 import { setFromLocalStorage } from '../../redux/actions';
+import withAuthorization from '../../hoc/withAuthorization';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class WatchList extends Component {
@@ -61,7 +62,12 @@ const mapState = state => ({
 
 const mapDispatch = { setState: setFromLocalStorage };
 
-export default connect(
-  mapState,
-  mapDispatch,
+const authCondition = authUser => !!authUser;
+
+export default compose(
+  connect(
+    mapState,
+    mapDispatch,
+  ),
+  withAuthorization(authCondition),
 )(WatchList);
