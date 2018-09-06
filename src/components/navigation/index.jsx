@@ -42,8 +42,4 @@ const NavigationNonAuth = () => (
   </ul>
 );
 
-// Navigation.propTypes = {
-//   authUser: PropTypes.objectOf(Object).isRequired,
-// };
-
 export default Navigation;

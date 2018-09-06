@@ -107,7 +107,7 @@ class App extends Component {
             />
             <Route
               exact
-              path={`${routes.MOVIES}:movieId`}
+              path={`${routes.MOVIES}/:movieId`}
               component={ModalInfo}
             />
             <Route exact path={routes.SIGN_UP} component={SignUpPage} />

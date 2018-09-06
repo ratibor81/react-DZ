@@ -10,4 +10,8 @@ export const doCreateUser = (id, username, email) =>
 
 export const onceGetUsers = () => db.ref('users').once('value');
 
+export const updateUser = (data, id) => db.ref(`users/${id}`).update(data);
+
+export const getUserWatchlist = id => db.ref(`users/${id}`).once('value');
+
 // Other Entity APIs ...

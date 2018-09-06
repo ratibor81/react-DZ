@@ -1,7 +1,5 @@
 import { auth } from './firebase';
 
-// console.log(auth);
-
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email, password) =>
   auth.createUserWithEmailAndPassword(email, password);
@@ -19,3 +17,5 @@ export const doPasswordReset = email => auth.sendPasswordResetEmail(email);
 // Password Change
 export const doPasswordUpdate = password =>
   auth.currentUser.updatePassword(password);
+
+export const currentUser = () => auth.currentUser;

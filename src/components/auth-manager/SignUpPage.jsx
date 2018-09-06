@@ -6,18 +6,6 @@ import { auth, db } from '../../firebase';
 import * as routes from '../../constants/routes';
 import styles from './styles.css';
 
-// const INITIAL_STATE = {
-//   username: '',
-//   email: '',
-//   passwordOne: '',
-//   passwordTwo: '',
-//   error: null,
-// };
-
-// const byPropKey = (propertyName, value) => () => ({
-//   [propertyName]: value,
-// });
-
 const SignUpPage = ({ history }) => (
   <div className={styles.SignUpPage}>
     <div className={styles.SignUpForm}>

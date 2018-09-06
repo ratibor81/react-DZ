@@ -1,46 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../icons';
 import { removeFromWatchlist } from '../../redux/actions';
+import { db, auth } from '../../firebase';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
-const WatchListCard = ({
-  id,
-  poster_path: posterPath,
-  release_date: releaseDate,
-  vote_average: voteAverage,
-  title,
-  removeCard,
-}) => (
-  <div className={styles.Card}>
-    <img className={styles.Poster} src={`${IMG_BASE}${posterPath}`} alt="" />
-    <div className={styles.Info}>
-      <h5 className={styles.Title}>{title}</h5>
-      <h4 className={styles.Date}>Released: {releaseDate.slice(0, -6)}</h4>
-      <div className={styles.Rate}>Rating: {voteAverage}</div>
-    </div>
-    <div className={styles.Panel}>
-      <button
-        type="button"
-        className={styles.Del_button}
-        onClick={() => removeCard(id)}
-      >
-        <Icon icon={ICONS.DELETE} />
-      </button>
-      <button
-        type="button"
-        className={styles.Info_button}
-        // onClick={() => toggleModal(id)}
-      >
-        <Icon icon={ICONS.INFO} />
-      </button>
-    </div>
-  </div>
-);
+class WatchListCard extends Component {
+  removeFromDatabase = id => {
+    const { removeCard } = this.props;
+    removeCard(id);
+    const userId = auth.currentUser().uid;
+    const list = JSON.parse(localStorage.getItem('watchlist'));
+    const username = {
+      watchlist: list,
+    };
+    db.updateUser(username, userId);
+  };
+
+  render() {
+    const {
+      id,
+      poster_path: posterPath,
+      release_date: releaseDate,
+      vote_average: voteAverage,
+      title,
+    } = this.props;
+    return (
+      <div className={styles.Card}>
+        <img
+          className={styles.Poster}
+          src={`${IMG_BASE}${posterPath}`}
+          alt=""
+        />
+        <div className={styles.Info}>
+          <h5 className={styles.Title}>{title}</h5>
+          <h4 className={styles.Date}>Released: {releaseDate.slice(0, -6)}</h4>
+          <div className={styles.Rate}>Rating: {voteAverage}</div>
+        </div>
+        <div className={styles.Panel}>
+          <button
+            type="button"
+            className={styles.Del_button}
+            onClick={() => this.removeFromDatabase(id)}
+          >
+            <Icon icon={ICONS.DELETE} />
+          </button>
+          <button
+            type="button"
+            className={styles.Info_button}
+            // onClick={() => toggleModal(id)}
+          >
+            <Icon icon={ICONS.INFO} />
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
 
 WatchListCard.propTypes = {
   id: PropTypes.number.isRequired,

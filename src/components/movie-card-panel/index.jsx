@@ -10,12 +10,20 @@ import ICONS from '../icons';
 import { addToWatchlist } from '../../redux/actions';
 import { getAllMovies, getWatchlist } from '../../redux/selectors';
 import { getItemById } from '../../helpers';
+import { db, auth } from '../../firebase';
 
 class CardPanel extends Component {
   addCardToList = id => {
     const { watchlist, movies, addCard } = this.props;
     if (getItemById(watchlist, id)) return;
     addCard(getItemById(movies, id));
+
+    const userId = auth.currentUser().uid;
+    const list = JSON.parse(localStorage.getItem('watchlist'));
+    const username = {
+      watchlist: list,
+    };
+    db.updateUser(username, userId);
   };
 
   render() {
