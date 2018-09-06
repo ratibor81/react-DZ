@@ -3,36 +3,32 @@ import React, { Component } from 'react';
 import { auth } from '../../firebase';
 import styles from './styles.css';
 
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-});
-
-const INITIAL_STATE = {
-  passwordOne: '',
-  passwordTwo: '',
-  error: null,
-};
-
 class PasswordChangeForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { ...INITIAL_STATE };
-  }
+  state = {
+    passwordOne: '',
+    passwordTwo: '',
+    error: null,
+  };
 
   onSubmit = event => {
     const { passwordOne } = this.state;
+    const { state } = this;
 
     auth
       .doPasswordUpdate(passwordOne)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ ...state });
       })
       .catch(error => {
-        this.setState(byPropKey('error', error));
+        this.setState({ error });
       });
 
     event.preventDefault();
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -44,19 +40,17 @@ class PasswordChangeForm extends Component {
       <form onSubmit={this.onSubmit} className={styles.ChangePassForm}>
         <input
           value={passwordOne}
-          onChange={event =>
-            this.setState(byPropKey('passwordOne', event.target.value))
-          }
+          name="passwordOne"
           type="password"
           placeholder="New Password"
+          onChange={this.handleChange}
         />
         <input
           value={passwordTwo}
-          onChange={event =>
-            this.setState(byPropKey('passwordTwo', event.target.value))
-          }
+          name="passwordTwo"
           type="password"
           placeholder="Confirm New Password"
+          onChange={this.handleChange}
         />
         <button
           disabled={isInvalid}

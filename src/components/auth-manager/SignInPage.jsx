@@ -18,35 +18,34 @@ const SignInPage = ({ history }) => (
   </div>
 );
 
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-});
-
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
-};
-
 class SignInForm extends Component {
-  state = { ...INITIAL_STATE };
+  state = {
+    email: '',
+    password: '',
+    error: null,
+  };
 
   onSubmit = event => {
     const { email, password } = this.state;
-
+    const { state } = this;
     const { history } = this.props;
 
     auth
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ ...state });
         history.push(routes.HOME);
       })
       .catch(error => {
-        this.setState(byPropKey('error', error));
+        this.setState({ error });
       });
 
     event.preventDefault();
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -58,19 +57,17 @@ class SignInForm extends Component {
       <form onSubmit={this.onSubmit} className={styles.SignInForm}>
         <input
           value={email}
-          onChange={event =>
-            this.setState(byPropKey('email', event.target.value))
-          }
+          name="email"
           type="text"
           placeholder="Email Address"
+          onChange={this.handleChange}
         />
         <input
           value={password}
-          onChange={event =>
-            this.setState(byPropKey('password', event.target.value))
-          }
+          name="password"
           type="password"
           placeholder="Password"
+          onChange={this.handleChange}
         />
         <button
           disabled={isInvalid}

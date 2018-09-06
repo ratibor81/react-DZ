@@ -14,35 +14,31 @@ const PasswordForgetPage = () => (
   </div>
 );
 
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-});
-
-const INITIAL_STATE = {
-  email: '',
-  error: null,
-};
-
 class PasswordForgetForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { ...INITIAL_STATE };
-  }
+  state = {
+    email: '',
+    error: null,
+  };
 
   onSubmit = event => {
     const { email } = this.state;
+    const { state } = this;
 
     auth
       .doPasswordReset(email)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ ...state });
       })
       .catch(error => {
-        this.setState(byPropKey('error', error));
+        this.setState({ error });
       });
 
     event.preventDefault();
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -54,11 +50,10 @@ class PasswordForgetForm extends Component {
       <form onSubmit={this.onSubmit} className={styles.ResetForm}>
         <input
           value={email}
-          onChange={event =>
-            this.setState(byPropKey('email', event.target.value))
-          }
+          name="email"
           type="text"
           placeholder="Email Address"
+          onChange={this.handleChange}
         />
         <button
           disabled={isInvalid}
