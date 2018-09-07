@@ -136,6 +136,7 @@ class App extends Component {
               // )}
             />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
+            <Route render={() => <div>Page is not found :(</div>} />
           </AnimatedSwitch>
         </MainSection>
       </div>

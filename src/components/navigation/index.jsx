@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import SignOutButton from '../auth-manager/SignOut';
 import AuthUserContext from '../../hoc/AuthUserContext';
 import styles from './styles.css';
@@ -17,13 +16,32 @@ const Navigation = () => (
 const NavigationAuth = () => (
   <ul className={styles.Nav}>
     <li>
-      <Link to={routes.HOME}>Home</Link>
+      <NavLink
+        exact
+        to={routes.HOME}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+      >
+        Home
+      </NavLink>
     </li>
     <li>
-      <Link to={routes.WATCHLIST}>Watchlist</Link>
+      <NavLink
+        to={routes.WATCHLIST}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+      >
+        Watchlist
+      </NavLink>
     </li>
     <li>
-      <Link to={routes.ACCOUNT}>Account</Link>
+      <NavLink
+        to={routes.ACCOUNT}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+      >
+        Account
+      </NavLink>
     </li>
     <li>
       <SignOutButton />
@@ -34,10 +52,23 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul className={styles.Nav}>
     <li>
-      <Link to={routes.HOME}>Home</Link>
+      <NavLink
+        exact
+        to={routes.HOME}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+      >
+        Home
+      </NavLink>
     </li>
     <li>
-      <Link to={routes.SIGN_IN}>Sign In</Link>
+      <NavLink
+        to={routes.SIGN_IN}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+      >
+        Sign In
+      </NavLink>
     </li>
   </ul>
 );

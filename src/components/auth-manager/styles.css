@@ -125,3 +125,13 @@
   color: #009688;
   margin-left: 10px;
 }
+.SignOut_Button {
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+  background-color: #cfd8dc;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+}
