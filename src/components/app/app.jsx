@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
+// import { Redirect } from 'react-router';
+import { Route } from 'react-router-dom';
+import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
 import PropTypes from 'prop-types';
+import { getCategoryFromProps } from '../../helpers';
 import CategorySelector from '../category-selector';
-import { getMovies, setFromLocalStorage } from '../../redux/actions';
+import { getMovies } from '../../redux/actions';
 import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
@@ -12,65 +16,128 @@ import MainSection from '../main-section';
 import WatchList from '../watch-list';
 import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 import MovieFilter from '../movie-filer';
+import ModalInfo from '../modal-info';
+import * as routes from '../../constants/routes';
+import Navigation from '../navigation';
+import AccountPage from '../auth-manager/AccountPage';
+import SignUpPage from '../auth-manager/SignUpPage';
+import SignInPage from '../auth-manager/SignInPage';
+import PasswordForgetPage from '../auth-manager/PasswordForgetPage';
+import withAuthentication from '../../hoc/withAuthentication';
+import styles from './styles.css';
+// import AuthUserContext from '../../hoc/AuthUserContext';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class App extends Component {
   static propTypes = {
     movies: PropTypes.arrayOf(Array).isRequired,
     getMovies: PropTypes.func.isRequired,
-    setState: PropTypes.func.isRequired,
+    history: PropTypes.objectOf(Object).isRequired,
+    location: PropTypes.objectOf(Object).isRequired,
   };
 
   state = {
-    category: null,
+    currentCategory: null,
   };
 
   componentDidMount() {
-    this.getFromStorage();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { category } = this.state;
+    const category = getCategoryFromProps(this.props);
     const { getMovies: fetchMovies } = this.props;
     if (!category) return;
-    const prevCategory = prevState.category;
-    const nextCategory = category;
-
-    if (prevCategory !== nextCategory) {
-      fetchMovies({
-        category: nextCategory.value,
-      });
-    }
+    // if (!category) {
+    //   return history.replace({
+    //     pathname: location.pathname,
+    //     search: '',
+    //   });
+    // }
+    fetchMovies({ category });
   }
 
-  getFromStorage = () => {
-    const { setState } = this.props;
-    const list = JSON.parse(localStorage.getItem('watchlist'));
-    if (!list) return;
-    setState(list);
-  };
+  componentDidUpdate(prevProps) {
+    const { getMovies: fetchMovies } = this.props;
+    const prevCategory = getCategoryFromProps(prevProps);
+    const nextCategory = getCategoryFromProps(this.props);
+    if (!nextCategory) return;
+    if (prevCategory === nextCategory) return;
+    fetchMovies({ category: nextCategory });
+  }
 
   changeCategory = category => {
-    this.setState({ category });
+    this.setState({ currentCategory: category });
+    const { history } = this.props;
+
+    history.push({
+      pathname: routes.HOME,
+      search: `?category=${category.value}`,
+    });
   };
 
   render() {
-    const { category } = this.state;
     const { movies } = this.props;
+    const { currentCategory } = this.state;
+    const category = getCategoryFromProps(this.props);
 
     return (
       <div className="App">
-        <WatchList />
+        <Navigation />
         <MainSection>
           <SearchPanel>
-            <CategorySelector value={category} onChange={this.changeCategory} />
+            <CategorySelector
+              value={currentCategory}
+              onChange={this.changeCategory}
+            />
             <MovieFilter />
             <SearchBar />
           </SearchPanel>
-
-          {movies.length > 0 && (
-            <MovieList movies={movies} category={category} />
-          )}
+          <AnimatedSwitch
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            className={styles.switch_wrapper}
+          >
+            <Route
+              exact
+              path={routes.HOME}
+              render={props =>
+                movies.length > 0 && (
+                  <MovieList movies={movies} category={category} {...props} />
+                )
+              }
+            />
+            <Route
+              exact
+              path={`${routes.MOVIES}/:movieId`}
+              component={ModalInfo}
+            />
+            <Route exact path={routes.SIGN_UP} component={SignUpPage} />
+            <Route exact path={routes.SIGN_IN} component={SignInPage} />
+            <Route
+              exact
+              path={routes.PASSWORD_FORGET}
+              component={PasswordForgetPage}
+            />
+            <AnimatedRoute
+              exact
+              path={routes.WATCHLIST}
+              component={WatchList}
+              runOnMount
+              atEnter={{ offset: -100 }}
+              atLeave={{ offset: -100 }}
+              atActive={{ offset: 0 }}
+              mapStyles={style => ({
+                transform: `translateX(${style.offset}%)`,
+              })}
+              // render={() => (
+              //   <AuthUserContext.Consumer>
+              //     {authUser =>
+              //       authUser ? <WatchList /> : <Redirect to={routes.LANDING} />
+              //     }
+              //   </AuthUserContext.Consumer>
+              // )}
+            />
+            <Route exact path={routes.ACCOUNT} component={AccountPage} />
+            <Route render={() => <div>Page is not found :(</div>} />
+          </AnimatedSwitch>
         </MainSection>
       </div>
     );
@@ -80,7 +147,7 @@ const mapState = state => ({
   movies: getMoviesWithCurrentGenre(state),
 });
 
-const mapDispatch = { getMovies, setState: setFromLocalStorage };
+const mapDispatch = { getMovies };
 
 export default compose(
   hot(module),
@@ -88,4 +155,5 @@ export default compose(
     mapState,
     mapDispatch,
   ),
+  withAuthentication,
 )(App);

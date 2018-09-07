@@ -4,7 +4,7 @@ import {
   FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
-  SET_FROM_LOCALSTORAGE,
+  SET_FROM_DATABASE,
   FETCH_MORE_MOVIES,
   CHANGE_FILTER,
 } from './types';
@@ -16,8 +16,8 @@ export const changeFilterAction = value => ({
   payload: value,
 });
 
-export const setFromLocalStorage = watchlist => ({
-  type: SET_FROM_LOCALSTORAGE,
+export const setFromDatabase = watchlist => ({
+  type: SET_FROM_DATABASE,
   payload: watchlist,
 });
 
