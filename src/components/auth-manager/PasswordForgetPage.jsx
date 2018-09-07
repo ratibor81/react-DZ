@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
@@ -55,13 +56,15 @@ class PasswordForgetForm extends Component {
           placeholder="Email Address"
           onChange={this.handleChange}
         />
-        <button
-          disabled={isInvalid}
+        <Button
+          variant="raised"
+          color="default"
           type="submit"
-          className={styles.ResetPass_Button}
+          disabled={isInvalid}
+          className={styles.Form_Button}
         >
           Reset My Password
-        </button>
+        </Button>
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>

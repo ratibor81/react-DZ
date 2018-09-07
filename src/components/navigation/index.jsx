@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import SignOutButton from '../auth-manager/SignOut';
+import Button from '@material-ui/core/Button';
+import { auth } from '../../firebase';
+// import SignOutButton from '../auth-manager/SignOut';
 import AuthUserContext from '../../hoc/AuthUserContext';
 import styles from './styles.css';
-// import withAuthentication from '../../hoc/withAuthentication';
 
 import * as routes from '../../constants/routes';
 
@@ -44,7 +45,15 @@ const NavigationAuth = () => (
       </NavLink>
     </li>
     <li>
-      <SignOutButton />
+      <Button
+        variant="raised"
+        color="primary"
+        type="button"
+        // className={styles.Form_Button}
+        onClick={auth.doSignOut}
+      >
+        Log Out
+      </Button>
     </li>
   </ul>
 );

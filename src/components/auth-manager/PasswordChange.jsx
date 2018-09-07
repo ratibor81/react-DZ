@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 
 import { auth } from '../../firebase';
 import styles from './styles.css';
@@ -52,13 +53,15 @@ class PasswordChangeForm extends Component {
           placeholder="Confirm New Password"
           onChange={this.handleChange}
         />
-        <button
-          disabled={isInvalid}
+        <Button
+          variant="raised"
+          color="default"
           type="submit"
-          className={styles.ChangePass_Button}
+          disabled={isInvalid}
+          className={styles.Form_Button}
         >
           Update Password
-        </button>
+        </Button>
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>

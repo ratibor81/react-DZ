@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import { auth, db } from '../../firebase';
 
 import * as routes from '../../constants/routes';
@@ -92,13 +93,15 @@ class SignUpForm extends Component {
           placeholder="Confirm Password"
           onChange={this.handleChange}
         />
-        <button
-          disabled={isInvalid}
+        <Button
+          variant="raised"
+          color="default"
           type="submit"
-          className={styles.SignUp_Button}
+          disabled={isInvalid}
+          className={styles.Form_Button}
         >
           Sign Up
-        </button>
+        </Button>
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
