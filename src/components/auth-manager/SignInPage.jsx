@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+// import Snackbar from '@material-ui/core/Snackbar';
 import { SignUpLink } from './SignUpPage';
 import { PasswordForgetLink } from './PasswordForgetPage';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
 import styles from './styles.css';
+import SnackBar from '../shared-ui/snackBar';
 
 const SignInPage = ({ history }) => (
   <div className={styles.LogInPage}>
@@ -24,6 +26,7 @@ class SignInForm extends Component {
     email: '',
     password: '',
     error: null,
+    isOpen: false,
   };
 
   onSubmit = event => {
@@ -49,8 +52,14 @@ class SignInForm extends Component {
     this.setState({ [name]: value });
   };
 
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, error, isOpen } = this.state;
 
     const isInvalid = password === '' || email === '';
 
@@ -76,9 +85,15 @@ class SignInForm extends Component {
           type="submit"
           disabled={isInvalid}
           className={styles.Form_Button}
+          onClick={this.toggleSnackbar}
         >
           Log In
         </Button>
+        <SnackBar
+          open={isOpen}
+          close={this.toggleSnackbar}
+          text="You are logged in successfully"
+        />
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>

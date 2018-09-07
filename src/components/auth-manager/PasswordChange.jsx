@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import SnackBar from '../shared-ui/snackBar';
 
 import { auth } from '../../firebase';
 import styles from './styles.css';
@@ -9,6 +10,7 @@ class PasswordChangeForm extends Component {
     passwordOne: '',
     passwordTwo: '',
     error: null,
+    isOpen: false,
   };
 
   onSubmit = event => {
@@ -32,8 +34,14 @@ class PasswordChangeForm extends Component {
     this.setState({ [name]: value });
   };
 
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
   render() {
-    const { passwordOne, passwordTwo, error } = this.state;
+    const { passwordOne, passwordTwo, error, isOpen } = this.state;
 
     const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
 
@@ -59,10 +67,15 @@ class PasswordChangeForm extends Component {
           type="submit"
           disabled={isInvalid}
           className={styles.Form_Button}
+          onClick={this.toggleSnackbar}
         >
           Update Password
         </Button>
-
+        <SnackBar
+          open={isOpen}
+          close={this.toggleSnackbar}
+          text="Your password has been changed successfully"
+        />
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
     );

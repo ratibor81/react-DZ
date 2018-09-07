@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
 import styles from './styles.css';
+import SnackBar from '../shared-ui/snackBar';
 
 const PasswordForgetPage = () => (
   <div className={styles.ResetPage}>
@@ -19,6 +20,7 @@ class PasswordForgetForm extends Component {
   state = {
     email: '',
     error: null,
+    isOpen: false,
   };
 
   onSubmit = event => {
@@ -42,8 +44,14 @@ class PasswordForgetForm extends Component {
     this.setState({ [name]: value });
   };
 
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
   render() {
-    const { email, error } = this.state;
+    const { email, error, isOpen } = this.state;
 
     const isInvalid = email === '';
 
@@ -62,10 +70,15 @@ class PasswordForgetForm extends Component {
           type="submit"
           disabled={isInvalid}
           className={styles.Form_Button}
+          onClick={this.toggleSnackbar}
         >
           Reset My Password
         </Button>
-
+        <SnackBar
+          open={isOpen}
+          close={this.toggleSnackbar}
+          text="Please, check your email for password change message"
+        />
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
     );

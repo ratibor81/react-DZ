@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import SnackBar from '../shared-ui/snackBar';
 import { auth, db } from '../../firebase';
 
 import * as routes from '../../constants/routes';
@@ -23,6 +24,7 @@ class SignUpForm extends Component {
     passwordOne: '',
     passwordTwo: '',
     error: null,
+    isOpen: false,
   };
 
   onSubmit = event => {
@@ -55,8 +57,21 @@ class SignUpForm extends Component {
     this.setState({ [name]: value });
   };
 
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      error,
+      isOpen,
+    } = this.state;
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -99,9 +114,15 @@ class SignUpForm extends Component {
           type="submit"
           disabled={isInvalid}
           className={styles.Form_Button}
+          onClick={this.toggleSnackbar}
         >
           Sign Up
         </Button>
+        <SnackBar
+          open={isOpen}
+          close={this.toggleSnackbar}
+          text="Congratulations! You have successfully registered"
+        />
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
