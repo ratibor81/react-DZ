@@ -7,26 +7,20 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 import WatchListCard from '../watch-list-card';
 import { getWatchlist } from '../../redux/selectors';
-import { setFromLocalStorage } from '../../redux/actions';
+import { setFromDatabase } from '../../redux/actions';
 import withAuthorization from '../../hoc/withAuthorization';
 import { db, auth } from '../../firebase';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class WatchList extends Component {
   componentDidMount() {
-    this.getFromStorage();
+    this.getFromDatabase();
   }
 
-  getFromStorage = () => {
+  getFromDatabase = () => {
     const { setState } = this.props;
-    // const list = JSON.parse(localStorage.getItem('watchlist'));
-    // if (!list) return;
     const userId = auth.currentUser().uid;
-    db.getUserWatchlist(userId).then(snapshot =>
-      setState(snapshot.val().watchlist),
-    );
-
-    // setState(list);
+    db.getUserData(userId).then(snapshot => setState(snapshot.val().watchlist));
   };
 
   render() {
@@ -68,7 +62,7 @@ const mapState = state => ({
   watchlist: getWatchlist(state),
 });
 
-const mapDispatch = { setState: setFromLocalStorage };
+const mapDispatch = { setState: setFromDatabase };
 
 const authCondition = authUser => !!authUser;
 

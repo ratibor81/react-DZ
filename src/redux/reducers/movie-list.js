@@ -3,7 +3,7 @@ import {
   FETCH_MOVIES_SUCCESS,
   REMOVE_FROM_WATCHLIST,
   ADD_TO_WATCHLIST,
-  SET_FROM_LOCALSTORAGE,
+  SET_FROM_DATABASE,
   FETCH_MORE_MOVIES,
 } from '../types';
 
@@ -24,7 +24,7 @@ const watchlist = (state = [], { type, payload }) => {
       return [payload, ...state];
     case REMOVE_FROM_WATCHLIST:
       return state.filter(movie => movie.id !== payload);
-    case SET_FROM_LOCALSTORAGE:
+    case SET_FROM_DATABASE:
       return payload;
     default:
       return state;
