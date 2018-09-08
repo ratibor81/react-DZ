@@ -12,7 +12,7 @@ import ICONS from '../icons';
 import { addToWatchlist } from '../../redux/actions';
 import { getAllMovies, getWatchlist } from '../../redux/selectors';
 import { getItemById } from '../../helpers';
-// import { db, auth } from '../../firebase';
+import { auth } from '../../firebase';
 
 class CardPanel extends Component {
   addCardToList = id => {
@@ -24,18 +24,21 @@ class CardPanel extends Component {
   render() {
     const { id } = this.props;
     const { match, location } = this.props;
+    // console.log(auth.currentUser());
 
     return (
       <div className={styles.Add_panel}>
-        <Tooltip title="Add movie to Watchlist" TransitionComponent={Zoom}>
-          <button
-            type="button"
-            className={styles.Add_button}
-            onClick={() => this.addCardToList(id)}
-          >
-            <Icon icon={ICONS.ADDUSER} />
-          </button>
-        </Tooltip>
+        {auth.currentUser() && (
+          <Tooltip title="Add movie to Watchlist" TransitionComponent={Zoom}>
+            <button
+              type="button"
+              className={styles.Add_button}
+              onClick={() => this.addCardToList(id)}
+            >
+              <Icon icon={ICONS.ADDUSER} />
+            </button>
+          </Tooltip>
+        )}
         <NavLink
           // exact
           to={{

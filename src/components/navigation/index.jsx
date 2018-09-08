@@ -10,11 +10,11 @@ import * as routes from '../../constants/routes';
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
+    {authUser => (authUser ? <PrivateLinks /> : <PublicLinks />)}
   </AuthUserContext.Consumer>
 );
 
-const NavigationAuth = () => (
+const PrivateLinks = () => (
   <ul className={styles.Nav}>
     <li>
       <NavLink
@@ -58,7 +58,7 @@ const NavigationAuth = () => (
   </ul>
 );
 
-const NavigationNonAuth = () => (
+const PublicLinks = () => (
   <ul className={styles.Nav}>
     <li>
       <NavLink
