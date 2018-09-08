@@ -11,13 +11,14 @@ const MovieCard = ({
   release_date: releaseDate,
   overview,
   vote_average: voteAverage,
+  onClose,
 }) => (
   <div className={styles.Card}>
     <img src={`${IMG_BASE}${posterPath}`} alt="" />
     <h5>Release date: {releaseDate.slice(0, -6)}</h5>
     <p className={styles.Overview}>{overview}</p>
     <div className={styles.Rate}>{voteAverage}</div>
-    <CardPanel id={id} />
+    <CardPanel id={id} onClose={onClose} />
   </div>
 );
 
@@ -27,6 +28,7 @@ MovieCard.propTypes = {
   release_date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 MovieCard.defaultProps = {

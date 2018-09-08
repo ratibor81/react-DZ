@@ -7,17 +7,27 @@ import Loader from 'react-loader-spinner';
 import { getMoreMovies } from '../../redux/actions';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
+import SnackBar from '../shared-ui/snackBar';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {
+  state = { isOpen: false };
+
   getMoreMovies = pageNum => {
     const { category, fetchMoreMovies } = this.props;
     if (!category) return;
     fetchMoreMovies({ category, pageNum: pageNum + 1 });
   };
 
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
   render() {
     const { movies } = this.props;
+    const { isOpen } = this.state;
     return (
       <InfiniteScroll
         pageStart={0}
@@ -32,10 +42,15 @@ class MovieList extends Component {
         <ul className={styles.Movie_list}>
           {movies.map(movie => (
             <li className={styles.List_item} key={movie.id}>
-              <MovieCard {...movie} />
+              <MovieCard {...movie} onClose={this.toggleSnackbar} />
             </li>
           ))}
         </ul>
+        <SnackBar
+          text="Movie added to Watchlist"
+          open={isOpen}
+          close={this.toggleSnackbar}
+        />
       </InfiniteScroll>
     );
   }

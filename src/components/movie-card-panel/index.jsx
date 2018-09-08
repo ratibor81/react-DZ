@@ -16,15 +16,21 @@ import { auth } from '../../firebase';
 
 class CardPanel extends Component {
   addCardToList = id => {
-    const { watchlist, movies, addCard } = this.props;
+    const { watchlist, movies, addCard, onClose } = this.props;
     if (getItemById(watchlist, id)) return;
     addCard(getItemById(movies, id));
+    onClose();
+  };
+
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
   };
 
   render() {
     const { id } = this.props;
     const { match, location } = this.props;
-    // console.log(auth.currentUser());
 
     return (
       <div className={styles.Add_panel}>
@@ -65,6 +71,7 @@ CardPanel.propTypes = {
   addCard: PropTypes.func.isRequired,
   match: PropTypes.objectOf(Object).isRequired,
   location: PropTypes.objectOf(Object).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 const mapState = state => ({

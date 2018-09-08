@@ -46,7 +46,7 @@ class ButtonForm extends Component {
           onClose={this.toggleSnackbar}
           autoHideDuration={3000}
           resumeHideDuration={3000}
-          message={<div className={classes.snackbar}>{text}</div>}
+          message={<div>{text}</div>}
         />
       </div>
     );

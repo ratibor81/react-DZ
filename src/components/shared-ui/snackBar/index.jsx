@@ -1,12 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import green from '@material-ui/core/colors/green';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   snackbar: {
     margin: theme.spacing.unit,
+
+    // textAlign: 'center',
     // minWidth: 100,
+  },
+  success: {
+    backgroundColor: green[600],
+  },
+  icon: {
+    fontSize: 20,
+    opacity: 0.9,
+    marginRight: 20,
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 
@@ -19,10 +36,18 @@ const SnackBar = ({ text, open, close, classes }) => (
     }}
     open={open}
     onClose={close}
-    autoHideDuration={3000}
-    resumeHideDuration={3000}
-    message={<div className={classes.snackbar}>{text}</div>}
-  />
+    autoHideDuration={2000}
+  >
+    <SnackbarContent
+      className={classes.success}
+      message={
+        <div className={classes.message}>
+          <CheckCircleIcon className={classes.icon} />
+          {text}
+        </div>
+      }
+    />
+  </Snackbar>
 );
 
 SnackBar.propTypes = {
