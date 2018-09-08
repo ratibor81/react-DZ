@@ -4,6 +4,8 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../icons';
@@ -17,13 +19,6 @@ class CardPanel extends Component {
     const { watchlist, movies, addCard } = this.props;
     if (getItemById(watchlist, id)) return;
     addCard(getItemById(movies, id));
-
-    // const userId = auth.currentUser().uid;
-    // const list = JSON.parse(localStorage.getItem('watchlist'));
-    // const username = {
-    //   watchlist: list,
-    // };
-    // db.updateUser(username, userId);
   };
 
   render() {
@@ -32,13 +27,15 @@ class CardPanel extends Component {
 
     return (
       <div className={styles.Add_panel}>
-        <button
-          type="button"
-          className={styles.Add_button}
-          onClick={() => this.addCardToList(id)}
-        >
-          <Icon icon={ICONS.ADDUSER} />
-        </button>
+        <Tooltip title="Add movie to Watchlist" TransitionComponent={Zoom}>
+          <button
+            type="button"
+            className={styles.Add_button}
+            onClick={() => this.addCardToList(id)}
+          >
+            <Icon icon={ICONS.ADDUSER} />
+          </button>
+        </Tooltip>
         <NavLink
           // exact
           to={{
@@ -47,9 +44,11 @@ class CardPanel extends Component {
             state: { from: location },
           }}
         >
-          <button type="button" className={styles.Info_button}>
-            <Icon icon={ICONS.INFO} />
-          </button>
+          <Tooltip title="Full movie information" TransitionComponent={Zoom}>
+            <button type="button" className={styles.Info_button}>
+              <Icon icon={ICONS.INFO} />
+            </button>
+          </Tooltip>
         </NavLink>
       </div>
     );

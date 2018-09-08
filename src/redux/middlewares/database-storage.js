@@ -2,6 +2,8 @@ import { db, auth } from '../../firebase';
 
 const databaseUpdate = store => next => action => {
   if (!action.payload) return;
+  if (!auth.currentUser()) return;
+
   next(action);
 
   const userId = auth.currentUser().uid;
