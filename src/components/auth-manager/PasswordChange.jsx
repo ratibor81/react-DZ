@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import SnackBar from '../shared-ui/snackBar';
+import ButtonForm from '../shared-ui/button-form';
 
 import { auth } from '../../firebase';
 import styles from './styles.css';
@@ -10,10 +9,10 @@ class PasswordChangeForm extends Component {
     passwordOne: '',
     passwordTwo: '',
     error: null,
-    isOpen: false,
   };
 
   onSubmit = event => {
+    event.preventDefault();
     const { passwordOne } = this.state;
     const { state } = this;
 
@@ -25,8 +24,7 @@ class PasswordChangeForm extends Component {
       .catch(error => {
         this.setState({ error });
       });
-
-    event.preventDefault();
+    this.resetState();
   };
 
   handleChange = ({ target }) => {
@@ -34,14 +32,16 @@ class PasswordChangeForm extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleSnackbar = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+  resetState = () => {
+    this.setState({
+      passwordOne: '',
+      passwordTwo: '',
+      error: null,
+    });
   };
 
   render() {
-    const { passwordOne, passwordTwo, error, isOpen } = this.state;
+    const { passwordOne, passwordTwo, error } = this.state;
 
     const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
 
@@ -61,21 +61,12 @@ class PasswordChangeForm extends Component {
           placeholder="Confirm New Password"
           onChange={this.handleChange}
         />
-        <Button
-          variant="raised"
-          color="default"
-          type="submit"
+        <ButtonForm
           disabled={isInvalid}
-          className={styles.Form_Button}
-          onClick={this.toggleSnackbar}
-        >
-          Update Password
-        </Button>
-        <SnackBar
-          open={isOpen}
-          close={this.toggleSnackbar}
+          label="Update Password"
           text="Your password has been changed successfully"
         />
+
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
     );

@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   snackbar: {
     margin: theme.spacing.unit,
-    // width: '1000px',
+    // minWidth: 100,
   },
 });
 
@@ -21,7 +21,7 @@ const SnackBar = ({ text, open, close, classes }) => (
     onClose={close}
     autoHideDuration={3000}
     resumeHideDuration={3000}
-    message={<span className={classes.snackbar}>{text}</span>}
+    message={<div className={classes.snackbar}>{text}</div>}
   />
 );
 

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import SnackBar from '../shared-ui/snackBar';
 import { auth, db } from '../../firebase';
 
 import * as routes from '../../constants/routes';
 import styles from './styles.css';
+import ButtonForm from '../shared-ui/button-form';
 
 const SignUpPage = ({ history }) => (
   <div className={styles.SignUpPage}>
@@ -24,7 +23,6 @@ class SignUpForm extends Component {
     passwordOne: '',
     passwordTwo: '',
     error: null,
-    isOpen: false,
   };
 
   onSubmit = event => {
@@ -57,21 +55,8 @@ class SignUpForm extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleSnackbar = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
   render() {
-    const {
-      username,
-      email,
-      passwordOne,
-      passwordTwo,
-      error,
-      isOpen,
-    } = this.state;
+    const { username, email, passwordOne, passwordTwo, error } = this.state;
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -108,19 +93,9 @@ class SignUpForm extends Component {
           placeholder="Confirm Password"
           onChange={this.handleChange}
         />
-        <Button
-          variant="raised"
-          color="default"
-          type="submit"
+        <ButtonForm
           disabled={isInvalid}
-          className={styles.Form_Button}
-          onClick={this.toggleSnackbar}
-        >
-          Sign Up
-        </Button>
-        <SnackBar
-          open={isOpen}
-          close={this.toggleSnackbar}
+          label="Sign Up"
           text="Congratulations! You have successfully registered"
         />
 
