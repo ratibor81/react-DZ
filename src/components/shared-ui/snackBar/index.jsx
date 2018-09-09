@@ -9,9 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   snackbar: {
     margin: theme.spacing.unit,
-
-    // textAlign: 'center',
-    // minWidth: 100,
   },
   success: {
     backgroundColor: green[600],
@@ -36,7 +33,7 @@ const SnackBar = ({ text, open, close, classes }) => (
     }}
     open={open}
     onClose={close}
-    autoHideDuration={2000}
+    autoHideDuration={1000}
   >
     <SnackbarContent
       className={classes.success}

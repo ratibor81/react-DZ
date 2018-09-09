@@ -9,7 +9,7 @@ import Trailer from './trailer';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
 
-export default class ModalInfo extends Component {
+export default class MovieInfo extends Component {
   static propTypes = {
     match: PropTypes.objectOf(Object).isRequired,
   };

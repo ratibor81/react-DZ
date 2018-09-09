@@ -13,20 +13,21 @@ import MovieList from '../movie-list';
 import SearchBar from '../search-bar';
 import SearchPanel from '../search-panel';
 import MainSection from '../main-section';
-import WatchList from '../watch-list';
 import { getMoviesWithCurrentGenre } from '../../redux/selectors';
 import MovieFilter from '../movie-filer';
-import ModalInfo from '../modal-info';
 import * as routes from '../../constants/routes';
 import Navigation from '../navigation';
-import AccountPage from '../auth-manager/AccountPage';
-import SignUpPage from '../auth-manager/SignUpPage';
-import SignInPage from '../auth-manager/SignInPage';
-import PasswordForgetPage from '../auth-manager/PasswordForgetPage';
 import withAuthentication from '../../hoc/withAuthentication';
 import styles from './styles.css';
-// import AuthUserContext from '../../hoc/AuthUserContext';
-// import withRenderLog from '../../hoc/withRenderLog';
+import {
+  SignInPage,
+  SignUpPage,
+  AccountPage,
+  PasswordForgetPage,
+  MovieInfoPage,
+  WatchListPage,
+  NotFoundPage,
+} from '../async-pages';
 
 class App extends Component {
   static propTypes = {
@@ -107,7 +108,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.MOVIES}/:movieId`}
-              component={ModalInfo}
+              component={MovieInfoPage}
             />
             <Route exact path={routes.SIGN_UP} component={SignUpPage} />
             <Route exact path={routes.SIGN_IN} component={SignInPage} />
@@ -119,7 +120,7 @@ class App extends Component {
             <AnimatedRoute
               exact
               path={routes.WATCHLIST}
-              component={WatchList}
+              component={WatchListPage}
               runOnMount
               atEnter={{ offset: -100 }}
               atLeave={{ offset: -100 }}
@@ -127,16 +128,9 @@ class App extends Component {
               mapStyles={style => ({
                 transform: `translateX(${style.offset}%)`,
               })}
-              // render={() => (
-              //   <AuthUserContext.Consumer>
-              //     {authUser =>
-              //       authUser ? <WatchList /> : <Redirect to={routes.LANDING} />
-              //     }
-              //   </AuthUserContext.Consumer>
-              // )}
             />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
-            <Route render={() => <div>Page is not found :(</div>} />
+            <Route component={NotFoundPage} />
           </AnimatedSwitch>
         </MainSection>
       </div>
