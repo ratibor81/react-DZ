@@ -74,20 +74,6 @@
   font-size: 25px;
   margin-bottom: 20px;
 }
-.Form_Button,
-.ResetPass_Button,
-.SignUp_Button,
-.ChangePass_Button {
-  text-transform: uppercase;
-  width: 100%;
-  outline: none;
-  cursor: pointer;
-  border: none;
-  padding: 5px;
-  background-color: #cfd8dc;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
 
 .PasswordForgetLink,
 .SignUpLink {
@@ -125,7 +111,7 @@
   color: #009688;
   margin-left: 10px;
 }
-.SignOut_Button {
+/* .SignOut_Button {
   text-transform: uppercase;
   outline: none;
   cursor: pointer;
@@ -134,4 +120,7 @@
   background-color: #cfd8dc;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
+} */
+#Snackbar {
+  width: 500px !important;
 }

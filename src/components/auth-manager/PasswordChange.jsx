@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ButtonForm from '../shared-ui/button-form';
 
 import { auth } from '../../firebase';
 import styles from './styles.css';
@@ -11,6 +12,7 @@ class PasswordChangeForm extends Component {
   };
 
   onSubmit = event => {
+    event.preventDefault();
     const { passwordOne } = this.state;
     const { state } = this;
 
@@ -22,13 +24,20 @@ class PasswordChangeForm extends Component {
       .catch(error => {
         this.setState({ error });
       });
-
-    event.preventDefault();
+    this.resetState();
   };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
+  };
+
+  resetState = () => {
+    this.setState({
+      passwordOne: '',
+      passwordTwo: '',
+      error: null,
+    });
   };
 
   render() {
@@ -52,13 +61,11 @@ class PasswordChangeForm extends Component {
           placeholder="Confirm New Password"
           onChange={this.handleChange}
         />
-        <button
+        <ButtonForm
           disabled={isInvalid}
-          type="submit"
-          className={styles.ChangePass_Button}
-        >
-          Update Password
-        </button>
+          label="Update Password"
+          text="Your password has been changed successfully"
+        />
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>

@@ -4,26 +4,28 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../icons';
 import { addToWatchlist } from '../../redux/actions';
 import { getAllMovies, getWatchlist } from '../../redux/selectors';
 import { getItemById } from '../../helpers';
-// import { db, auth } from '../../firebase';
+import { auth } from '../../firebase';
 
 class CardPanel extends Component {
   addCardToList = id => {
-    const { watchlist, movies, addCard } = this.props;
+    const { watchlist, movies, addCard, onClose } = this.props;
     if (getItemById(watchlist, id)) return;
     addCard(getItemById(movies, id));
+    onClose();
+  };
 
-    // const userId = auth.currentUser().uid;
-    // const list = JSON.parse(localStorage.getItem('watchlist'));
-    // const username = {
-    //   watchlist: list,
-    // };
-    // db.updateUser(username, userId);
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
   };
 
   render() {
@@ -32,13 +34,17 @@ class CardPanel extends Component {
 
     return (
       <div className={styles.Add_panel}>
-        <button
-          type="button"
-          className={styles.Add_button}
-          onClick={() => this.addCardToList(id)}
-        >
-          <Icon icon={ICONS.ADDUSER} />
-        </button>
+        {auth.currentUser() && (
+          <Tooltip title="Add movie to Watchlist" TransitionComponent={Zoom}>
+            <button
+              type="button"
+              className={styles.Add_button}
+              onClick={() => this.addCardToList(id)}
+            >
+              <Icon icon={ICONS.ADDUSER} />
+            </button>
+          </Tooltip>
+        )}
         <NavLink
           // exact
           to={{
@@ -47,9 +53,11 @@ class CardPanel extends Component {
             state: { from: location },
           }}
         >
-          <button type="button" className={styles.Info_button}>
-            <Icon icon={ICONS.INFO} />
-          </button>
+          <Tooltip title="Full movie information" TransitionComponent={Zoom}>
+            <button type="button" className={styles.Info_button}>
+              <Icon icon={ICONS.INFO} />
+            </button>
+          </Tooltip>
         </NavLink>
       </div>
     );
@@ -63,6 +71,7 @@ CardPanel.propTypes = {
   addCard: PropTypes.func.isRequired,
   match: PropTypes.objectOf(Object).isRequired,
   location: PropTypes.objectOf(Object).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 const mapState = state => ({

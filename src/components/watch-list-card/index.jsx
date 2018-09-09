@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../icons';
@@ -24,20 +26,32 @@ const WatchListCard = ({
       <div className={styles.Rate}>Rating: {voteAverage}</div>
     </div>
     <div className={styles.Panel}>
-      <button
-        type="button"
-        className={styles.Del_button}
-        onClick={() => removeCard(id)}
+      <Tooltip
+        title="Remove from Watchlist"
+        TransitionComponent={Zoom}
+        placement="top"
       >
-        <Icon icon={ICONS.DELETE} />
-      </button>
-      <button
-        type="button"
-        className={styles.Info_button}
-        // onClick={() => toggleModal(id)}
+        <button
+          type="button"
+          className={styles.Del_button}
+          onClick={() => removeCard(id)}
+        >
+          <Icon icon={ICONS.DELETE} />
+        </button>
+      </Tooltip>
+      <Tooltip
+        title="Full movie information"
+        TransitionComponent={Zoom}
+        placement="top"
       >
-        <Icon icon={ICONS.INFO} />
-      </button>
+        <button
+          type="button"
+          className={styles.Info_button}
+          // onClick={() => toggleModal(id)}
+        >
+          <Icon icon={ICONS.INFO} />
+        </button>
+      </Tooltip>
     </div>
   </div>
 );

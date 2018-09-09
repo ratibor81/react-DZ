@@ -5,6 +5,7 @@ import { auth, db } from '../../firebase';
 
 import * as routes from '../../constants/routes';
 import styles from './styles.css';
+import ButtonForm from '../shared-ui/button-form';
 
 const SignUpPage = ({ history }) => (
   <div className={styles.SignUpPage}>
@@ -92,13 +93,11 @@ class SignUpForm extends Component {
           placeholder="Confirm Password"
           onChange={this.handleChange}
         />
-        <button
+        <ButtonForm
           disabled={isInvalid}
-          type="submit"
-          className={styles.SignUp_Button}
-        >
-          Sign Up
-        </button>
+          label="Sign Up"
+          text="Congratulations! You have successfully registered"
+        />
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>

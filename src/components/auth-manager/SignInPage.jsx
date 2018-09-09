@@ -6,6 +6,7 @@ import { PasswordForgetLink } from './PasswordForgetPage';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
 import styles from './styles.css';
+import ButtonForm from '../shared-ui/button-form';
 
 const SignInPage = ({ history }) => (
   <div className={styles.LogInPage}>
@@ -69,13 +70,11 @@ class SignInForm extends Component {
           placeholder="Password"
           onChange={this.handleChange}
         />
-        <button
+        <ButtonForm
           disabled={isInvalid}
-          type="submit"
-          className={styles.Form_Button}
-        >
-          Log In
-        </button>
+          label="Log In"
+          text="You are logged in successfully"
+        />
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>
