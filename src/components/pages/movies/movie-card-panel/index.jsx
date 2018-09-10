@@ -8,6 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import { addToWatchlist } from '@redux/actions';
 import { getAllMovies, getWatchlist } from '@redux/selectors';
+import * as routes from '@constants/routes';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import ICONS from '../../../icons';
@@ -30,7 +31,7 @@ class CardPanel extends Component {
 
   render() {
     const { id } = this.props;
-    const { match, location } = this.props;
+    const { location } = this.props;
 
     return (
       <div className={styles.Add_panel}>
@@ -46,9 +47,8 @@ class CardPanel extends Component {
           </Tooltip>
         )}
         <NavLink
-          // exact
           to={{
-            pathname: `${match.url}${id}`,
+            pathname: `${routes.MOVIES}/${id}`,
             search: `${location.search}`,
             state: { from: location },
           }}
@@ -69,7 +69,7 @@ CardPanel.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
-  match: PropTypes.objectOf(Object).isRequired,
+  // match: PropTypes.objectOf(Object).isRequired,
   location: PropTypes.objectOf(Object).isRequired,
   onClose: PropTypes.func.isRequired,
 };

@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import { removeFromWatchlist } from '@redux/actions';
+import * as routes from '@constants/routes';
 import styles from './styles.css';
 import Icon from './icon';
 import ICONS from '../../../icons';
@@ -17,6 +21,7 @@ const WatchListCard = ({
   vote_average: voteAverage,
   title,
   removeCard,
+  location,
 }) => (
   <div className={styles.Card}>
     <img className={styles.Poster} src={`${IMG_BASE}${posterPath}`} alt="" />
@@ -39,19 +44,23 @@ const WatchListCard = ({
           <Icon icon={ICONS.DELETE} />
         </button>
       </Tooltip>
-      <Tooltip
-        title="Full movie information"
-        TransitionComponent={Zoom}
-        placement="top"
+      <NavLink
+        to={{
+          pathname: `${routes.MOVIES}/${id}`,
+          search: `${location.search}`,
+          state: { from: location },
+        }}
       >
-        <button
-          type="button"
-          className={styles.Info_button}
-          // onClick={() => toggleModal(id)}
+        <Tooltip
+          title="Full movie information"
+          TransitionComponent={Zoom}
+          placement="top"
         >
-          <Icon icon={ICONS.INFO} />
-        </button>
-      </Tooltip>
+          <button type="button" className={styles.Info_button}>
+            <Icon icon={ICONS.INFO} />
+          </button>
+        </Tooltip>
+      </NavLink>
     </div>
   </div>
 );
@@ -63,13 +72,17 @@ WatchListCard.propTypes = {
   title: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
   removeCard: PropTypes.func.isRequired,
+  location: PropTypes.objectOf(Object).isRequired,
 };
 
 const mapDispatch = {
   removeCard: removeFromWatchlist,
 };
 
-export default connect(
-  null,
-  mapDispatch,
+export default compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatch,
+  ),
 )(WatchListCard);
