@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
@@ -9,35 +9,21 @@ import withAuthentication from '@hoc/withAuthentication';
 import Navigation from '../navigation';
 // import styles from './styles.css';
 
-class App extends Component {
-  componentDidMount() {
-    console.log('erer');
-    // if (!category) {
-    //   return history.replace({
-    //     pathname: location.pathname,
-    //     search: '',
-    //   });
-    // }
-  }
+const App = () => (
+  <div className="App">
+    <Navigation />
 
-  render() {
-    return (
-      <div className="App">
-        <Navigation />
-
-        <Switch>
-          {ROUTES.map((route, index) => (
-            <Route
-              key={String(index)}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />
-          ))}
-        </Switch>
-      </div>
-    );
-  }
-}
+    <Switch>
+      {ROUTES.map((route, index) => (
+        <Route
+          key={String(index)}
+          path={route.path}
+          exact={route.exact}
+          component={route.component}
+        />
+      ))}
+    </Switch>
+  </div>
+);
 
 export default withAuthentication(hot(module)(App));
