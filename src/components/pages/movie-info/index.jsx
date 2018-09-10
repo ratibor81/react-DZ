@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
+import searchById from '@services/search-by-id';
+import getVideos from '@services/get-videos';
+import Loader from '@shared/loader';
 import styles from './styles.css';
-import searchById from '../../services/search-by-id';
-import getVideos from '../../services/get-videos';
-import Loader from '../shared-ui/loader';
 import Trailer from './trailer';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w300`;

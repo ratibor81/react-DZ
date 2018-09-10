@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
+import { addToWatchlist } from '@redux/actions';
+import { getAllMovies, getWatchlist } from '@redux/selectors';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
-import ICONS from '../icons';
-import { addToWatchlist } from '../../redux/actions';
-import { getAllMovies, getWatchlist } from '../../redux/selectors';
-import { getItemById } from '../../helpers';
-import { auth } from '../../firebase';
+import ICONS from '../../../icons';
+import { getItemById } from '@helpers';
+import { auth } from '../../../../firebase';
 
 class CardPanel extends Component {
   addCardToList = id => {

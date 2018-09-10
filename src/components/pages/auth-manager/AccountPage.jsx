@@ -1,9 +1,9 @@
 import React from 'react';
 
-import AuthUserContext from '../../hoc/AuthUserContext';
+import AuthUserContext from '@hoc/AuthUserContext';
+import withAuthorization from '@hoc/withAuthorization';
 import { PasswordForgetForm } from './PasswordForgetPage';
 import PasswordChangeForm from './PasswordChange';
-import withAuthorization from '../../hoc/withAuthorization';
 
 import styles from './styles.css';
 

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
+import { removeFromWatchlist } from '@redux/actions';
 import styles from './styles.css';
 import Icon from './icon';
-import ICONS from '../icons';
-import { removeFromWatchlist } from '../../redux/actions';
+import ICONS from '../../../icons';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 

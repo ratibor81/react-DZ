@@ -1,5 +1,3 @@
-
-
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -87,6 +85,14 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      '@pages': path.resolve(__dirname, '../src/components/pages'),
+      '@services': path.resolve(__dirname, '../src/services'),
+      '@redux': path.resolve(__dirname, '../src/redux'),
+      '@helpers': path.resolve(__dirname, '../src/helpers'),
+      '@hoc': path.resolve(__dirname, '../src/hoc'),
+      '@selectors': path.resolve(__dirname, '../src/selectors'),
+      '@shared': path.resolve(__dirname, '../src/components/shared-ui'),
+      '@constants': path.resolve(__dirname, '../src/constants'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

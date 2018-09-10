@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { auth, db } from '../../firebase';
+import * as routes from '@constants/routes';
+import ButtonForm from '@shared/button-form';
+import { auth, db } from '../../../firebase';
 
-import * as routes from '../../constants/routes';
 import styles from './styles.css';
-import ButtonForm from '../shared-ui/button-form';
 
 const SignUpPage = ({ history }) => (
   <div className={styles.SignUpPage}>
