@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMovieByTitle } from '@redux/actions';
+import ICONS from '@shared/icons';
 import styles from './styles.css';
 import Icon from './icon';
-import ICONS from '../../../icons';
 
 class SearchBar extends Component {
   static propTypes = {

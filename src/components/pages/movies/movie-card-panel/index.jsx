@@ -9,11 +9,11 @@ import Zoom from '@material-ui/core/Zoom';
 import { addToWatchlist } from '@redux/actions';
 import { getAllMovies, getWatchlist } from '@redux/selectors';
 import * as routes from '@constants/routes';
+import ICONS from '@shared/icons';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
-import ICONS from '../../../icons';
 import { getItemById } from '@helpers';
-import { auth } from '../../../../firebase';
+import { auth } from '@firebase-modules';
 
 class CardPanel extends Component {
   addCardToList = id => {

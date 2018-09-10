@@ -93,6 +93,7 @@ module.exports = {
       '@selectors': path.resolve(__dirname, '../src/selectors'),
       '@shared': path.resolve(__dirname, '../src/components/shared-ui'),
       '@constants': path.resolve(__dirname, '../src/constants'),
+      '@firebase-modules': path.resolve(__dirname, '../src/firebase'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

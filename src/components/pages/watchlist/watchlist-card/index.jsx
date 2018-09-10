@@ -8,9 +8,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import { removeFromWatchlist } from '@redux/actions';
 import * as routes from '@constants/routes';
+import ICONS from '@shared/icons';
 import styles from './styles.css';
 import Icon from './icon';
-import ICONS from '../../../icons';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
