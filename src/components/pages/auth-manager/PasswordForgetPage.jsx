@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonForm from '../shared-ui/button-form';
+import ButtonForm from '@shared/button-form';
 
-import { auth } from '../../firebase';
-import * as routes from '../../constants/routes';
+import * as routes from '@constants/routes';
+import { auth } from '../../../firebase';
 import styles from './styles.css';
 
 const PasswordForgetPage = () => (

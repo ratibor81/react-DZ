@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import selectorOptions from '../../selectors/selector-options';
+import selectorOptions from '../selectors/selector-options';
 import styles from './styles.css';
 
 const CategorySelector = props => (

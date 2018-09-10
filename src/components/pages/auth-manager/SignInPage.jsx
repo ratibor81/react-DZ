@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as routes from '@constants/routes';
+import ButtonForm from '@shared/button-form';
 import { SignUpLink } from './SignUpPage';
 import { PasswordForgetLink } from './PasswordForgetPage';
-import { auth } from '../../firebase';
-import * as routes from '../../constants/routes';
+import { auth } from '../../../firebase';
 import styles from './styles.css';
-import ButtonForm from '../shared-ui/button-form';
 
 const SignInPage = ({ history }) => (
   <div className={styles.LogInPage}>

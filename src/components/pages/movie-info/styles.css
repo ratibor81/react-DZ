@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  animation: open-modal 300ms ease-in;
+  /* animation: open-modal 300ms ease-in; */
 }
 .overlay {
   background-color: rgba(0, 0, 0, 0.5);
@@ -53,7 +53,7 @@
   font-size: 13px;
   font-weight: bold;
 }
-.closeButton {
+/* .closeButton {
   cursor: pointer;
   outline: none;
   width: 25px;
@@ -68,12 +68,12 @@
 .closeIcon {
   background: url('./img/close.svg') center no-repeat;
   background-size: cover;
-}
+} */
 .trailer {
   padding: 0 120px;
 }
 
-.modal-exiting {
+/* .modal-exiting {
   animation: close-modal 400ms linear forwards;
 }
 
@@ -113,4 +113,4 @@
     opacity: 0;
     transform: translateY(-100%);
   }
-}
+} */

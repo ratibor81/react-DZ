@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-// import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
+import searchById from '@services/search-by-id';
+import getVideos from '@services/get-videos';
+// import Loader from '@shared/loader';
 import styles from './styles.css';
-import searchById from '../../services/search-by-id';
-import getVideos from '../../services/get-videos';
-import Loader from '../shared-ui/loader';
 import Trailer from './trailer';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
 
-export default class ModalInfo extends Component {
+export default class MovieInfo extends Component {
   static propTypes = {
     match: PropTypes.objectOf(Object).isRequired,
   };
@@ -62,7 +61,7 @@ export default class ModalInfo extends Component {
     return (
       <div className={styles.modal}>
         {error && <div>{error}</div>}
-        {loading && <Loader />}
+        {/* {loading && <Loader />} */}
 
         {!loading && (
           <div className={styles.content}>

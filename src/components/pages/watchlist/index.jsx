@@ -4,12 +4,12 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { getWatchlist } from '@redux/selectors';
+import { setFromDatabase } from '@redux/actions';
+import withAuthorization from '@hoc/withAuthorization';
+import WatchListCard from './watchlist-card';
 import styles from './styles.css';
-import WatchListCard from '../watch-list-card';
-import { getWatchlist } from '../../redux/selectors';
-import { setFromDatabase } from '../../redux/actions';
-import withAuthorization from '../../hoc/withAuthorization';
-import { db, auth } from '../../firebase';
+import { db, auth } from '../../../firebase';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class WatchList extends Component {

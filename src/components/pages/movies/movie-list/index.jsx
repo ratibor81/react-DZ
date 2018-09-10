@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
-import { getMoreMovies } from '../../redux/actions';
+import { getMoreMovies } from '@redux/actions';
+import SnackBar from '@shared/snackBar';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
-import SnackBar from '../shared-ui/snackBar';
 // import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {

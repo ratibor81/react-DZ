@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import AuthUserContext from '@hoc/AuthUserContext';
+import * as routes from '@constants/routes';
 import { auth } from '../../firebase';
 // import SignOutButton from '../auth-manager/SignOut';
-import AuthUserContext from '../../hoc/AuthUserContext';
 import styles from './styles.css';
-
-import * as routes from '../../constants/routes';
 
 const Navigation = () => (
   <AuthUserContext.Consumer>

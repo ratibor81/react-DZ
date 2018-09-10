@@ -8,7 +8,7 @@ import styles from './styles.css';
 const stylesBar = theme => ({
   snackbar: {
     margin: theme.spacing.unit,
-    // minWidth: 100,
+    top: -60,
   },
 });
 
