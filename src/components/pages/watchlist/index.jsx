@@ -6,13 +6,15 @@ import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { getWatchlist } from '@redux/selectors';
 import { setFromDatabase } from '@redux/actions';
+import SnackBarWarning from '@shared/snackBar/warning';
 import withAuthorization from '@hoc/withAuthorization';
 import WatchListCard from './watchlist-card';
 import styles from './styles.css';
 import { db, auth } from '../../../firebase';
-// import withRenderLog from '../../hoc/withRenderLog';
 
 class WatchList extends Component {
+  state = { isOpen: false };
+
   componentDidMount() {
     this.getFromDatabase();
   }
@@ -23,8 +25,16 @@ class WatchList extends Component {
     db.getUserData(userId).then(snapshot => setState(snapshot.val().watchlist));
   };
 
+  toggleSnackbar = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
   render() {
     const { watchlist } = this.props;
+    const { isOpen } = this.state;
+
     return (
       <div className={styles.WatchListPage}>
         <div className={styles.List}>
@@ -42,12 +52,17 @@ class WatchList extends Component {
                 }}
               >
                 <li className={styles.Card} key={movie.id}>
-                  <WatchListCard {...movie} />
+                  <WatchListCard {...movie} show={this.toggleSnackbar} />
                 </li>
               </CSSTransition>
             ))}
           </TransitionGroup>
         </div>
+        <SnackBarWarning
+          text="Movie was removed from watchlist"
+          open={isOpen}
+          close={this.toggleSnackbar}
+        />
       </div>
     );
   }

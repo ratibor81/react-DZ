@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import green from '@material-ui/core/colors/green';
+import InfoIcon from '@material-ui/icons/Info';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 
@@ -11,8 +10,8 @@ const styles = theme => ({
   snackbar: {
     margin: theme.spacing.unit,
   },
-  success: {
-    backgroundColor: green[600],
+  remove: {
+    backgroundColor: theme.palette.error.dark,
   },
   icon: {
     fontSize: 20,
@@ -25,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-const SnackBar = ({ text, open, close, classes }) => (
+const SnackBarWarning = ({ text, open, close, classes }) => (
   <Portal>
     <Snackbar
       className={classes.snackbar}
@@ -38,10 +37,10 @@ const SnackBar = ({ text, open, close, classes }) => (
       autoHideDuration={1000}
     >
       <SnackbarContent
-        className={classes.success}
+        className={classes.remove}
         message={
           <div className={classes.message}>
-            <CheckCircleIcon className={classes.icon} />
+            <InfoIcon className={classes.icon} />
             {text}
           </div>
         }
@@ -50,11 +49,11 @@ const SnackBar = ({ text, open, close, classes }) => (
   </Portal>
 );
 
-SnackBar.propTypes = {
+SnackBarWarning.propTypes = {
   text: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
   classes: PropTypes.objectOf(Object).isRequired,
 };
 
-export default withStyles(styles)(SnackBar);
+export default withStyles(styles)(SnackBarWarning);
