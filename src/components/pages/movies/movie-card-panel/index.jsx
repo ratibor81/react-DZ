@@ -23,12 +23,6 @@ class CardPanel extends Component {
     onClose();
   };
 
-  toggleSnackbar = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
   render() {
     const { id } = this.props;
     const { location } = this.props;

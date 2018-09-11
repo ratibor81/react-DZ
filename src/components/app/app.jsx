@@ -23,7 +23,7 @@ const App = () => (
       })}
       className={styles.switch_wrapper}
     >
-      {ROUTES.map((route, index) => (
+      {Object.values(ROUTES).map((route, index) => (
         <Route
           key={String(index)}
           path={route.path}
