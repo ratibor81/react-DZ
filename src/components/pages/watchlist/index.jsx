@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { getWatchlist } from '@redux/selectors';
 import { setFromDatabase } from '@redux/actions';
-import SnackBarWarning from '@shared/snackBar/warning';
+import SnackBarInfo from '@shared/snackBar/warning';
 import withAuthorization from '@hoc/withAuthorization';
 import WatchListCard from './watchlist-card';
 import styles from './styles.css';
@@ -58,7 +58,7 @@ class WatchList extends Component {
             ))}
           </TransitionGroup>
         </div>
-        <SnackBarWarning
+        <SnackBarInfo
           text="Movie was removed from watchlist"
           open={isOpen}
           close={this.toggleSnackbar}
