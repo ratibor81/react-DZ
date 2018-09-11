@@ -3,7 +3,6 @@ import { hot } from 'react-hot-loader';
 // import { Switch } from 'react-router';
 import { AnimatedSwitch } from 'react-router-transition';
 import { Route } from 'react-router-dom';
-// import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
 // import PropTypes from 'prop-types';
 import ROUTES from '@constants/routes';
 import withAuthentication from '@hoc/withAuthentication';
@@ -23,9 +22,9 @@ const App = () => (
       })}
       className={styles.switch_wrapper}
     >
-      {Object.values(ROUTES).map((route, index) => (
+      {Object.values(ROUTES).map((route, idx) => (
         <Route
-          key={String(index)}
+          key={String(idx)}
           path={route.path}
           exact={route.exact}
           component={route.component}
