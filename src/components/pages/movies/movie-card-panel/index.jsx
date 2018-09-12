@@ -10,17 +10,22 @@ import { addToWatchlist } from '@redux/actions';
 import { getAllMovies, getWatchlist } from '@redux/selectors';
 import * as routes from '@constants/routes';
 import ICONS from '@shared/icons';
+import SnackBarError from '@shared/snackBar/error';
 import styles from '../movie-card/styles.css';
 import Icon from './icon';
 import { getItemById } from '@helpers';
 import { auth } from '@firebase-modules';
 
 class CardPanel extends Component {
+  state = { isOpen: false };
+
   addCardToList = id => {
     const { watchlist, movies, addCard, onClose } = this.props;
-    if (getItemById(watchlist, id)) return;
+    if (getItemById(watchlist, id)) {
+      return this.toggleSnackbar();
+    }
     addCard(getItemById(movies, id));
-    onClose();
+    return onClose();
   };
 
   toggleSnackbar = () => {
@@ -32,11 +37,12 @@ class CardPanel extends Component {
   render() {
     const { id } = this.props;
     const { location } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div className={styles.Add_panel}>
         {auth.currentUser() && (
-          <Tooltip title="Add movie to Watchlist" TransitionComponent={Zoom}>
+          <Tooltip title="Add movie to watchlist" TransitionComponent={Zoom}>
             <button
               type="button"
               className={styles.Add_button}
@@ -59,6 +65,11 @@ class CardPanel extends Component {
             </button>
           </Tooltip>
         </NavLink>
+        <SnackBarError
+          text="Movie is already exist on your watchlist"
+          open={isOpen}
+          close={this.toggleSnackbar}
+        />
       </div>
     );
   }

@@ -2,21 +2,29 @@
   list-style: none;
   /* margin-left: 20px; */
   display: flex;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
 }
 
 .Nav li {
-  margin-right: 10px;
+  margin-right: 20px;
   line-height: 1.7;
+  font-size: 22px;
 }
 .Link {
   text-decoration: none;
   color: black;
+  padding: 10px;
 }
-.Nav > li > a:hover {
+/* .Nav > li > a:hover {
   text-decoration: underline;
-}
+} */
 .LinkActive {
-  color: brown;
-  font-weight: bold;
+  /* color: #1565c0; */
+  font-weight: bolder;
+  background-color: #f5f5f5;
 }

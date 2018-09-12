@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import { withStyles } from '@material-ui/core/styles';
+import Portal from '@material-ui/core/Portal';
 import styles from './styles.css';
 
 const stylesBar = theme => ({
   snackbar: {
     margin: theme.spacing.unit,
-    top: -60,
   },
 });
 
@@ -36,18 +36,20 @@ class ButtonForm extends Component {
         >
           {label}
         </Button>
-        <Snackbar
-          className={classes.snackbar}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          open={isOpen}
-          onClose={this.toggleSnackbar}
-          autoHideDuration={3000}
-          resumeHideDuration={3000}
-          message={<div>{text}</div>}
-        />
+        <Portal>
+          <Snackbar
+            className={classes.snackbar}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            open={isOpen}
+            onClose={this.toggleSnackbar}
+            autoHideDuration={3000}
+            resumeHideDuration={3000}
+            message={<div>{text}</div>}
+          />
+        </Portal>
       </div>
     );
   }

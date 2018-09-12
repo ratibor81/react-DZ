@@ -9,8 +9,8 @@ export const PASSWORD_FORGET = '/pw-forget';
 export const WATCHLIST = '/watchlist';
 export const MOVIES = '/movies';
 
-export default [
-  {
+export default {
+  HOME: {
     path: HOME,
     exact: true,
     component: Loadable({
@@ -19,7 +19,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  SIGN_IN: {
     path: SIGN_IN,
     exact: true,
     component: Loadable({
@@ -28,7 +28,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  SIGN_UP: {
     path: SIGN_UP,
     exact: true,
     component: Loadable({
@@ -37,7 +37,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  ACCOUNT: {
     path: ACCOUNT,
     exact: true,
     component: Loadable({
@@ -46,7 +46,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  PASSWORD_FORGET: {
     path: PASSWORD_FORGET,
     exact: true,
     component: Loadable({
@@ -55,7 +55,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  MOVIE_INFO: {
     path: `${MOVIES}/:movieId`,
     exact: true,
     component: Loadable({
@@ -64,7 +64,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  WATCHLIST: {
     path: WATCHLIST,
     exact: true,
     component: Loadable({
@@ -73,7 +73,7 @@ export default [
       loading: Loader,
     }),
   },
-  {
+  NOT_FOUND: {
     path: null,
     exact: false,
     component: Loadable({
@@ -82,4 +82,4 @@ export default [
       loading: Loader,
     }),
   },
-];
+};

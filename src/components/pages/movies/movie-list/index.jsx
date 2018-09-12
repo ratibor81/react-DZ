@@ -5,10 +5,9 @@ import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
 import { getMoreMovies } from '@redux/actions';
-import SnackBar from '@shared/snackBar';
+import SnackBarSuccess from '@shared/snackBar/success';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
-// import withRenderLog from '../../hoc/withRenderLog';
 
 class MovieList extends Component {
   state = { isOpen: false };
@@ -46,8 +45,8 @@ class MovieList extends Component {
             </li>
           ))}
         </ul>
-        <SnackBar
-          text="Movie added to Watchlist"
+        <SnackBarSuccess
+          text="Movie is added to your watchlist"
           open={isOpen}
           close={this.toggleSnackbar}
         />

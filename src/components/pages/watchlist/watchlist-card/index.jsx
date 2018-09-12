@@ -22,6 +22,7 @@ const WatchListCard = ({
   title,
   removeCard,
   location,
+  show,
 }) => (
   <div className={styles.Card}>
     <img className={styles.Poster} src={`${IMG_BASE}${posterPath}`} alt="" />
@@ -32,14 +33,17 @@ const WatchListCard = ({
     </div>
     <div className={styles.Panel}>
       <Tooltip
-        title="Remove from Watchlist"
+        title="Remove from watchlist"
         TransitionComponent={Zoom}
         placement="top"
       >
         <button
           type="button"
           className={styles.Del_button}
-          onClick={() => removeCard(id)}
+          onClick={() => {
+            removeCard(id);
+            show();
+          }}
         >
           <Icon icon={ICONS.DELETE} />
         </button>
@@ -72,6 +76,7 @@ WatchListCard.propTypes = {
   title: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
   removeCard: PropTypes.func.isRequired,
+  show: PropTypes.func.isRequired,
   location: PropTypes.objectOf(Object).isRequired,
 };
 
