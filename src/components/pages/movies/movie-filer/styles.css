@@ -1,22 +1,23 @@
-.MovieFilter {
+/* .MovieFilter {
   display: block;
   cursor: pointer;
   font-size: 12px;
-  /* height: 38px !important; */
+  height: 38px !important;
   border: 1px solid hsl(0, 0%, 80%) !important;
-  /* background-color: hsl(0, 0%, 98%) !important; */
+  width: 120px !important;
+  background-color: hsl(0, 0%, 98%) !important;
   padding-left: 0;
   border-radius: 4px;
   font-family: 'Roboto', sans-serif;
-}
-.MovieFilter select {
+} */
+/* .MovieFilter select {
   height: 23px !important;
   padding-left: 8px !important;
   width: 80px !important;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   background-color: hsl(0, 0%, 98%) !important;
-}
+} */
 
 .Filter_panel {
   width: 135px;
