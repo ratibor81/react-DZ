@@ -33,7 +33,7 @@ const WatchListCard = ({
     </div>
     <div className={styles.Panel}>
       <Tooltip
-        title="Remove from Watchlist"
+        title="Remove from watchlist"
         TransitionComponent={Zoom}
         placement="top"
       >

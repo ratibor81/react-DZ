@@ -42,7 +42,7 @@ class CardPanel extends Component {
     return (
       <div className={styles.Add_panel}>
         {auth.currentUser() && (
-          <Tooltip title="Add movie to Watchlist" TransitionComponent={Zoom}>
+          <Tooltip title="Add movie to watchlist" TransitionComponent={Zoom}>
             <button
               type="button"
               className={styles.Add_button}

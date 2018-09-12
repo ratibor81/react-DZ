@@ -46,7 +46,7 @@ class MovieList extends Component {
           ))}
         </ul>
         <SnackBarSuccess
-          text="Movie added to watchlist"
+          text="Movie is added to your watchlist"
           open={isOpen}
           close={this.toggleSnackbar}
         />
