@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import searchById from '@services/search-by-id';
 import getVideos from '@services/get-videos';
 import getImages from '@services/get-images';
+import getActors from '@services/get-actors';
 // import Loader from '@shared/loader';
 import styles from './styles.css';
 import Trailer from './trailer';
@@ -19,6 +20,7 @@ export default class MovieInfo extends Component {
     movie: null,
     images: null,
     videos: null,
+    actors: null,
     loading: true,
     error: null,
   };
@@ -49,6 +51,11 @@ export default class MovieInfo extends Component {
       onSuccess: this.fetchImages,
       onError: this.handleFetchFailure,
     });
+    getActors({
+      id,
+      onSuccess: this.fetchActors,
+      onError: this.handleFetchFailure,
+    });
   };
 
   fetchVideos = videos => {
@@ -57,6 +64,10 @@ export default class MovieInfo extends Component {
 
   fetchImages = images => {
     this.setState({ images });
+  };
+
+  fetchActors = actors => {
+    this.setState({ actors });
   };
 
   handleFetchSuccess = movie => {
@@ -68,10 +79,10 @@ export default class MovieInfo extends Component {
   };
 
   render() {
-    const { loading, movie, error, videos, images } = this.state;
-
+    const { loading, movie, error, videos, images, actors } = this.state;
+    // console.log(actors);
     return (
-      <div className={styles.modal}>
+      <div>
         {error && <div>{error}</div>}
         {/* {loading && <Loader />} */}
 
@@ -82,7 +93,7 @@ export default class MovieInfo extends Component {
               src={`${IMG_BASE}${movie.poster_path}`}
               alt="poster"
             />
-            <div>
+            <div className={styles.content_right}>
               <h2 className={styles.head_title}>{movie.original_title}</h2>
               <h4 className={styles.tagline}>{`"${movie.tagline}"`}</h4>
               <p className={styles.overview}>{movie.overview}</p>
@@ -108,9 +119,18 @@ export default class MovieInfo extends Component {
                   <Trailer url={videos.key} />
                 </div>
               )}
-              <h4 className={styles.headers}>Screenshots from the movie</h4>
-              {images && <ImageSlider images={images} />}
+              <h4 className={styles.headers}>Movie screenshots</h4>
+              {images && (
+                <div className={styles.sliderContainer}>
+                  <ImageSlider images={images} />
+                </div>
+              )}
             </div>
+            {actors && (
+              <div className={styles.sliderContainer}>
+                <ImageSlider images={images} />
+              </div>
+            )}
           </div>
         )}
       </div>
