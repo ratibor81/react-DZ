@@ -1,11 +1,11 @@
 .modal {
   min-height: 470px;
-  width: 800px;
+  /* width: 800px; */
   padding: 10px;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #fff; */
   /* animation: open-modal 300ms ease-in; */
 }
 .overlay {
@@ -13,7 +13,7 @@
 }
 
 .poster {
-  width: 300px;
+  width: 700px;
   height: auto;
   margin-right: 15px;
 }

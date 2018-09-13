@@ -23,8 +23,8 @@ const styles2 = () => ({
     fontSize: 13,
     paddingLeft: 5,
     paddingBottom: 0,
-    height: 38,
     lineHeight: 1.5,
+    height: 36,
   },
   select: {
     fontSize: 13,

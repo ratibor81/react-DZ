@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import searchById from '@services/search-by-id';
 import getVideos from '@services/get-videos';
+import getImages from '@services/get-images';
 // import Loader from '@shared/loader';
 import styles from './styles.css';
 import Trailer from './trailer';
+import ImageSlider from './carousel-slider';
 
-const IMG_BASE = `https://image.tmdb.org/t/p/w300`;
+const IMG_BASE = `https://image.tmdb.org/t/p/w500`;
 
 export default class MovieInfo extends Component {
   static propTypes = {
@@ -15,6 +17,7 @@ export default class MovieInfo extends Component {
 
   state = {
     movie: null,
+    images: null,
     videos: null,
     loading: true,
     error: null,
@@ -41,10 +44,19 @@ export default class MovieInfo extends Component {
       onSuccess: this.fetchVideos,
       onError: this.handleFetchFailure,
     });
+    getImages({
+      id,
+      onSuccess: this.fetchImages,
+      onError: this.handleFetchFailure,
+    });
   };
 
   fetchVideos = videos => {
     this.setState({ videos });
+  };
+
+  fetchImages = images => {
+    this.setState({ images });
   };
 
   handleFetchSuccess = movie => {
@@ -56,7 +68,7 @@ export default class MovieInfo extends Component {
   };
 
   render() {
-    const { loading, movie, error, videos } = this.state;
+    const { loading, movie, error, videos, images } = this.state;
 
     return (
       <div className={styles.modal}>
@@ -96,6 +108,8 @@ export default class MovieInfo extends Component {
                   <Trailer url={videos.key} />
                 </div>
               )}
+              <h4 className={styles.headers}>Screenshots from the movie</h4>
+              {images && <ImageSlider images={images} />}
             </div>
           </div>
         )}
