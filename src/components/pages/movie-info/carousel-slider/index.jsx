@@ -9,23 +9,8 @@ const ImageSlider = ({ images }) => (
     width="500px"
     slideWidth={1}
     initialSlideHeight={300}
-    wrapAround
     renderBottomCenterControls={() => false}
     cellSpacing={20}
-    // speed={1000}
-    // renderTopCenterControls={({ currentSlide }) => (
-    //   <div>Slide: {currentSlide}</div>
-    // )}
-    // renderCenterLeftControls={({ previousSlide }) => (
-    //   <button type="button" onClick={previousSlide}>
-    //     Previous
-    //   </button>
-    // )}
-    // renderCenterRightControls={({ nextSlide }) => (
-    //   <button type="button" onClick={nextSlide}>
-    //     Next
-    //   </button>
-    // )}
   >
     {images.map((image, idx) => (
       <img key={String(idx)} src={`${IMG_BASE}${image.file_path}`} alt="foto" />
