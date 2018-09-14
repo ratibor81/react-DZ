@@ -10,9 +10,7 @@ const ActorsSlider = ({ actors }) => (
     <Carousel
       showIndicators={false}
       showStatus={false}
-      // width="300px"
-      centerMode
-      centerSlidePercentage={100}
+      infiniteLoop
       className={styles.carousel}
     >
       {actors.map(actor => (

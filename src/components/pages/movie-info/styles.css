@@ -1,10 +1,10 @@
 .overlay {
   background-color: rgba(0, 0, 0, 0.5);
 }
-.sliderContainer {
+/* .sliderContainer {
   display: flex;
   justify-content: center;
-}
+} */
 
 .poster {
   width: 33%;
@@ -82,4 +82,13 @@
 .center {
   display: flex;
   justify-content: center;
+}
+.bottom_content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  width: 80%;
+}
+.img_slider {
+  padding: 0 50px;
 }

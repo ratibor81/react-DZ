@@ -8,7 +8,7 @@ import getActors from '@services/get-actors';
 import Loader from 'react-loader-spinner';
 import styles from './styles.css';
 import Trailer from './trailer';
-import ImageSlider from './carousel-slider';
+import ImageSlider from './carousel-slider/img-slider';
 import ActorsSlider from './carousel-slider/actors-carousel';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w500`;
@@ -121,13 +121,20 @@ export default class MovieInfo extends Component {
               <h4 className={styles.headers}>Trailer</h4>
               {videos && <Trailer url={videos.key} />}
             </div>
-            <h4 className={styles.headers}>Movie screenshots</h4>
-            {images && (
-              <div className={styles.sliderContainer}>
-                <ImageSlider images={images} />
-              </div>
-            )}
-            {actors && <ActorsSlider actors={actors} />}
+            <div className={styles.bottom_content}>
+              {images && (
+                <div className={styles.sliderContainer}>
+                  <h4 className={styles.headers}>Movie screenshots</h4>
+                  <ImageSlider images={images} />
+                </div>
+              )}
+              {actors && (
+                <div className={styles.sliderContainer}>
+                  <h4 className={styles.headers}>Actors</h4>
+                  <ActorsSlider actors={actors} />
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
