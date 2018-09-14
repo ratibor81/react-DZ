@@ -15,7 +15,7 @@ const ActorsSlider = ({ actors }) => (
     >
       {actors.map(actor => (
         <div key={actor.cast_id}>
-          <img src={`${IMG_BASE}${actor.profile_path}`} alt="foto" />
+          <img src={`${IMG_BASE}${actor.profile_path}`} alt="no foto" />
           <p className="legend">{actor.name}</p>
         </div>
       ))}

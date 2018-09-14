@@ -7,8 +7,6 @@ const Trailer = ({ url }) => (
     <div className={styles.trailer_frame}>
       <iframe
         title="trailer"
-        // width="200"
-        // height="150"
         src={`https://www.youtube.com/embed/${url}`}
         frameBorder="0"
         allow="autoplay; encrypted-media"

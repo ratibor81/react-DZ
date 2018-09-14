@@ -9,7 +9,7 @@ import Loader from 'react-loader-spinner';
 import styles from './styles.css';
 import Trailer from './trailer';
 import ImageSlider from './carousel-slider/img-slider';
-import ActorsSlider from './carousel-slider/actors-carousel';
+import ActorsSlider from './carousel-slider/actors-slider';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w500`;
 

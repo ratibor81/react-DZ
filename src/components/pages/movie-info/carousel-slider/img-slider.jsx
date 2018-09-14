@@ -20,7 +20,7 @@ const ImageSlider = ({ images }) => (
         <img
           key={String(idx)}
           src={`${IMG_BASE}${image.file_path}`}
-          alt="foto"
+          alt="no foto"
         />
       ))}
     </Carousel>
