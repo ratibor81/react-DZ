@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import AuthUserContext from '@hoc/AuthUserContext';
 import * as routes from '@constants/routes';
 import { auth } from '../../firebase';
-// import SignOutButton from '../auth-manager/SignOut';
 import styles from './styles.css';
 
 const Navigation = () => (

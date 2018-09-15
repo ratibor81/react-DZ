@@ -1,8 +1,6 @@
 .Nav {
   list-style: none;
-  /* margin-left: 20px; */
   display: flex;
-  /* margin-bottom: 15px; */
   padding: 10px;
   border: 1px solid lightgrey;
   border-radius: 2px;
@@ -14,17 +12,26 @@
   margin-right: 20px;
   line-height: 1.7;
   font-size: 22px;
+  animation: render-link 0.5s;
 }
 .Link {
   text-decoration: none;
   color: black;
   padding: 10px;
 }
-/* .Nav > li > a:hover {
-  text-decoration: underline;
-} */
 .LinkActive {
-  /* color: #1565c0; */
   font-weight: bolder;
   background-color: #f5f5f5;
+}
+
+@keyframes render-link {
+  0% {
+    transform: scale(0);
+    transition: transform 300ms ease-in;
+  }
+
+  100% {
+    transform: scale(1);
+    transition: transform 300ms ease-in;
+  }
 }

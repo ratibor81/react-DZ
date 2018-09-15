@@ -21,6 +21,7 @@
 }
 
 /* Slide transition effect */
+
 .slideEnter {
   opacity: 0;
   transform: translateX(-100%);
