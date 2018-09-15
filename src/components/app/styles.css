@@ -6,3 +6,27 @@
   width: 100%;
   position: absolute;
 }
+
+/* Slide transition effect */
+
+.slideEnter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slideEnterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 200ms ease-out, transform 200ms linear;
+}
+
+.slideExit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slideExitActive {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 200ms ease-out, transform 200ms linear;
+}
