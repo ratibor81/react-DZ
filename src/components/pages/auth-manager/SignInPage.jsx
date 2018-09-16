@@ -24,7 +24,6 @@ const SignInPage = ({ history }) => (
 class SignInForm extends Component {
   uiConfig = {
     signInFlow: 'popup',
-    signInSuccessUrl: routes.HOME,
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -32,7 +31,10 @@ class SignInForm extends Component {
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccessWithAuthResult: () => true,
+      signInSuccessWithAuthResult: () => {
+        const { history } = this.props;
+        history.push(routes.HOME);
+      },
     },
   };
 
@@ -95,17 +97,10 @@ class SignInForm extends Component {
 
           {error && <p className={styles.Error_Message}>{error.message}</p>}
         </form>
-        {auth.currentUser() ? (
-          <div>
-            <h1>Welcome {auth.currentUser().displayName} !</h1>
-            <img alt="profile foto" src={auth.currentUser().photoURL} />
-          </div>
-        ) : (
-          <StyledFirebaseAuth
-            uiConfig={this.uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
-        )}
+        <StyledFirebaseAuth
+          uiConfig={this.uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
       </div>
     );
   }

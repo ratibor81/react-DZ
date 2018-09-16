@@ -1,16 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import AuthUserContext from '@hoc/AuthUserContext';
+// import AuthUserContext from '@hoc/AuthUserContext';
 import * as routes from '@constants/routes';
 import { auth } from '../../firebase';
 import styles from './styles.css';
 
-const Navigation = () => (
-  <AuthUserContext.Consumer>
-    {authUser => (authUser ? <PrivateLinks /> : <PublicLinks />)}
-  </AuthUserContext.Consumer>
-);
+const Navigation = () =>
+  // <AuthUserContext.Consumer>
+  auth.currentUser() ? <PrivateLinks /> : <PublicLinks />;
+// </AuthUserContext.Consumer>
 
 const PrivateLinks = () => (
   <ul className={styles.Nav}>
@@ -47,12 +46,21 @@ const PrivateLinks = () => (
         variant="raised"
         color="primary"
         type="button"
-        // className={styles.Form_Button}
         onClick={auth.doSignOut}
       >
         Log Out
       </Button>
     </li>
+    {auth.isAuth() && (
+      <li className={styles.user_panel}>
+        <h4>{auth.currentUser().displayName}</h4>
+        <img
+          src={auth.currentUser().photoURL}
+          className={styles.user_foto}
+          alt="profile foto"
+        />
+      </li>
+    )}
   </ul>
 );
 

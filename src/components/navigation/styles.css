@@ -35,3 +35,18 @@
     transition: transform 300ms ease-in;
   }
 }
+
+.user_panel {
+  display: flex;
+  align-items: center;
+}
+.user_panel h4 {
+  margin-right: 15px;
+  font-size: 20px;
+}
+.user_foto {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
