@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as routes from '@constants/routes';
 import ButtonForm from '@shared/button-form';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from 'firebase/app';
 import { SignUpLink } from './SignUpPage';
 import { PasswordForgetLink } from './PasswordForgetPage';
 import { auth } from '../../../firebase';
@@ -20,6 +22,20 @@ const SignInPage = ({ history }) => (
 );
 
 class SignInForm extends Component {
+  uiConfig = {
+    signInFlow: 'popup',
+    signInSuccessUrl: routes.HOME,
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccessWithAuthResult: () => true,
+    },
+  };
+
   state = {
     email: '',
     password: '',
@@ -55,29 +71,42 @@ class SignInForm extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className={styles.SignInForm}>
-        <input
-          value={email}
-          name="email"
-          type="text"
-          placeholder="Email Address"
-          onChange={this.handleChange}
-        />
-        <input
-          value={password}
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <ButtonForm
-          disabled={isInvalid}
-          label="Log In"
-          text="You are logged in successfully"
-        />
+      <div>
+        <form onSubmit={this.onSubmit} className={styles.SignInForm}>
+          <input
+            value={email}
+            name="email"
+            type="text"
+            placeholder="Email Address"
+            onChange={this.handleChange}
+          />
+          <input
+            value={password}
+            name="password"
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <ButtonForm
+            disabled={isInvalid}
+            label="Log In"
+            text="You are logged in successfully"
+          />
 
-        {error && <p className={styles.Error_Message}>{error.message}</p>}
-      </form>
+          {error && <p className={styles.Error_Message}>{error.message}</p>}
+        </form>
+        {auth.currentUser() ? (
+          <div>
+            <h1>Welcome {auth.currentUser().displayName} !</h1>
+            <img alt="profile foto" src={auth.currentUser().photoURL} />
+          </div>
+        ) : (
+          <StyledFirebaseAuth
+            uiConfig={this.uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        )}
+      </div>
     );
   }
 }
