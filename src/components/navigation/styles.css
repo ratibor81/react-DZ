@@ -1,6 +1,8 @@
 .Nav {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 10px;
   border: 1px solid lightgrey;
   border-radius: 2px;
@@ -9,22 +11,77 @@
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .Nav {
+    flex-wrap: nowrap;
+    justify-content: initial;
+  }
+}
 .Nav li {
-  margin-right: 20px;
   line-height: 1.7;
-  font-size: 22px;
+  font-size: 16px;
+  text-transform: uppercase;
   animation: render-link 0.5s;
+  padding: 5px;
+}
+
+@media (min-width: 768px) {
+  .Nav li {
+    margin-right: 20px;
+    line-height: 1.7;
+    font-size: 22px;
+  }
+  .Nav li:last-child {
+    margin-right: 0;
+    text-transform: none;
+  }
 }
 .Link {
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding: 5px;
 }
 .LinkActive {
   font-weight: bolder;
   background-color: #f5f5f5;
 }
 
+.user_panel {
+  display: flex;
+  align-items: center;
+}
+.user_panel h4 {
+  margin-right: 5px;
+  font-size: 13px;
+}
+.user_foto {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .user_panel {
+    position: absolute;
+    right: 10px;
+  }
+  .user_panel h4 {
+    margin-right: 15px;
+    font-size: 20px;
+  }
+}
+
+.Nav li button {
+  padding: 5px !important;
+  min-height: 20px;
+}
+@media (min-width: 768px) {
+  .Nav li button {
+    padding: 8px 16px !important;
+    min-height: 36px;
+  }
+}
+/*Link animation */
 @keyframes render-link {
   0% {
     transform: scale(0);
@@ -35,21 +92,4 @@
     transform: scale(1);
     transition: transform 300ms ease-in;
   }
-}
-
-.user_panel {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 0;
-}
-.user_panel h4 {
-  margin-right: 15px;
-  font-size: 20px;
-}
-.user_foto {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
 }

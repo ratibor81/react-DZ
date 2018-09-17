@@ -1,10 +1,14 @@
 .List {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
   padding: 5px;
-  width: 20%;
-  /* float: left; */
+  width: 100%;
   overflow: hidden;
   list-style: none;
+}
+@media (min-width: 768px) {
+  .List {
+    width: 20%;
+  }
 }
 .Header {
   text-align: center;

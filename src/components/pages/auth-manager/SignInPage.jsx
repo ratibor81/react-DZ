@@ -13,7 +13,7 @@ import styles from './styles.css';
 const SignInPage = ({ history }) => (
   <div className={styles.LogInPage}>
     <div className={styles.LogInForm}>
-      <h1>Log In</h1>
+      <h1>Sign In</h1>
       <SignInForm history={history} />
       <PasswordForgetLink />
     </div>
@@ -25,6 +25,7 @@ class SignInForm extends Component {
   uiConfig = {
     signInFlow: 'popup',
     signInOptions: [
+      // firebase.auth.EmailAuthProvider.PROVIDER_ID,
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
@@ -91,7 +92,7 @@ class SignInForm extends Component {
           />
           <ButtonForm
             disabled={isInvalid}
-            label="Log In"
+            label="Sign In"
             text="You are logged in successfully"
           />
 

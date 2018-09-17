@@ -12,10 +12,12 @@ const MovieCard = ({
   overview,
   vote_average: voteAverage,
   onClose,
+  title,
 }) => (
   <div className={styles.Card}>
     <img src={`${IMG_BASE}${posterPath}`} alt="" />
-    <h5>Release date: {releaseDate.slice(0, -6)}</h5>
+    <p className={styles.Title}>{title}</p>
+    <h5 className={styles.Date}>Release date: {releaseDate.slice(0, -6)}</h5>
     <p className={styles.Overview}>{overview}</p>
     <div className={styles.Rate}>{voteAverage}</div>
     <CardPanel id={id} onClose={onClose} />
@@ -25,6 +27,7 @@ const MovieCard = ({
 MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
   poster_path: PropTypes.string,
+  title: PropTypes.string.isRequired,
   release_date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
