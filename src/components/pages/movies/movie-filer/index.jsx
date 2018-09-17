@@ -50,7 +50,7 @@ class MovieFilter extends Component {
 
     return (
       <div className={styles.Filter_panel}>
-        <h5>Filter movies by genre</h5>
+        <h5 className={styles.Title}>Filter movies by genre</h5>
         <FormControl className={classes.root}>
           <Select
             value={value}
