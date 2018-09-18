@@ -48,76 +48,20 @@ img {
   }
 }
 .Add_panel {
-  height: 65px;
-  background-color: #fff;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 7px 7px;
   position: absolute;
   top: 10px;
   right: 10px;
-  padding: 7px;
-  display: flex;
-  justify-content: space-between;
   opacity: 0;
   transform: translateX(100%);
   transition: opacity 300ms ease-out, transform 300ms linear;
 }
-@media (min-width: 768px) {
-  .Add_panel {
-    height: 32px;
-    padding: 3px;
-  }
-}
+
 .Card:hover .Add_panel {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 300ms ease-out, transform 300ms linear;
-}
-.Add_button,
-.Info_button {
-  outline: none;
-  cursor: pointer;
-  border: none;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
-  padding: 7px;
-}
-@media (min-width: 768px) {
-  .Add_button,
-  .Info_button {
-    width: 25px;
-    height: 25px;
-  }
-}
-.Add_button {
-  margin-right: 5px;
-}
-
-.Add_button:hover {
-  background-color: #f5f5f5;
-}
-.Info_button:hover {
-  background-color: #f5f5f5;
-}
-.icon {
-  width: 30px;
-  height: 30px;
-  fill: #bdbdbd;
-}
-@media (min-width: 768px) {
-  .icon {
-    width: 12px;
-    height: 12px;
-  }
-}
-.Add_button:hover .icon {
-  fill: black;
-  transition: 0.5s linear;
-}
-.Info_button:hover .icon {
-  fill: black;
-  transition: 0.5s linear;
 }

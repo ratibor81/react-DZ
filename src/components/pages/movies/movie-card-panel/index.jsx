@@ -4,15 +4,13 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
 import { addToWatchlist } from '@redux/actions';
 import { getAllMovies, getWatchlist } from '@redux/selectors';
 import * as routes from '@constants/routes';
-import ICONS from '@shared/icons';
 import SnackBarError from '@shared/snackBar/error';
+import AddButton from '@shared/flat-buttons/add-btn';
+import InfoButton from '@shared/flat-buttons/info-btn';
 import styles from '../movie-card/styles.css';
-import Icon from './icon';
 import { getItemById } from '@helpers';
 import { auth } from '@firebase-modules';
 
@@ -42,15 +40,7 @@ class CardPanel extends Component {
     return (
       <div className={styles.Add_panel}>
         {auth.currentUser() && (
-          <Tooltip title="Add movie to watchlist" TransitionComponent={Zoom}>
-            <button
-              type="button"
-              className={styles.Add_button}
-              onClick={() => this.addCardToList(id)}
-            >
-              <Icon icon={ICONS.ADDUSER} />
-            </button>
-          </Tooltip>
+          <AddButton onClick={() => this.addCardToList(id)} />
         )}
         <NavLink
           to={{
@@ -59,11 +49,7 @@ class CardPanel extends Component {
             state: { from: location },
           }}
         >
-          <Tooltip title="Full movie information" TransitionComponent={Zoom}>
-            <button type="button" className={styles.Info_button}>
-              <Icon icon={ICONS.INFO} />
-            </button>
-          </Tooltip>
+          <InfoButton />
         </NavLink>
         <SnackBarError
           text="Movie is already exist on your watchlist"

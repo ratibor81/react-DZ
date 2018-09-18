@@ -7,7 +7,7 @@
 }
 @media (min-width: 768px) {
   .List {
-    width: 20%;
+    width: 30%;
   }
 }
 .Header {
@@ -47,8 +47,3 @@
   transform: translateX(-100%);
   transition: opacity 200ms ease-out, transform 200ms linear;
 }
-
-/* .WatchListPage {
-  display: flex;
-  justify-content: center;
-} */

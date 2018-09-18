@@ -44,7 +44,7 @@ const PrivateLinks = () => (
     <li>
       <Button
         variant="raised"
-        color="primary"
+        color="secondary"
         type="button"
         onClick={auth.doSignOut}
       >
