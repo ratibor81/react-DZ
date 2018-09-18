@@ -43,12 +43,6 @@
     margin-bottom: 0;
   }
 }
-.AccountPassForm:first-child {
-  float: left;
-}
-.AccountPassForm:last-child {
-  float: right;
-}
 
 .SignInForm,
 .ResetForm,
@@ -88,7 +82,7 @@
   margin-bottom: 20px;
 }
 
-.PasswordForgetLink,
+/* .PasswordForgetLink,
 .SignUpLink {
   text-decoration: none;
   color: #03a9f4;
@@ -104,7 +98,7 @@
   margin-top: 20px;
   font-size: 14px;
   font-weight: 500;
-}
+} */
 
 .Error_Message {
   color: #f44336;
@@ -113,14 +107,14 @@
   margin-bottom: 10px;
 }
 
-.AccountPageForms {
+/* .AccountPageForms {
   width: 100%;
 }
 @media (min-width: 768px) {
   .AccountPageForms {
     width: 630px;
   }
-}
+} */
 .Account_Header {
   font-size: 20px;
   margin-bottom: 15px;

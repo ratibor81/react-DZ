@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ButtonForm from '@shared/button-form';
 
-import { auth } from '../../../firebase';
+import { auth } from '@firebase-modules';
 import styles from './styles.css';
 
 class PasswordChangeForm extends Component {

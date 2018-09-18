@@ -5,17 +5,9 @@ import * as routes from '@constants/routes';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
-import styles from './styles.css';
+// import styles from './styles.css';
 
-const SignInPage = ({ history }) => (
-  <div className={styles.LogInPage}>
-    <div className={styles.LogInForm}>
-      <SignInForm history={history} />
-    </div>
-  </div>
-);
-
-class SignInForm extends Component {
+class SignInPage extends Component {
   uiConfig = {
     signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -46,10 +38,5 @@ class SignInForm extends Component {
 SignInPage.propTypes = {
   history: PropTypes.objectOf(Object).isRequired,
 };
-SignInForm.propTypes = {
-  history: PropTypes.objectOf(Object).isRequired,
-};
 
 export default withRouter(SignInPage);
-
-export { SignInForm };
