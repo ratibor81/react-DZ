@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonForm from '@shared/button-form';
-
+import Input from '@material-ui/core/Input';
 import * as routes from '@constants/routes';
 import { auth } from '../../../firebase';
 import styles from './styles.css';
@@ -49,13 +49,21 @@ class PasswordForgetForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit} className={styles.ResetForm}>
-        <input
-          value={email}
-          name="email"
-          type="text"
+        <Input
           placeholder="Email Address"
+          className={styles.Input}
+          name="email"
+          value={email}
+          type="email"
           onChange={this.handleChange}
         />
+        {/* <input
+          value={email}
+          name="email"
+          type="email"
+          placeholder="Email Address"
+          onChange={this.handleChange}
+        /> */}
         <ButtonForm
           disabled={isInvalid}
           label="Reset My Password"

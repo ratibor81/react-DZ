@@ -141,3 +141,9 @@
 .social_auth {
   width: 100%;
 }
+
+.Input {
+  width: 100%;
+  font-size: 1.5rem;
+  border: 1px solid lightgrey;
+}
