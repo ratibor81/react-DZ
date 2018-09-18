@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMovieByTitle } from '@redux/actions';
-import ICONS from '@shared/icons';
+import SearchButton from '@shared/flat-buttons/search-btn';
 import styles from './styles.css';
-import Icon from './icon';
 
 class SearchBar extends Component {
   static propTypes = {
@@ -44,9 +43,7 @@ class SearchBar extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit" className={styles.Search_button}>
-            <Icon icon={ICONS.SEARCH} />
-          </button>
+          <SearchButton />
         </div>
       </form>
     );
