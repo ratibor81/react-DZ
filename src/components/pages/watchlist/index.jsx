@@ -22,7 +22,10 @@ class WatchList extends Component {
   getFromDatabase = () => {
     const { setState } = this.props;
     const userId = auth.currentUser().uid;
-    db.getUserData(userId).then(snapshot => setState(snapshot.val().watchlist));
+    db.getUserData(userId).then(snapshot => {
+      if (!snapshot.val()) return;
+      setState(snapshot.val().watchlist);
+    });
   };
 
   toggleSnackbar = () => {
