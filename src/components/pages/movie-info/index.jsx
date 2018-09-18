@@ -97,6 +97,11 @@ export default class MovieInfo extends Component {
                 src={`${IMG_BASE}${movie.poster_path}`}
                 alt="poster"
               />
+              <img
+                className={styles.poster_img_min}
+                src={`${IMG_BASE}${movie.backdrop_path}`}
+                alt="poster"
+              />
             </div>
             <div className={styles.content_right}>
               <h2 className={styles.head_title}>{movie.original_title}</h2>
@@ -118,20 +123,30 @@ export default class MovieInfo extends Component {
                   </li>
                 ))}
               </ul>
+              <div className={styles.trailer_block}>
+                <h4 className={styles.headers}>Trailer</h4>
+                {videos && <Trailer url={videos.key} />}
+              </div>
+            </div>
+            <div className={styles.trailer_block_min}>
               <h4 className={styles.headers}>Trailer</h4>
               {videos && <Trailer url={videos.key} />}
             </div>
             <div className={styles.bottom_content}>
               {images && (
-                <div className={styles.sliderContainer}>
+                <div>
                   <h4 className={styles.headers}>Movie screenshots</h4>
-                  <ImageSlider images={images} />
+                  <div className={styles.slider_container}>
+                    <ImageSlider images={images} />
+                  </div>
                 </div>
               )}
               {actors && (
-                <div className={styles.sliderContainer}>
+                <div>
                   <h4 className={styles.headers}>Actors</h4>
-                  <ActorsSlider actors={actors} />
+                  <div className={styles.slider_container}>
+                    <ActorsSlider actors={actors} />
+                  </div>
                 </div>
               )}
             </div>
