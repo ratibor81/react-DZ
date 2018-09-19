@@ -3,6 +3,16 @@
   flex-direction: column;
   align-items: center;
 }
+@media (min-width: 768px) {
+  .AccountPage {
+    padding-top: 40px;
+  }
+}
+@media (min-width: 768px) {
+  .SignInPage {
+    padding-top: 40px;
+  }
+}
 
 .AccountPassForm {
   display: flex;
@@ -10,33 +20,15 @@
   align-items: center;
   width: 100%;
   height: auto;
-  border: 1px solid lightgrey;
   padding: 10px 10px 5px 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
-  margin-bottom: 10px;
 }
+
 @media (min-width: 768px) {
   .AccountPassForm {
     width: 300px;
     padding: 40px 10px 5px 10px;
     margin-bottom: 0;
   }
-}
-
-.ChangePassForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.ChangePassForm input {
-  width: 100%;
-  font-size: 15px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 600;
-  padding: 10px;
-  background-color: #fafafa;
 }
 
 .AccountPassForm h1 {
@@ -52,12 +44,12 @@
 }
 
 .Account_Header {
-  font-size: 20px;
+  font-size: 14px;
   margin-bottom: 15px;
 }
 @media (min-width: 768px) {
   .Account_Header {
-    font-size: 2em;
+    font-size: 1.5rem;
   }
 }
 .User_email {
@@ -75,4 +67,7 @@
 .Input {
   width: 100%;
   margin-bottom: 6px;
+  font-size: 13px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 }

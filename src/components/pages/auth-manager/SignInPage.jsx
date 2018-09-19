@@ -5,7 +5,7 @@ import * as routes from '@constants/routes';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
-// import styles from './styles.css';
+import styles from './styles.css';
 
 class SignInPage extends Component {
   uiConfig = {
@@ -28,10 +28,12 @@ class SignInPage extends Component {
 
   render() {
     return (
-      <StyledFirebaseAuth
-        uiConfig={this.uiConfig}
-        firebaseAuth={firebase.auth()}
-      />
+      <div className={styles.SignInPage}>
+        <StyledFirebaseAuth
+          uiConfig={this.uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
+      </div>
     );
   }
 }

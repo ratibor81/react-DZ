@@ -8,9 +8,10 @@ import { getWatchlist } from '@redux/selectors';
 import { setFromDatabase } from '@redux/actions';
 import SnackBarInfo from '@shared/snackBar/warning';
 import withAuthorization from '@hoc/withAuthorization';
+import AppBar from '@material-ui/core/AppBar';
 import WatchListCard from './watchlist-card';
 import styles from './styles.css';
-import { db, auth } from '../../../firebase';
+import { db, auth } from '@firebase-modules';
 
 class WatchList extends Component {
   state = { isOpen: false };
@@ -40,7 +41,7 @@ class WatchList extends Component {
 
     return (
       <div className={styles.WatchListPage}>
-        <div className={styles.List}>
+        <AppBar position="static" color="default" className={styles.List}>
           <h2 className={styles.Header}>Watchlist</h2>
           <TransitionGroup component="ul">
             {watchlist.map(movie => (
@@ -60,7 +61,7 @@ class WatchList extends Component {
               </CSSTransition>
             ))}
           </TransitionGroup>
-        </div>
+        </AppBar>
         <SnackBarInfo
           text="Movie was removed from watchlist"
           open={isOpen}
