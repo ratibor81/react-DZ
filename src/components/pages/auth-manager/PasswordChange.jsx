@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ButtonForm from '@shared/button-form';
+import Input from '@material-ui/core/Input';
 
 import { auth } from '@firebase-modules';
 import styles from './styles.css';
@@ -24,7 +25,10 @@ class PasswordChangeForm extends Component {
       .catch(error => {
         this.setState({ error });
       });
-    this.resetState();
+    this.setState({
+      passwordOne: '',
+      passwordTwo: '',
+    });
   };
 
   handleChange = ({ target }) => {
@@ -47,18 +51,20 @@ class PasswordChangeForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit} className={styles.ChangePassForm}>
-        <input
+        <Input
+          placeholder="New Password"
+          className={styles.Input}
           value={passwordOne}
           name="passwordOne"
           type="password"
-          placeholder="New Password"
           onChange={this.handleChange}
         />
-        <input
+        <Input
+          placeholder="Confirm New Password"
+          className={styles.Input}
           value={passwordTwo}
           name="passwordTwo"
           type="password"
-          placeholder="Confirm New Password"
           onChange={this.handleChange}
         />
         <ButtonForm

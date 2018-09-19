@@ -6,9 +6,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = () => ({
   button: {
-    margin: theme.spacing.unit,
+    // margin: theme.spacing.unit,
     width: 36,
     height: 36,
   },

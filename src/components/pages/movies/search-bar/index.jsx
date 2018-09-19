@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMovieByTitle } from '@redux/actions';
 import SearchButton from '@shared/flat-buttons/search-btn';
+import Input from '@material-ui/core/Input';
 import styles from './styles.css';
 
 class SearchBar extends Component {
@@ -36,12 +37,13 @@ class SearchBar extends Component {
       <form className={styles.Search_form} onSubmit={this.handleSubmit}>
         <h5>Search movie by title</h5>
         <div className={styles.Panel}>
-          <input
+          <Input
             type="text"
             placeholder="Enter movie title..."
             value={title}
             onChange={this.handleChange}
             required
+            className={styles.Input}
           />
           <SearchButton />
         </div>

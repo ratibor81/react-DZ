@@ -1,30 +1,9 @@
-.LogInPage,
-.ResetPage,
-.SignUpPage,
 .AccountPage {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.LogInForm,
-.PasswordForgetForm,
-.SignUpForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  border: 1px solid lightgrey;
-  padding: 30px 20px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
-}
-@media (min-width: 480px) {
-  .LogInForm,
-  .PasswordForgetForm,
-  .SignUpForm {
-    width: 400px;
-  }
-}
+
 .AccountPassForm {
   display: flex;
   flex-direction: column;
@@ -44,8 +23,6 @@
   }
 }
 
-.SignInForm,
-.ResetForm,
 .ChangePassForm {
   display: flex;
   flex-direction: column;
@@ -53,52 +30,19 @@
   width: 100%;
 }
 
-.SignInForm input,
-.ResetForm input,
-.SignUpForm input,
 .ChangePassForm input {
   width: 100%;
-  margin-right: 0;
-  margin-bottom: 15px;
-  border-radius: 2px;
-  font-size: 12px;
+  font-size: 15px;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
-  height: 38px;
   padding: 10px;
   background-color: #fafafa;
 }
-.SignInForm input:focus,
-.ResetForm input:focus,
-.SignUpForm input:focus,
-.ChangePassForm input:focus {
-  background-color: #fff;
-}
-.LogInForm h1,
-.PasswordForgetForm h1,
-.SignUpForm h1,
+
 .AccountPassForm h1 {
   font-size: 25px;
   margin-bottom: 20px;
 }
-
-/* .PasswordForgetLink,
-.SignUpLink {
-  text-decoration: none;
-  color: #03a9f4;
-}
-.PasswordForgetLink:hover {
-  text-decoration: underline;
-}
-.SignUpLink:hover {
-  text-decoration: underline;
-}
-
-.SignUpLink_text {
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: 500;
-} */
 
 .Error_Message {
   color: #f44336;
@@ -107,14 +51,6 @@
   margin-bottom: 10px;
 }
 
-/* .AccountPageForms {
-  width: 100%;
-}
-@media (min-width: 768px) {
-  .AccountPageForms {
-    width: 630px;
-  }
-} */
 .Account_Header {
   font-size: 20px;
   margin-bottom: 15px;
@@ -138,6 +74,5 @@
 
 .Input {
   width: 100%;
-  font-size: 1.5rem;
-  border: 1px solid lightgrey;
+  margin-bottom: 6px;
 }
