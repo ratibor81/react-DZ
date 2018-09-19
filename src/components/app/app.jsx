@@ -5,6 +5,7 @@ import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import ROUTES from '@constants/routes';
 import withAuthentication from '@hoc/withAuthentication';
+import ScrollUpButton from 'react-scroll-up-button';
 import Navigation from '../navigation';
 // import styles from './styles.css';
 
@@ -22,6 +23,7 @@ const App = () => (
         />
       ))}
     </Switch>
+    <ScrollUpButton />
   </div>
 );
 
