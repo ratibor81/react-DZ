@@ -41,27 +41,29 @@ class WatchList extends Component {
 
     return (
       <div className={styles.WatchListPage}>
-        <AppBar position="static" color="default" className={styles.List}>
-          <h2 className={styles.Header}>Watchlist</h2>
-          <TransitionGroup component="ul">
-            {watchlist.map(movie => (
-              <CSSTransition
-                key={movie.id}
-                timeout={300}
-                classNames={{
-                  enter: styles.slideEnter,
-                  enterActive: styles.slideEnterActive,
-                  exit: styles.slideExit,
-                  exitActive: styles.slideExitActive,
-                }}
-              >
-                <li className={styles.Card} key={movie.id}>
-                  <WatchListCard {...movie} show={this.toggleSnackbar} />
-                </li>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </AppBar>
+        {watchlist.length > 0 && (
+          <AppBar position="static" color="default" className={styles.List}>
+            <TransitionGroup component="ul" className={styles.Ul}>
+              {watchlist.map(movie => (
+                <CSSTransition
+                  key={movie.id}
+                  timeout={300}
+                  classNames={{
+                    enter: styles.slideEnter,
+                    enterActive: styles.slideEnterActive,
+                    exit: styles.slideExit,
+                    exitActive: styles.slideExitActive,
+                  }}
+                >
+                  <li className={styles.Card} key={movie.id}>
+                    <WatchListCard {...movie} show={this.toggleSnackbar} />
+                  </li>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+          </AppBar>
+        )}
+
         <SnackBarInfo
           text="Movie was removed from watchlist"
           open={isOpen}

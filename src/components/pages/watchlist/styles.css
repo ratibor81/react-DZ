@@ -5,20 +5,18 @@
   list-style: none;
   background-color: #fff !important;
 }
-@media (min-width: 768px) {
-  .List {
-    width: 30%;
-  }
-}
+
 @media (min-width: 768px) {
   .WatchListPage {
     padding-top: 40px;
   }
 }
-.Header {
-  text-align: center;
-  border-bottom: 2px solid black;
-  margin-bottom: 10px;
+@media (min-width: 768px) {
+  .Ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
 }
 
 .Card {
@@ -27,6 +25,29 @@
 }
 .Card:last-child {
   margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .Card {
+    width: 32.7%;
+    margin-right: 7px;
+  }
+  .Card:nth-child(n + 3) {
+    margin-bottom: 0;
+  }
+  .Card:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .Card {
+    width: 24%;
+  }
+  .Card:nth-child(n + 4) {
+    margin-bottom: 0;
+  }
+  .Card:nth-child(4n) {
+    margin-right: 0;
+  }
 }
 
 /* Slide transition effect */

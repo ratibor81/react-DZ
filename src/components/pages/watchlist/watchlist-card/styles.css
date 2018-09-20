@@ -19,7 +19,7 @@
 @media (min-width: 768px) {
   .Rate,
   .Date {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: bold;
   }
 }
@@ -27,14 +27,7 @@
 @media (min-width: 1024px) {
   .Rate,
   .Date {
-    font-size: 25px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .Rate,
-  .Date {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 .Date {
@@ -51,7 +44,17 @@
 }
 @media (min-width: 768px) {
   .Title {
-    font-size: 25px;
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  .Title {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  .Title {
+    font-size: 18px;
   }
 }
 .Panel {

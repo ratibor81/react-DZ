@@ -19,7 +19,6 @@ class MoviesPage extends Component {
     movies: PropTypes.arrayOf(Array).isRequired,
     getMovies: PropTypes.func.isRequired,
     history: PropTypes.objectOf(Object).isRequired,
-    // location: PropTypes.objectOf(Object).isRequired,
   };
 
   state = {
@@ -30,12 +29,6 @@ class MoviesPage extends Component {
     const category = getCategoryFromProps(this.props);
     const { getMovies: fetchMovies } = this.props;
     if (!category) return;
-    // if (!category) {
-    //   return history.replace({
-    //     pathname: location.pathname,
-    //     search: '',
-    //   });
-    // }
     fetchMovies({ category });
   }
 
