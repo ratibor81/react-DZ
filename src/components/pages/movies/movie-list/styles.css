@@ -5,13 +5,24 @@
   justify-content: space-between;
 }
 .List_item {
-  width: 19%;
+  width: 48%;
   margin-bottom: 10px;
   animation: open-card 0.3s;
+}
+@media (min-width: 768px) {
+  .List_item {
+    width: 24%;
+  }
+}
+@media (min-width: 1200px) {
+  .List_item {
+    width: 19%;
+  }
 }
 .List:nth-last-child(-n + 4) {
   margin-bottom: 0;
 }
+
 .Loader {
   padding: 20px 0;
   display: flex;

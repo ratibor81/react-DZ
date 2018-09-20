@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.css';
 
 const Trailer = ({ url }) => (
-  <iframe
-    title="trailer"
-    width="200"
-    height="150"
-    src={`https://www.youtube.com/embed/${url}`}
-    frameBorder="0"
-    allow="autoplay; encrypted-media"
-    allowFullScreen
-  />
+  <div className={styles.trailer_container}>
+    <div className={styles.trailer_frame}>
+      <iframe
+        title="trailer"
+        src={`https://www.youtube.com/embed/${url}`}
+        frameBorder="0"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
+    </div>
+  </div>
 );
 
 Trailer.propTypes = {

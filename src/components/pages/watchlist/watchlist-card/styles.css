@@ -6,8 +6,36 @@
 }
 .Rate,
 .Date {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bold;
+}
+@media (min-width: 480px) {
+  .Rate,
+  .Date {
+    font-size: 25px;
+    font-weight: bold;
+  }
+}
+@media (min-width: 768px) {
+  .Rate,
+  .Date {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 1024px) {
+  .Rate,
+  .Date {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Rate,
+  .Date {
+    font-size: 20px;
+  }
 }
 .Date {
   margin-bottom: 10px;
@@ -18,47 +46,16 @@
   margin-right: 8px;
 }
 .Title {
-  font-size: 12px;
+  font-size: 22px;
   margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .Title {
+    font-size: 25px;
+  }
 }
 .Panel {
   position: absolute;
   bottom: 7%;
   right: 3%;
-}
-.Del_button,
-.Info_button {
-  outline: none;
-  cursor: pointer;
-  border: none;
-  background-color: #fff;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
-  padding: 7px;
-}
-.Del_button {
-  margin-right: 5px;
-}
-
-.Info_button:hover {
-  background-color: #f5f5f5;
-}
-.Del_button:hover {
-  background-color: #f5f5f5;
-}
-
-.icon {
-  width: 12px;
-  height: 12px;
-  fill: #bdbdbd;
-}
-.Del_button:hover .icon {
-  fill: black;
-  transition: 0.5s linear;
-}
-.Info_button:hover .icon {
-  fill: black;
-  transition: 0.5s linear;
 }

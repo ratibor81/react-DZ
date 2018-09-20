@@ -3,9 +3,7 @@ import Loader from '@shared/loader';
 
 export const HOME = '/';
 export const SIGN_IN = '/signin';
-export const SIGN_UP = '/signup';
 export const ACCOUNT = '/account';
-export const PASSWORD_FORGET = '/pw-forget';
 export const WATCHLIST = '/watchlist';
 export const MOVIES = '/movies';
 
@@ -28,30 +26,12 @@ export default {
       loading: Loader,
     }),
   },
-  SIGN_UP: {
-    path: SIGN_UP,
-    exact: true,
-    component: Loadable({
-      loader: () =>
-        import('@pages/auth-manager/SignUpPage' /* webpackChunkName: "signup-page" */),
-      loading: Loader,
-    }),
-  },
   ACCOUNT: {
     path: ACCOUNT,
     exact: true,
     component: Loadable({
       loader: () =>
         import('@pages/auth-manager/AccountPage' /* webpackChunkName: "account-page" */),
-      loading: Loader,
-    }),
-  },
-  PASSWORD_FORGET: {
-    path: PASSWORD_FORGET,
-    exact: true,
-    component: Loadable({
-      loader: () =>
-        import('@pages/auth-manager/PasswordForgetPage' /* webpackChunkName: "passwordforget-page" */),
       loading: Loader,
     }),
   },

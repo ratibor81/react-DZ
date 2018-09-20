@@ -11,7 +11,6 @@ const databaseUpdate = store => next => action => {
     watchlist: list,
   };
   db.updateUser(username, userId);
-  // localStorage.watchlist = JSON.stringify(store.getState().movies.watchlist);
 };
 
 export default databaseUpdate;

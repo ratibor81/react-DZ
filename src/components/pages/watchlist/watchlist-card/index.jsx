@@ -4,13 +4,11 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
 import { removeFromWatchlist } from '@redux/actions';
 import * as routes from '@constants/routes';
-import ICONS from '@shared/icons';
+import DelButton from '@shared/flat-buttons/del-btn';
+import InfoButton from '@shared/flat-buttons/info-btn';
 import styles from './styles.css';
-import Icon from './icon';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w200`;
 
@@ -32,22 +30,12 @@ const WatchListCard = ({
       <div className={styles.Rate}>Rating: {voteAverage}</div>
     </div>
     <div className={styles.Panel}>
-      <Tooltip
-        title="Remove from watchlist"
-        TransitionComponent={Zoom}
-        placement="top"
-      >
-        <button
-          type="button"
-          className={styles.Del_button}
-          onClick={() => {
-            removeCard(id);
-            show();
-          }}
-        >
-          <Icon icon={ICONS.DELETE} />
-        </button>
-      </Tooltip>
+      <DelButton
+        onClick={() => {
+          removeCard(id);
+          show();
+        }}
+      />
       <NavLink
         to={{
           pathname: `${routes.MOVIES}/${id}`,
@@ -55,15 +43,7 @@ const WatchListCard = ({
           state: { from: location },
         }}
       >
-        <Tooltip
-          title="Full movie information"
-          TransitionComponent={Zoom}
-          placement="top"
-        >
-          <button type="button" className={styles.Info_button}>
-            <Icon icon={ICONS.INFO} />
-          </button>
-        </Tooltip>
+        <InfoButton />
       </NavLink>
     </div>
   </div>
