@@ -11,7 +11,7 @@ export const doPasswordUpdate = password =>
 
 export const currentUser = () => auth.currentUser;
 
-// Autorized with Google,Facebook,Twitter user check
+// Check autorization with Google,Facebook,Twitter,Github
 
 export const isAuth = () =>
-  currentUser() && currentUser().displayName && currentUser().photoURL;
+  !!(currentUser().displayName && currentUser().photoURL);

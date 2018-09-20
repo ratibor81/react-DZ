@@ -15,11 +15,9 @@ const AccountPage = () => (
           <span className={styles.User_email}>{authUser.email}</span>
         </h1>
         <Card className={styles.AccountPassForm}>
-          {/* <div className={styles.AccountPassForm}> */}
           <h1>Change Password</h1>
           <PasswordChangeForm />
-          {/* </div> */}
-        </Card>{' '}
+        </Card>
       </div>
     )}
   </AuthUserContext.Consumer>

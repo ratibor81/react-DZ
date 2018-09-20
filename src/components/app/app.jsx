@@ -10,7 +10,6 @@ import Navigation from '../navigation';
 const App = () => (
   <div className="App">
     <Navigation />
-
     <Switch>
       {Object.values(ROUTES).map((route, idx) => (
         <Route
