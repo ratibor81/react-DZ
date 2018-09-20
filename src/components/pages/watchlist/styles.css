@@ -5,6 +5,10 @@
   list-style: none;
   background-color: #fff !important;
 }
+.WatchListPage {
+  display: flex;
+  justify-content: center;
+}
 
 @media (min-width: 768px) {
   .WatchListPage {
@@ -106,4 +110,8 @@
     transform: scale(0);
     transition: opacity 200ms ease-out, transform 300ms ease-out;
   }
+}
+
+.EmptyMessage {
+  color: #0277bd;
 }

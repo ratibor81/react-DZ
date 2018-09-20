@@ -41,6 +41,11 @@ class WatchList extends Component {
 
     return (
       <div className={styles.WatchListPage}>
+        {watchlist.length === 0 && (
+          <h2 className={styles.EmptyMessage}>
+            There&apos;s nothing on your list yet.
+          </h2>
+        )}
         {watchlist.length > 0 && (
           <AppBar position="static" color="default" className={styles.List}>
             <TransitionGroup component="ul" className={styles.Ul}>
