@@ -46,8 +46,8 @@ class PasswordChangeForm extends Component {
 
   render() {
     const { passwordOne, passwordTwo, error } = this.state;
-
     const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
+    const isDisabled = auth.isAuth();
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -58,6 +58,7 @@ class PasswordChangeForm extends Component {
           name="passwordOne"
           type="password"
           onChange={this.handleChange}
+          disabled={isDisabled}
         />
         <Input
           placeholder="Confirm New Password"
@@ -66,12 +67,18 @@ class PasswordChangeForm extends Component {
           name="passwordTwo"
           type="password"
           onChange={this.handleChange}
+          disabled={isDisabled}
         />
         <ButtonForm
           disabled={isInvalid}
           label="Update Password"
           text="Your password has been changed successfully"
         />
+        {isDisabled && (
+          <p className={styles.Warning_message}>
+            *This option is active only for signin with email users
+          </p>
+        )}
 
         {error && <p className={styles.Error_Message}>{error.message}</p>}
       </form>

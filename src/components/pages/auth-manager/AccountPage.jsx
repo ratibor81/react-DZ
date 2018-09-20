@@ -12,14 +12,14 @@ const AccountPage = () => (
       <div className={styles.AccountPage}>
         <h1 className={styles.Account_Header}>
           Your Account:
-          <span className={styles.User_email}>{authUser.email}</span>
+          <span className={styles.User_email}>
+            {authUser.email || authUser.displayName}
+          </span>
         </h1>
         <Card className={styles.AccountPassForm}>
-          {/* <div className={styles.AccountPassForm}> */}
           <h1>Change Password</h1>
           <PasswordChangeForm />
-          {/* </div> */}
-        </Card>{' '}
+        </Card>
       </div>
     )}
   </AuthUserContext.Consumer>
