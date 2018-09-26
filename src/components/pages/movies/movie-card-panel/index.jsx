@@ -11,7 +11,7 @@ import SnackBarError from '@shared/snackBar/error';
 import AddButton from '@shared/flat-buttons/add-btn';
 import InfoButton from '@shared/flat-buttons/info-btn';
 import styles from '../movie-card/styles.css';
-import { getItemById } from '@helpers';
+import getItemById from '@helpers';
 import { auth } from '@firebase-modules';
 
 class CardPanel extends Component {

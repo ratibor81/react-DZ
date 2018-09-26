@@ -13,9 +13,8 @@ class MovieList extends Component {
   state = { isOpen: false };
 
   getMoreMovies = pageNum => {
-    const { category, fetchMoreMovies } = this.props;
-    if (!category) return;
-    fetchMoreMovies({ category, pageNum: pageNum + 1 });
+    const { fetchMoreMovies } = this.props;
+    fetchMoreMovies({ pageNum: pageNum + 1 });
   };
 
   toggleSnackbar = () => {
@@ -31,7 +30,7 @@ class MovieList extends Component {
       <InfiniteScroll
         pageStart={0}
         loadMore={this.getMoreMovies}
-        hasMore
+        hasMore={movies.length === 20}
         loader={
           <div className={styles.Loader} key={0}>
             <Loader type="ThreeDots" color="#00BFFF" height={120} width={120} />
@@ -57,11 +56,7 @@ class MovieList extends Component {
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
-  category: PropTypes.string,
   fetchMoreMovies: PropTypes.func.isRequired,
-};
-MovieList.defaultProps = {
-  category: null,
 };
 
 const mapDispatchToProps = { fetchMoreMovies: getMoreMovies };

@@ -6,15 +6,9 @@ import {
   FETCH_MOVIES_FAILURE,
   SET_FROM_DATABASE,
   FETCH_MORE_MOVIES,
-  CHANGE_FILTER,
 } from './types';
 import fetchMovies from '../services/get-movies';
 import searchMovie from '../services/search';
-
-export const changeFilterAction = value => ({
-  type: CHANGE_FILTER,
-  payload: value,
-});
 
 export const setFromDatabase = watchlist => ({
   type: SET_FROM_DATABASE,

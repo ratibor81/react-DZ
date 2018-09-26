@@ -11,6 +11,7 @@
   .Nav {
     flex-wrap: nowrap;
     justify-content: initial;
+    width: 70%;
   }
 }
 .Nav li {
@@ -98,6 +99,6 @@
   .AppBar {
     margin-bottom: 0;
     position: fixed !important;
-    /* overflow: hidden; */
+    flex-direction: row !important;
   }
 }

@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 // import AuthUserContext from '@hoc/AuthUserContext';
 import * as routes from '@constants/routes';
+import SearchBar from '@components/search-bar';
 import { auth } from '../../firebase';
 import styles from './styles.css';
 
@@ -64,6 +65,7 @@ const PrivateLinks = () => (
         </li>
       )}
     </ul>
+    <SearchBar />
   </AppBar>
 );
 
@@ -90,6 +92,7 @@ const PublicLinks = () => (
         </NavLink>
       </li>
     </ul>
+    <SearchBar />
   </AppBar>
 );
 
