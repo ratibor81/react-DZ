@@ -12,7 +12,8 @@ import { auth } from '@firebase-modules';
 class CardPanel extends Component {
   state = { isOpen: false };
 
-  addCardToList = id => {
+  addCardToList = (id, event) => {
+    event.stopPropagation();
     const { watchlist, movies, addCard, onClose } = this.props;
     if (getItemById(watchlist, id)) {
       return this.toggleSnackbar();
@@ -34,7 +35,7 @@ class CardPanel extends Component {
     return (
       <div className={styles.Add_panel}>
         {auth.currentUser() && (
-          <AddButton onClick={() => this.addCardToList(id)} />
+          <AddButton onClick={event => this.addCardToList(id, event)} />
         )}
         <SnackBarError
           text="Movie is already exist on your watchlist"
