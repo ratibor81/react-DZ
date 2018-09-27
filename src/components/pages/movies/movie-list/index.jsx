@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { compose } from 'redux';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
@@ -61,7 +62,10 @@ MovieList.propTypes = {
 
 const mapDispatchToProps = { fetchMoreMovies: getMoreMovies };
 
-export default connect(
-  null,
-  mapDispatchToProps,
+export default compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
 )(MovieList);

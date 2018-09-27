@@ -75,6 +75,10 @@ class MovieInfo extends Component {
     this.setState({ actors });
   };
 
+  fetchVideos = videos => {
+    this.setState({ videos });
+  };
+
   handleFetchSuccess = movie => {
     this.setState({ movie, loading: false });
   };
