@@ -8,6 +8,9 @@ import {
   SEARCH_MOVIES,
   SEARCH_MORE_MOVIES,
   SET_MOVIE_TITLE,
+  SET_MOVIE_GENRE,
+  GET_MOVIES_BY_GENRE,
+  GET_MORE_MOVIES_BY_GENRE,
 } from '../types';
 
 const items = (state = [], { type, payload }) => {
@@ -52,10 +55,31 @@ const title = (state = '', { type, payload }) => {
       return state;
   }
 };
+const genreId = (state = '', { type, payload }) => {
+  switch (type) {
+    case SET_MOVIE_GENRE:
+      return String(payload);
+    default:
+      return state;
+  }
+};
+
+const byGenre = (state = [], { type, payload }) => {
+  switch (type) {
+    case GET_MOVIES_BY_GENRE:
+      return payload;
+    case GET_MORE_MOVIES_BY_GENRE:
+      return state.concat(payload);
+    default:
+      return state;
+  }
+};
 
 export default combineReducers({
   items,
   watchlist,
   search,
   title,
+  genreId,
+  byGenre,
 });

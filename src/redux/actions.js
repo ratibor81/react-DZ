@@ -1,3 +1,6 @@
+import fetchMovies from '@services/get-movies';
+import searchMovie from '@services/search';
+import getMoviesByGenreId from '@services/get-by-genre';
 import {
   REMOVE_FROM_WATCHLIST,
   ADD_TO_WATCHLIST,
@@ -9,9 +12,10 @@ import {
   SEARCH_MOVIES,
   SEARCH_MORE_MOVIES,
   SET_MOVIE_TITLE,
+  SET_MOVIE_GENRE,
+  GET_MOVIES_BY_GENRE,
+  GET_MORE_MOVIES_BY_GENRE,
 } from './types';
-import fetchMovies from '../services/get-movies';
-import searchMovie from '../services/search';
 
 export const setFromDatabase = watchlist => ({
   type: SET_FROM_DATABASE,
@@ -54,9 +58,22 @@ const searchMoreMovies = movies => ({
   type: SEARCH_MORE_MOVIES,
   payload: movies,
 });
+
 export const setMovieTitle = title => ({
   type: SET_MOVIE_TITLE,
   payload: title,
+});
+export const setMovieGenre = id => ({
+  type: SET_MOVIE_GENRE,
+  payload: id,
+});
+const getByGenre = movies => ({
+  type: GET_MOVIES_BY_GENRE,
+  payload: movies,
+});
+const getMoreByGenre = movies => ({
+  type: GET_MORE_MOVIES_BY_GENRE,
+  payload: movies,
 });
 
 export const getMovies = category => dispatch => {
@@ -88,5 +105,19 @@ export const getMoreMoviesByTitle = title => dispatch => {
 
   searchMovie(title)
     .then(movies => dispatch(searchMoreMovies(movies)))
+    .catch(err => dispatch(fetchMoviesFailure(err)));
+};
+export const getMoviesByGenre = genre => dispatch => {
+  dispatch(fetchMoviesRequest());
+
+  getMoviesByGenreId(genre)
+    .then(movies => dispatch(getByGenre(movies)))
+    .catch(err => dispatch(fetchMoviesFailure(err)));
+};
+export const getMoreMoviesByGenre = genre => dispatch => {
+  dispatch(fetchMoviesRequest());
+
+  getMoviesByGenreId(genre)
+    .then(movies => dispatch(getMoreByGenre(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };

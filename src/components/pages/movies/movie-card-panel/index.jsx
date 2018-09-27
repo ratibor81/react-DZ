@@ -66,7 +66,6 @@ CardPanel.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
-  // match: PropTypes.objectOf(Object).isRequired,
   location: PropTypes.objectOf(Object).isRequired,
   onClose: PropTypes.func.isRequired,
 };

@@ -153,3 +153,18 @@
   display: flex;
   justify-content: center;
 }
+
+.genre_btn {
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  width: 100%;
+  color: #01579b;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  background: none;
+  border: none;
+}
+.genre_btn:hover {
+  text-decoration: underline;
+}

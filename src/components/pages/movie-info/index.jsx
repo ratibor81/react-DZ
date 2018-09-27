@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import searchById from '@services/search-by-id';
 import getVideos from '@services/get-videos';
 import getImages from '@services/get-images';
 import getActors from '@services/get-actors';
 // import Loader from '@shared/loader';
 import Loader from 'react-loader-spinner';
+import { setMovieGenre } from '@redux/actions';
+import * as routes from '@constants/routes';
 import styles from './styles.css';
 import Trailer from './trailer';
 import ImageSlider from './carousel-slider/img-slider';
@@ -13,9 +19,10 @@ import ActorsSlider from './carousel-slider/actors-slider';
 
 const IMG_BASE = `https://image.tmdb.org/t/p/w500`;
 
-export default class MovieInfo extends Component {
+class MovieInfo extends Component {
   static propTypes = {
     match: PropTypes.objectOf(Object).isRequired,
+    setGenre: PropTypes.func.isRequired,
   };
 
   state = {
@@ -60,10 +67,6 @@ export default class MovieInfo extends Component {
     });
   };
 
-  fetchVideos = videos => {
-    this.setState({ videos });
-  };
-
   fetchImages = images => {
     this.setState({ images });
   };
@@ -82,6 +85,8 @@ export default class MovieInfo extends Component {
 
   render() {
     const { loading, movie, error, videos, images, actors } = this.state;
+    const { setGenre } = this.props;
+
     return (
       <div className={styles.center}>
         {error && <div>{error}</div>}
@@ -111,7 +116,19 @@ export default class MovieInfo extends Component {
               <ul className={styles.list}>
                 {movie.genres.map(genre => (
                   <li className={styles.genre} key={genre.id}>
-                    {genre.name}
+                    <Link
+                      to={{
+                        pathname: routes.MOVIES,
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setGenre(genre.id)}
+                        className={styles.genre_btn}
+                      >
+                        {genre.name}
+                      </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -156,3 +173,15 @@ export default class MovieInfo extends Component {
     );
   }
 }
+
+const mapDispatch = {
+  setGenre: setMovieGenre,
+};
+
+export default compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatch,
+  ),
+)(MovieInfo);

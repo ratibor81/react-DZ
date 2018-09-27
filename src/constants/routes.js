@@ -45,6 +45,15 @@ export default {
       loading: Loader,
     }),
   },
+  MOVIS_BY_GENRE: {
+    path: MOVIES,
+    exact: true,
+    component: Loadable({
+      loader: () =>
+        import('@pages/movies-by-genre' /* webpackChunkName: "movies-by-genre-page" */),
+      loading: Loader,
+    }),
+  },
   MOVIE_INFO: {
     path: `${MOVIES}/:movieId`,
     exact: true,
