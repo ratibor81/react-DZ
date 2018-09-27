@@ -4,7 +4,6 @@ import getMoviesByGenreId from '@services/get-by-genre';
 import {
   REMOVE_FROM_WATCHLIST,
   ADD_TO_WATCHLIST,
-  FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
   SET_FROM_DATABASE,
@@ -30,10 +29,6 @@ export const addToWatchlist = movie => ({
 export const removeFromWatchlist = id => ({
   type: REMOVE_FROM_WATCHLIST,
   payload: id,
-});
-
-const fetchMoviesRequest = () => ({
-  type: FETCH_MOVIES_REQUEST,
 });
 
 const fetchMoviesSuccess = movies => ({
@@ -76,47 +71,35 @@ const getMoreByGenre = movies => ({
   payload: movies,
 });
 
-export const getMovies = category => dispatch => {
-  dispatch(fetchMoviesRequest());
-
-  fetchMovies(category)
+export const getMovies = pageNum => dispatch => {
+  fetchMovies(pageNum)
     .then(movies => dispatch(fetchMoviesSuccess(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
 
-export const getMoreMovies = category => dispatch => {
-  dispatch(fetchMoviesRequest());
-
-  fetchMovies(category)
+export const getMoreMovies = pageNum => dispatch => {
+  fetchMovies(pageNum)
     .then(movies => dispatch(fetchMoreMovies(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
 
 export const getMovieByTitle = title => dispatch => {
-  dispatch(fetchMoviesRequest());
-
   searchMovie(title)
     .then(movies => dispatch(searchMoviesSuccess(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
 
 export const getMoreMoviesByTitle = title => dispatch => {
-  dispatch(fetchMoviesRequest());
-
   searchMovie(title)
     .then(movies => dispatch(searchMoreMovies(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
 export const getMoviesByGenre = genre => dispatch => {
-  dispatch(fetchMoviesRequest());
-
   getMoviesByGenreId(genre)
     .then(movies => dispatch(getByGenre(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
 export const getMoreMoviesByGenre = genre => dispatch => {
-  dispatch(fetchMoviesRequest());
-
   getMoviesByGenreId(genre)
     .then(movies => dispatch(getMoreByGenre(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
