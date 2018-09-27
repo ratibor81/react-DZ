@@ -6,6 +6,7 @@ export const SIGN_IN = '/signin';
 export const ACCOUNT = '/account';
 export const WATCHLIST = '/watchlist';
 export const MOVIES = '/movies';
+export const SEARCH = '/search';
 
 export default {
   HOME: {
@@ -14,6 +15,15 @@ export default {
     component: Loadable({
       loader: () =>
         import('@pages/movies' /* webpackChunkName: "movies-page" */),
+      loading: Loader,
+    }),
+  },
+  SEARCH: {
+    path: SEARCH,
+    exact: true,
+    component: Loadable({
+      loader: () =>
+        import('@pages/search-page' /* webpackChunkName: "search-page" */),
       loading: Loader,
     }),
   },

@@ -24,7 +24,6 @@ class MoviesPage extends Component {
 
     return (
       <MainSection>
-        {movies.length === 0 && <div>Nothing found on your request :(</div>}
         {movies.length > 0 && <MovieList movies={movies} />}
       </MainSection>
     );

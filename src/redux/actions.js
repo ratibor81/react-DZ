@@ -6,6 +6,9 @@ import {
   FETCH_MOVIES_FAILURE,
   SET_FROM_DATABASE,
   FETCH_MORE_MOVIES,
+  SEARCH_MOVIES,
+  SEARCH_MORE_MOVIES,
+  SET_MOVIE_TITLE,
 } from './types';
 import fetchMovies from '../services/get-movies';
 import searchMovie from '../services/search';
@@ -43,6 +46,18 @@ const fetchMoviesFailure = error => ({
   type: FETCH_MOVIES_FAILURE,
   payload: error,
 });
+const searchMoviesSuccess = movies => ({
+  type: SEARCH_MOVIES,
+  payload: movies,
+});
+const searchMoreMovies = movies => ({
+  type: SEARCH_MORE_MOVIES,
+  payload: movies,
+});
+export const setMovieTitle = title => ({
+  type: SET_MOVIE_TITLE,
+  payload: title,
+});
 
 export const getMovies = category => dispatch => {
   dispatch(fetchMoviesRequest());
@@ -52,18 +67,26 @@ export const getMovies = category => dispatch => {
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };
 
-export const getMovieByTitle = title => dispatch => {
-  dispatch(fetchMoviesRequest());
-
-  searchMovie(title)
-    .then(movies => dispatch(fetchMoviesSuccess(movies)))
-    .catch(err => dispatch(fetchMoviesFailure(err)));
-};
-
 export const getMoreMovies = category => dispatch => {
   dispatch(fetchMoviesRequest());
 
   fetchMovies(category)
     .then(movies => dispatch(fetchMoreMovies(movies)))
+    .catch(err => dispatch(fetchMoviesFailure(err)));
+};
+
+export const getMovieByTitle = title => dispatch => {
+  dispatch(fetchMoviesRequest());
+
+  searchMovie(title)
+    .then(movies => dispatch(searchMoviesSuccess(movies)))
+    .catch(err => dispatch(fetchMoviesFailure(err)));
+};
+
+export const getMoreMoviesByTitle = title => dispatch => {
+  dispatch(fetchMoviesRequest());
+
+  searchMovie(title)
+    .then(movies => dispatch(searchMoreMovies(movies)))
     .catch(err => dispatch(fetchMoviesFailure(err)));
 };

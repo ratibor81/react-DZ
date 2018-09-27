@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getMovieByTitle } from '@redux/actions';
+import { getMovieByTitle, setMovieTitle } from '@redux/actions';
 import SearchButton from '@shared/flat-buttons/search-btn';
 import Input from '@material-ui/core/Input';
 import * as routes from '@constants/routes';
@@ -12,6 +12,7 @@ import styles from './styles.css';
 class SearchBar extends Component {
   static propTypes = {
     getMovieByTitle: PropTypes.func.isRequired,
+    setMovieTitle: PropTypes.func.isRequired,
     history: PropTypes.objectOf(Object).isRequired,
   };
 
@@ -26,11 +27,14 @@ class SearchBar extends Component {
   handleSubmit = e => {
     const { title } = this.state;
     const { history } = this.props;
-    const { getMovieByTitle: fetchMovies } = this.props;
+    const {
+      getMovieByTitle: searchMovies,
+      setMovieTitle: setTitle,
+    } = this.props;
     e.preventDefault();
-
-    history.push(routes.HOME);
-    fetchMovies({ title });
+    setTitle(title);
+    searchMovies({ title });
+    history.push(routes.SEARCH);
   };
 
   render() {
@@ -63,7 +67,7 @@ class SearchBar extends Component {
 export default compose(
   connect(
     null,
-    { getMovieByTitle },
+    { getMovieByTitle, setMovieTitle },
   ),
   withRouter,
 )(SearchBar);
