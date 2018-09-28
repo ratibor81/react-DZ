@@ -2,32 +2,31 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import { DragDropContext } from 'react-beautiful-dnd';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { getWatchlist } from '@redux/selectors';
-import { setFromDatabase } from '@redux/actions';
+// import { setFromDatabase } from '@redux/actions';
 import SnackBarInfo from '@shared/snackBar/warning';
 import withAuthorization from '@hoc/withAuthorization';
 import AppBar from '@material-ui/core/AppBar';
 import WatchListCard from './watchlist-card';
 import styles from './styles.css';
-import { db, auth } from '@firebase-modules';
+// import { db, auth } from '@firebase-modules';
 
 class WatchList extends Component {
   state = { isOpen: false };
 
-  componentDidMount() {
-    this.getFromDatabase();
-  }
+  // componentDidMount() {
+  //   this.getFromDatabase();
+  // }
 
-  getFromDatabase = () => {
-    const { setState } = this.props;
-    const userId = auth.currentUser().uid;
-    db.getUserData(userId).then(snapshot => {
-      if (!snapshot.val()) return;
-      setState(snapshot.val().watchlist);
-    });
-  };
+  // getFromDatabase = () => {
+  //   const { setState } = this.props;
+  //   const userId = auth.currentUser().uid;
+  //   db.getUserData(userId).then(snapshot => {
+  //     if (!snapshot.val()) return;
+  //     setState(snapshot.val().watchlist);
+  //   });
+  // };
 
   toggleSnackbar = () => {
     this.setState(prevState => ({
@@ -81,21 +80,21 @@ class WatchList extends Component {
 
 WatchList.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
-  setState: PropTypes.func.isRequired,
+  // setState: PropTypes.func.isRequired,
 };
 
 const mapState = state => ({
   watchlist: getWatchlist(state),
 });
 
-const mapDispatch = { setState: setFromDatabase };
+// const mapDispatch = { setState: setFromDatabase };
 
 const authCondition = authUser => !!authUser;
 
 export default compose(
   connect(
     mapState,
-    mapDispatch,
+    null,
   ),
   withAuthorization(authCondition),
 )(WatchList);

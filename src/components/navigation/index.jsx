@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
-// import AuthUserContext from '@hoc/AuthUserContext';
 import * as routes from '@constants/routes';
 import SearchBar from '@components/search-bar';
 import { auth } from '../../firebase';
@@ -56,7 +56,6 @@ const PrivateLinks = () => (
       </li>
       {auth.isAuth() && (
         <li className={styles.user_panel}>
-          <h4>{auth.currentUser().displayName}</h4>
           <img
             src={auth.currentUser().photoURL}
             className={styles.user_foto}
@@ -96,4 +95,4 @@ const PublicLinks = () => (
   </AppBar>
 );
 
-export default Navigation;
+export default withRouter(Navigation);

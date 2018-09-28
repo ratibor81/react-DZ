@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addToWatchlist } from '@redux/actions';
+import { addToWatchlist, removeFromWatchlist } from '@redux/actions';
 import { getAllMovies, getWatchlist } from '@redux/selectors';
 import SnackBarError from '@shared/snackBar/error';
 import AddButton from '@shared/flat-buttons/add-btn';
+import DelButton from '@shared/flat-buttons/del-btn';
 import styles from '../movie-card/styles.css';
 import getItemById from '@helpers';
 import { auth } from '@firebase-modules';
@@ -29,13 +30,21 @@ class CardPanel extends Component {
   };
 
   render() {
-    const { id } = this.props;
+    const { id, removeCard } = this.props;
     const { isOpen } = this.state;
 
     return (
       <div className={styles.Add_panel}>
         {auth.currentUser() && (
-          <AddButton onClick={event => this.addCardToList(id, event)} />
+          <div>
+            <AddButton onClick={event => this.addCardToList(id, event)} />
+            <DelButton
+              onClick={event => {
+                event.stopPropagation();
+                removeCard(id);
+              }}
+            />
+          </div>
         )}
         <SnackBarError
           text="Movie is already exist on your watchlist"
@@ -53,6 +62,7 @@ CardPanel.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
 };
 
 const mapState = state => ({
@@ -62,6 +72,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   addCard: addToWatchlist,
+  removeCard: removeFromWatchlist,
 };
 
 export default connect(

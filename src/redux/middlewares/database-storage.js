@@ -1,4 +1,4 @@
-import { db, auth } from '../../firebase';
+import { db, auth } from '@firebase-modules';
 
 const databaseUpdate = store => next => action => {
   if (!action.payload) return;
