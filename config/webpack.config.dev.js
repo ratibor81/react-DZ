@@ -94,6 +94,7 @@ module.exports = {
       '@constants': path.resolve(__dirname, '../src/constants'),
       '@firebase-modules': path.resolve(__dirname, '../src/firebase'),
       '@components': path.resolve(__dirname, '../src/components'),
+      '@images': path.resolve(__dirname, '../src/images'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

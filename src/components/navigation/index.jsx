@@ -5,16 +5,15 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import * as routes from '@constants/routes';
 import SearchBar from '@components/search-bar';
-import { auth } from '../../firebase';
+import { auth } from '@firebase-modules';
 import styles from './styles.css';
 
 const Navigation = () =>
-  // <AuthUserContext.Consumer>
   auth.currentUser() ? <PrivateLinks /> : <PublicLinks />;
-// </AuthUserContext.Consumer>
 
 const PrivateLinks = () => (
   <AppBar position="fixed" color="default" className={styles.AppBar}>
+    <div className={styles.Logo} />
     <ul className={styles.Nav}>
       <li>
         <NavLink
@@ -71,7 +70,8 @@ const PrivateLinks = () => (
 );
 
 const PublicLinks = () => (
-  <AppBar position="fixed" color="default" className={styles.AppBar}>
+  <AppBar position="fixed" color="inherit" className={styles.AppBar}>
+    <div className={styles.Logo} />
     <ul className={styles.Nav}>
       <li>
         <NavLink
