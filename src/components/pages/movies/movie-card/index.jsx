@@ -26,7 +26,10 @@ const MovieCard = ({
   >
     <img src={`${IMG_BASE}${posterPath}`} alt="" />
     <p className={styles.Title}>{title}</p>
-    <h5 className={styles.Date}>Release date: {releaseDate.slice(0, -6)}</h5>
+    <h5 className={styles.Date}>
+      Release date:
+      <span className={styles.Date_num}>{releaseDate.slice(0, -6)}</span>
+    </h5>
     <div className={styles.Rate}>{voteAverage}</div>
     <CardPanel id={id} onClose={onClose} />
   </div>

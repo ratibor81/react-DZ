@@ -3,7 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 3px 10px;
+  align-items: center;
+  padding: 4px 10px;
   position: relative;
 }
 
@@ -11,7 +12,7 @@
   .Nav {
     flex-wrap: nowrap;
     justify-content: initial;
-    width: 70%;
+    width: 100%;
   }
 }
 .Nav li {
@@ -51,8 +52,8 @@
   font-size: 13px;
 }
 .user_foto {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -75,7 +76,7 @@
   .Nav li button {
     padding: 8px 16px !important;
     min-height: 36px;
-    margin-top: -4px !important;
+    /* margin-top: -4px !important; */
   }
 }
 /*Link animation */
@@ -100,5 +101,12 @@
     margin-bottom: 0;
     position: fixed !important;
     flex-direction: row !important;
+  }
+}
+@media (min-width: 768px) {
+  .SearchForm {
+    position: absolute;
+    right: 50px;
+    top: 5px;
   }
 }

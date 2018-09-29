@@ -2,13 +2,14 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .List_item {
   width: 48%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   animation: open-card 0.3s;
 }
+
 @media (min-width: 768px) {
   .List_item {
     width: 24%;
@@ -16,7 +17,7 @@
 }
 @media (min-width: 1200px) {
   .List_item {
-    width: 19%;
+    width: 13%;
   }
 }
 .List:nth-last-child(-n + 4) {
@@ -39,4 +40,12 @@
     transform: scale(1);
     transition: transform 300ms ease-in;
   }
+}
+
+.NothingFound {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  color: red;
+  font-weight: bolder;
 }

@@ -54,6 +54,9 @@ const PrivateLinks = () => (
           Log Out
         </Button>
       </li>
+      <li className={styles.SearchForm}>
+        <SearchBar />
+      </li>
       {auth.isAuth() && (
         <li className={styles.user_panel}>
           <img
@@ -64,7 +67,6 @@ const PrivateLinks = () => (
         </li>
       )}
     </ul>
-    <SearchBar />
   </AppBar>
 );
 
@@ -90,8 +92,10 @@ const PublicLinks = () => (
           Sign In
         </NavLink>
       </li>
+      <li className={styles.SearchForm}>
+        <SearchBar />
+      </li>
     </ul>
-    <SearchBar />
   </AppBar>
 );
 
