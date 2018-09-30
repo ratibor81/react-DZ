@@ -41,11 +41,7 @@ class SearchBar extends Component {
     const { title } = this.state;
 
     return (
-      <form
-        className={styles.Search_form}
-        onSubmit={this.handleSubmit}
-        // autoComplete="on"
-      >
+      <form className={styles.Search_form} onSubmit={this.handleSubmit}>
         <div className={styles.Panel}>
           <Input
             type="text"

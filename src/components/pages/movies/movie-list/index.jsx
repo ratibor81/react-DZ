@@ -9,27 +9,9 @@ import { getMoreMovies, setFromDatabase } from '@redux/actions';
 import SnackBarSuccess from '@shared/snackBar/success';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
-import { db, auth } from '@firebase-modules';
 
 class MovieList extends Component {
   state = { isOpen: false };
-
-  componentDidMount() {
-    this.getFromDatabase();
-  }
-
-  getFromDatabase = () => {
-    const { setState } = this.props;
-
-    setTimeout(() => {
-      if (!auth.currentUser()) return;
-      const userId = auth.currentUser().uid;
-      db.getUserData(userId).then(snapshot => {
-        if (!snapshot.val()) return;
-        setState(snapshot.val().watchlist);
-      });
-    }, 2000);
-  };
 
   getMoreMovies = pageNum => {
     const { fetchMoreMovies } = this.props;
@@ -77,12 +59,7 @@ MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
   fetchMoreMovies: PropTypes.func.isRequired,
   setState: PropTypes.func.isRequired,
-  // watchlist: PropTypes.arrayOf(Array).isRequired,
 };
-
-// const mapState = state => ({
-//   watchlist: getWatchlist(state),
-// });
 
 const mapDispatch = {
   fetchMoreMovies: getMoreMovies,

@@ -37,7 +37,7 @@ const watchlist = (state = [], { type, payload }) => {
   }
 };
 
-const search = (state = [], { type, payload }) => {
+const search = (state = null, { type, payload }) => {
   switch (type) {
     case SEARCH_MOVIES:
       return payload;

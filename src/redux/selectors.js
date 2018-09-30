@@ -10,6 +10,6 @@ export const getMovieGenreId = state => state.movies.genreId;
 
 export const getMoviesByGenreId = state => state.movies.byGenre;
 
-export const getError = state => state.movies.error;
+export const getError = state => state.errors;
 
 export const getExtendInfo = state => state.moviecard.info;

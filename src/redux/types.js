@@ -10,10 +10,4 @@ export const SET_MOVIE_TITLE = 'SET_MOVIE_TITLE';
 export const SET_MOVIE_GENRE = 'SET_MOVIE_GENRE';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIE_BY_GENRE';
 export const GET_MORE_MOVIES_BY_GENRE = 'GET_MORE_MOVIE_BY_GENRE';
-
-// ---------------------------- //
-
-// export const GET_MOVIE_BY_ID = 'GET_MOVIE_BY_ID';
-// export const GET_MOVIE_IMAGES = 'GET_MOVIE_IMAGES';
-// export const GET_MOVIE_ACTORS = 'GET_MOVIE_ACTORS';
-// export const GET_MOVIE_TRAILER = 'GET_MOVIE_TRAILER';
+export const ERROR_RESET = 'ERROR_RESET';

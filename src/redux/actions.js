@@ -14,7 +14,13 @@ import {
   SET_MOVIE_GENRE,
   GET_MOVIES_BY_GENRE,
   GET_MORE_MOVIES_BY_GENRE,
+  ERROR_RESET,
 } from './types';
+
+export const errorReset = reset => ({
+  type: ERROR_RESET,
+  payload: reset,
+});
 
 export const setFromDatabase = watchlist => ({
   type: SET_FROM_DATABASE,
