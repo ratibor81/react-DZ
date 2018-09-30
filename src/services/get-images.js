@@ -10,7 +10,7 @@ const getImages = ({ id, onSuccess, onError }) => {
     .get(url)
     .then(response => response.data.backdrops)
     .then(onSuccess)
-    .catch(onError);
+    .catch(error => onError(JSON.stringify(error)));
 };
 
 export default getImages;

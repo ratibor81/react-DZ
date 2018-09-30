@@ -10,7 +10,7 @@ const getActors = ({ id, onSuccess, onError }) => {
     .get(url)
     .then(response => response.data.cast)
     .then(onSuccess)
-    .catch(onError);
+    .catch(error => onError(JSON.stringify(error)));
 };
 
 export default getActors;
