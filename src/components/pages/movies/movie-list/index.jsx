@@ -7,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loader-spinner';
 import { getMoreMovies, setFromDatabase } from '@redux/actions';
 import SnackBarSuccess from '@shared/snackBar/success';
+import { getError } from '@redux/selectors';
 import MovieCard from '../movie-card';
 import styles from './styles.css';
 
@@ -25,13 +26,15 @@ class MovieList extends Component {
   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, error } = this.props;
     const { isOpen } = this.state;
+    const dis = !!error;
+
     return (
       <InfiniteScroll
         pageStart={0}
         loadMore={this.getMoreMovies}
-        hasMore
+        hasMore={!dis}
         loader={
           <div className={styles.Loader} key={0}>
             <Loader type="ThreeDots" color="#00BFFF" height={120} width={120} />
@@ -59,7 +62,15 @@ MovieList.propTypes = {
   movies: PropTypes.arrayOf(Array).isRequired,
   fetchMoreMovies: PropTypes.func.isRequired,
   setState: PropTypes.func.isRequired,
+  error: PropTypes.objectOf(Object),
 };
+MovieList.defaultProps = {
+  error: null,
+};
+
+const mapState = state => ({
+  error: getError(state),
+});
 
 const mapDispatch = {
   fetchMoreMovies: getMoreMovies,
@@ -69,7 +80,7 @@ const mapDispatch = {
 export default compose(
   withRouter,
   connect(
-    null,
+    mapState,
     mapDispatch,
   ),
 )(MovieList);
