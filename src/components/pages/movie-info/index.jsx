@@ -8,10 +8,10 @@ import searchById from '@services/search-by-id';
 import getVideos from '@services/get-videos';
 import getImages from '@services/get-images';
 import getActors from '@services/get-actors';
+import ErrorMessage from '@shared/errors-handler';
 import Loader from 'react-loader-spinner';
 import { setMovieGenre } from '@redux/actions';
 import * as routes from '@constants/routes';
-import Button from '@material-ui/core/Button';
 import styles from './styles.css';
 import Trailer from './trailer';
 import ImageSlider from './carousel-slider/img-slider';
@@ -98,19 +98,7 @@ class MovieInfo extends Component {
 
     return (
       <div className={styles.center}>
-        {error && (
-          <div className={styles.ErrorMessage}>
-            <h2>Internet connection error :(</h2>
-            <Button
-              variant="raised"
-              color="primary"
-              type="button"
-              onClick={this.fetchData}
-            >
-              Try again
-            </Button>
-          </div>
-        )}
+        {error && <ErrorMessage onClick={this.fetchData} />}
 
         {loading && (
           <Loader type="ThreeDots" color="#00BFFF" height={120} width={120} />
