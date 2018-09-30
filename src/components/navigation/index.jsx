@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import Loader from 'react-loader-spinner';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import * as routes from '@constants/routes';
@@ -9,11 +10,7 @@ import { auth } from '@firebase-modules';
 import styles from './styles.css';
 
 const Navigation = () =>
-  auth.currentUser() ? (
-    <PrivateLinks />
-  ) : (
-    !auth.currentUser() && <PublicLinks />
-  );
+  auth.currentUser() ? <PrivateLinks /> : <PublicLinks />;
 
 const PrivateLinks = () => (
   <AppBar position="fixed" color="default" className={styles.AppBar}>
@@ -91,7 +88,9 @@ class PublicLinks extends Component {
     return (
       <AppBar position="fixed" color="inherit" className={styles.AppBar}>
         <div className={styles.Logo} />
-        {loading && <div>Loading...</div>}
+        {loading && (
+          <Loader type="ThreeDots" color="#00BFFF" height={40.5} width={120} />
+        )}
         {!loading && (
           <ul className={styles.Nav}>
             <li>
