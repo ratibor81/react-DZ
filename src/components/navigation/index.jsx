@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
@@ -9,7 +9,11 @@ import { auth } from '@firebase-modules';
 import styles from './styles.css';
 
 const Navigation = () =>
-  auth.currentUser() ? <PrivateLinks /> : <PublicLinks />;
+  auth.currentUser() ? (
+    <PrivateLinks />
+  ) : (
+    !auth.currentUser() && <PublicLinks />
+  );
 
 const PrivateLinks = () => (
   <AppBar position="fixed" color="default" className={styles.AppBar}>
@@ -69,34 +73,54 @@ const PrivateLinks = () => (
   </AppBar>
 );
 
-const PublicLinks = () => (
-  <AppBar position="fixed" color="inherit" className={styles.AppBar}>
-    <div className={styles.Logo} />
-    <ul className={styles.Nav}>
-      <li>
-        <NavLink
-          exact
-          to={routes.HOME}
-          className={styles.Link}
-          activeClassName={styles.LinkActive}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={routes.SIGN_IN}
-          className={styles.Link}
-          activeClassName={styles.LinkActive}
-        >
-          Sign In
-        </NavLink>
-      </li>
-      <li className={styles.SearchForm}>
-        <SearchBar />
-      </li>
-    </ul>
-  </AppBar>
-);
+class PublicLinks extends Component {
+  state = { loading: true };
+
+  componentDidMount() {
+    setTimeout(
+      () =>
+        this.setState({
+          loading: false,
+        }),
+      1500,
+    );
+  }
+
+  render() {
+    const { loading } = this.state;
+    return (
+      <AppBar position="fixed" color="inherit" className={styles.AppBar}>
+        <div className={styles.Logo} />
+        {loading && <div>Loading...</div>}
+        {!loading && (
+          <ul className={styles.Nav}>
+            <li>
+              <NavLink
+                exact
+                to={routes.HOME}
+                className={styles.Link}
+                activeClassName={styles.LinkActive}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={routes.SIGN_IN}
+                className={styles.Link}
+                activeClassName={styles.LinkActive}
+              >
+                Sign In
+              </NavLink>
+            </li>
+            <li className={styles.SearchForm}>
+              <SearchBar />
+            </li>
+          </ul>
+        )}
+      </AppBar>
+    );
+  }
+}
 
 export default withRouter(Navigation);
