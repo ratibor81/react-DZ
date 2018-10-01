@@ -1,29 +1,29 @@
 img {
   width: 100%;
 }
-.Overview {
-  display: none;
-}
-@media (min-width: 768px) {
-  .Overview {
-    display: block;
-    height: 50px;
-    overflow: hidden;
-    font-size: 11px;
-  }
-}
 
 .Card {
-  padding: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  border-radius: 10px;
+  outline: none;
+  background-color: #fff;
+}
+.Card:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
 }
 .Title {
   font-size: 11px;
   color: #1a237e;
-  font-weight: bold;
   margin-bottom: 5px;
+  text-align: center;
+  height: 13px;
+  overflow: hidden;
+  font-weight: bolder;
 }
 .Rate {
   position: absolute;
@@ -31,16 +31,23 @@ img {
   top: 0;
   background-color: #2196f3;
   color: #fff;
-  font-size: 11px;
+  font-size: 14px;
   padding: 3px;
   text-align: center;
-  width: 35px;
-  border-radius: 0 0 7px 0;
+  width: 45px;
+  border-radius: 0 0 10px 0;
+  font-weight: bold;
 }
 
 .Date {
   font-size: 11px;
   margin-bottom: 0;
+  text-align: center;
+}
+.Date_num {
+  color: #f44336;
+  margin-left: 5px;
+  font-weight: bold;
 }
 @media (min-width: 768px) {
   .Date {
@@ -48,21 +55,8 @@ img {
   }
 }
 .Add_panel {
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
-  border-radius: 0 0 7px 7px;
+  height: 45px;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 300ms ease-out, transform 300ms linear;
-  padding: 7px;
-}
-
-.Card:hover .Add_panel {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms ease-out, transform 300ms linear;
+  top: 0px;
+  right: 0px;
 }

@@ -10,7 +10,7 @@ const searchById = ({ id, onSuccess, onError }) => {
     .get(url)
     .then(response => response.data)
     .then(onSuccess)
-    .catch(onError);
+    .catch(error => onError(JSON.stringify(error)));
 };
 
 export default searchById;

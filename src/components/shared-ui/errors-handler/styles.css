@@ -1,0 +1,7 @@
+.ErrorMessage {
+  text-align: center;
+  color: red;
+}
+.ErrorMessage h2 {
+  margin-bottom: 15px;
+}

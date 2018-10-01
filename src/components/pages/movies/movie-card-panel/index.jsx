@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { addToWatchlist } from '@redux/actions';
+import { addToWatchlist, removeFromWatchlist } from '@redux/actions';
 import { getAllMovies, getWatchlist } from '@redux/selectors';
-import * as routes from '@constants/routes';
 import SnackBarError from '@shared/snackBar/error';
 import AddButton from '@shared/flat-buttons/add-btn';
-import InfoButton from '@shared/flat-buttons/info-btn';
+import DelButton from '@shared/flat-buttons/del-btn';
 import styles from '../movie-card/styles.css';
-import { getItemById } from '@helpers';
+import getItemById from '@helpers';
 import { auth } from '@firebase-modules';
 
 class CardPanel extends Component {
   state = { isOpen: false };
 
-  addCardToList = id => {
+  addCardToList = (id, event) => {
+    event.stopPropagation();
     const { watchlist, movies, addCard, onClose } = this.props;
     if (getItemById(watchlist, id)) {
       return this.toggleSnackbar();
@@ -33,24 +30,22 @@ class CardPanel extends Component {
   };
 
   render() {
-    const { id } = this.props;
-    const { location } = this.props;
+    const { id, removeCard } = this.props;
     const { isOpen } = this.state;
 
     return (
       <div className={styles.Add_panel}>
         {auth.currentUser() && (
-          <AddButton onClick={() => this.addCardToList(id)} />
+          <div>
+            <AddButton onClick={event => this.addCardToList(id, event)} />
+            <DelButton
+              onClick={event => {
+                event.stopPropagation();
+                removeCard(id);
+              }}
+            />
+          </div>
         )}
-        <NavLink
-          to={{
-            pathname: `${routes.MOVIES}/${id}`,
-            search: `${location.search}`,
-            state: { from: location },
-          }}
-        >
-          <InfoButton />
-        </NavLink>
         <SnackBarError
           text="Movie is already exist on your watchlist"
           open={isOpen}
@@ -66,9 +61,8 @@ CardPanel.propTypes = {
   watchlist: PropTypes.arrayOf(Array).isRequired,
   movies: PropTypes.arrayOf(Array).isRequired,
   addCard: PropTypes.func.isRequired,
-  // match: PropTypes.objectOf(Object).isRequired,
-  location: PropTypes.objectOf(Object).isRequired,
   onClose: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
 };
 
 const mapState = state => ({
@@ -78,12 +72,10 @@ const mapState = state => ({
 
 const mapDispatch = {
   addCard: addToWatchlist,
+  removeCard: removeFromWatchlist,
 };
 
-export default compose(
-  withRouter,
-  connect(
-    mapState,
-    mapDispatch,
-  ),
+export default connect(
+  mapState,
+  mapDispatch,
 )(CardPanel);

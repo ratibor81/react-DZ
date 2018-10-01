@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import ROUTES from '@constants/routes';
-import withAuthentication from '@hoc/withAuthentication';
+import withAuthorization from '@hoc/withAuthentication';
 import ScrollUpButton from 'react-scroll-up-button';
 import Navigation from '../navigation';
 
@@ -24,4 +24,4 @@ const App = () => (
   </div>
 );
 
-export default withAuthentication(hot(module)(App));
+export default withAuthorization(hot(module)(App));

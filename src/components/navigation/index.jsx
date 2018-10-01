@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import Loader from 'react-loader-spinner';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
-// import AuthUserContext from '@hoc/AuthUserContext';
 import * as routes from '@constants/routes';
-import { auth } from '../../firebase';
+import SearchBar from '@components/search-bar';
+import { auth } from '@firebase-modules';
 import styles from './styles.css';
 
 const Navigation = () =>
-  // <AuthUserContext.Consumer>
   auth.currentUser() ? <PrivateLinks /> : <PublicLinks />;
-// </AuthUserContext.Consumer>
 
 const PrivateLinks = () => (
   <AppBar position="fixed" color="default" className={styles.AppBar}>
+    <div className={styles.Logo} />
     <ul className={styles.Nav}>
       <li>
         <NavLink
@@ -53,9 +54,11 @@ const PrivateLinks = () => (
           Log Out
         </Button>
       </li>
+      <li className={styles.SearchForm}>
+        <SearchBar />
+      </li>
       {auth.isAuth() && (
         <li className={styles.user_panel}>
-          <h4>{auth.currentUser().displayName}</h4>
           <img
             src={auth.currentUser().photoURL}
             className={styles.user_foto}
@@ -67,30 +70,56 @@ const PrivateLinks = () => (
   </AppBar>
 );
 
-const PublicLinks = () => (
-  <AppBar position="fixed" color="default" className={styles.AppBar}>
-    <ul className={styles.Nav}>
-      <li>
-        <NavLink
-          exact
-          to={routes.HOME}
-          className={styles.Link}
-          activeClassName={styles.LinkActive}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={routes.SIGN_IN}
-          className={styles.Link}
-          activeClassName={styles.LinkActive}
-        >
-          Sign In
-        </NavLink>
-      </li>
-    </ul>
-  </AppBar>
-);
+class PublicLinks extends Component {
+  state = { loading: true };
 
-export default Navigation;
+  componentDidMount() {
+    setTimeout(
+      () =>
+        this.setState({
+          loading: false,
+        }),
+      1500,
+    );
+  }
+
+  render() {
+    const { loading } = this.state;
+    return (
+      <AppBar position="fixed" color="inherit" className={styles.AppBar}>
+        <div className={styles.Logo} />
+        {loading && (
+          <Loader type="ThreeDots" color="#00BFFF" height={40.5} width={120} />
+        )}
+        {!loading && (
+          <ul className={styles.Nav}>
+            <li>
+              <NavLink
+                exact
+                to={routes.HOME}
+                className={styles.Link}
+                activeClassName={styles.LinkActive}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={routes.SIGN_IN}
+                className={styles.Link}
+                activeClassName={styles.LinkActive}
+              >
+                Sign In
+              </NavLink>
+            </li>
+            <li className={styles.SearchForm}>
+              <SearchBar />
+            </li>
+          </ul>
+        )}
+      </AppBar>
+    );
+  }
+}
+
+export default withRouter(Navigation);

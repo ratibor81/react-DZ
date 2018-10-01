@@ -5,6 +5,12 @@ import {
   ADD_TO_WATCHLIST,
   SET_FROM_DATABASE,
   FETCH_MORE_MOVIES,
+  SEARCH_MOVIES,
+  SEARCH_MORE_MOVIES,
+  SET_MOVIE_TITLE,
+  SET_MOVIE_GENRE,
+  GET_MOVIES_BY_GENRE,
+  GET_MORE_MOVIES_BY_GENRE,
 } from '../types';
 
 const items = (state = [], { type, payload }) => {
@@ -31,7 +37,49 @@ const watchlist = (state = [], { type, payload }) => {
   }
 };
 
+const search = (state = null, { type, payload }) => {
+  switch (type) {
+    case SEARCH_MOVIES:
+      return payload;
+    case SEARCH_MORE_MOVIES:
+      return state.concat(payload);
+    default:
+      return state;
+  }
+};
+const title = (state = '', { type, payload }) => {
+  switch (type) {
+    case SET_MOVIE_TITLE:
+      return payload;
+    default:
+      return state;
+  }
+};
+const genreId = (state = '', { type, payload }) => {
+  switch (type) {
+    case SET_MOVIE_GENRE:
+      return String(payload);
+    default:
+      return state;
+  }
+};
+
+const byGenre = (state = [], { type, payload }) => {
+  switch (type) {
+    case GET_MOVIES_BY_GENRE:
+      return payload;
+    case GET_MORE_MOVIES_BY_GENRE:
+      return state.concat(payload);
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   items,
   watchlist,
+  search,
+  title,
+  genreId,
+  byGenre,
 });

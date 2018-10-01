@@ -41,3 +41,11 @@
     transition: transform 300ms ease-in;
   }
 }
+
+.NothingFound {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  color: red;
+  font-weight: bolder;
+}

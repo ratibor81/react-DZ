@@ -10,7 +10,7 @@ const getVideos = ({ id, onSuccess, onError }) => {
     .get(url)
     .then(response => response.data.results[0])
     .then(onSuccess)
-    .catch(onError);
+    .catch(error => onError(JSON.stringify(error)));
 };
 
 export default getVideos;
